@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Web Debug" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="localhost8888" start_url="/blushdrop/wordpress">
+    <method />
+  </configuration>
+</component>
