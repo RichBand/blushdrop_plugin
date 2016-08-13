@@ -71,7 +71,23 @@ Function getMetada($newUser, $dbxClient){
 *not ready further    improove is needed
 *check the API to see if it can create a folder automatically if doesnt exist previously
 */
-$oob = "[outofthebox dir='/blushdrop/clients/".$ul."' mode='files' viewrole='editor|author|contributor|subscriber|guest' downloadrole='administrator|editor|author|contributor|subscriber' notificationdownload='1' upload='1' uploadrole='administrator|editor|author|contributor|subscriber|guest' overwrite='1' notificationupload='1' rename='1' renamefilesrole='administrator|editor|author|contributor' renamefoldersrole='administrator|editor|author|contributor' move='1' delete='1' deletefilesrole='administrator|editor|author|contributor' deletefoldersrole='administrator|editor|author|contributor' notificationdeletion='1' addfolder='1' addfolderrole='administrator|editor|author|contributor']";
+$oob = "[outofthebox dir='/blushdrop/clients/".$ul."' 
+mode='files' 
+viewrole='editor|author|contributor|subscriber|guest' 
+downloadrole='administrator|editor|author|contributor|subscriber' 
+notificationdownload='1' 
+upload='1' 
+uploadrole='administrator|editor|author|contributor|subscriber|guest' 
+overwrite='1' 
+notificationupload='1' 
+rename='1' renamefilesrole='administrator|editor|author|contributor' 
+renamefoldersrole='administrator|editor|author|contributor' 
+move='1' 
+delete='1' deletefilesrole='administrator|editor|author|contributor' 
+deletefoldersrole='administrator|editor|author|contributor' 
+notificationdeletion='1' 
+addfolder='1' 
+addfolderrole='administrator|editor|author|contributor']";
 
 
 
@@ -83,20 +99,6 @@ $oob = "[outofthebox dir='/blushdrop/clients/".$ul."' mode='files' viewrole='edi
 /*
 *Create a new page and got for title the new user_login
 */
-function create_page_newUser($newUser){
-    //$cu->user_login
-    $page['post_type']    = 'page';
-    $page['post_content'] = "Hola";//create a new folder dropbox/blsudrop/$cu->user_login
-    $page['post_parent']  = 0;
-    $page['post_author']  = $newUser->ID;
-    $page['post_status']  = 'publish';
-    $page['post_title']   = $newUser->user_login;
-    //$page = apply_filters('yourplugin_add_new_page', $page, 'teams');
-    $pageid = wp_insert_post ($page);
-    if ($pageid == 0) {
-        //find what to do with the error, maybe a suggestion to reload?
-    }
-}
 
 
 
