@@ -1,0 +1,60 @@
+html, body, div, span, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+body {
+	overflow: hidden;
+	font-family: "Lucida Grande";
+	background: transparent url('body.png') no-repeat left top;
+	font-size: 14px;
+	color: #283446;
+}
+
+#content-area {
+	position: relative;
+	width: 556px;
+	height: 278px;	
+}
+
+#title {
+	position: absolute;
+	left: 15px;
+	top: 35px;
+}
+
+#message {
+	position: absolute;
+	bottom: 0px;
+	left: 15px;
+	width: 260px;
+	text-shadow: rgba(255, 255, 255, 0.3) 1px 1px 0px;
+}
+
+a#buy-button {
+	display: block;
+	position: absolute;
+	left: 360px;
+	top: 224px;
+	height: 40px;
+	width: 183px;
+	text-align: center;
+	line-height: 38px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: regular;
+	color: #555;
+	cursor: default;
+	text-shadow: rgba(255, 255, 255, 1.0) 1px 1px 0px;
+	background: transparent url('buy-button.png') no-repeat left top;
+}
+
+a#buy-button:hover {
+}
+
+a#buy-button:active {
+	background-position: 0px -40px;
+}

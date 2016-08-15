@@ -8,29 +8,29 @@
  * License: private
  */
 //TODO experiment with App folder type at dropbox developers
-require_once 'connectDropbox.php';
-$blushdropPath = "/blushdrop";
-function create_page_newUser($newUser, $blushdropPath){
-    $path = $GLOBALS["blushdropPath"]."/".$newUser->user_login;
-    $oob = "[outofthebox 
-    dir='/blushdrop/clients/".$path."' 
-    mode='files' 
-    viewrole='editor|author|contributor|subscriber|guest' 
-    downloadrole='administrator|editor|author|contributor|subscriber' 
-    notificationdownload='1' 
-    upload='1' 
-    uploadrole='administrator|editor|author|contributor|subscriber|guest' 
-    overwrite='1' 
-    notificationupload='1' 
-    rename='1' renamefilesrole='administrator|editor|author|contributor' 
-    renamefoldersrole='administrator|editor|author|contributor' 
-    move='1' 
-    delete='1' deletefilesrole='administrator|editor|author|contributor' 
-    deletefoldersrole='administrator|editor|author|contributor' 
-    notificationdeletion='1' 
-    addfolder='1' 
-    addfolderrole='administrator|editor|author|contributor']";
 
+$blushdropPath = "/blushdrop";
+require_once 'connectDropbox.php';
+require_once 'getFolderMetadata.php';
+
+//todo, check the out of the box $oob add customer
+function create_page_newUser($newUser){
+    $path = $GLOBALS["blushdropPath"]."/".$newUser->user_login;
+    $oob = '[outofthebox 
+    dir="'+$path+'" 
+    mode="files" 
+    viewrole="administrator|author|customer|guest" 
+    downloadrole="administrator|author|subscriber|customer" 
+    upload="1" 
+    rename="1" 
+    renamefilesrole="administrator|editor|author|contributor" 
+    renamefoldersrole="administrator|editor|author|contributor" 
+    move="1" 
+    delete="1" 
+    deletefilesrole="administrator|editor|author|contributor" 
+    deletefoldersrole="administrator|editor|author|contributor" 
+    addfolder="1" 
+    addfolderrole="administrator|editor|author|contributor"]';
     $page['post_type']    = 'page';
     $page['post_content'] = $oob;
     $page['post_parent']  = 0;
@@ -43,6 +43,8 @@ function create_page_newUser($newUser, $blushdropPath){
         //find what to do with the error, maybe a suggestion to reload?
     }
 }
+
+//todo page hook load methadata
 function isCustomer($myID) {
     $user_meta = get_userdata($myID);
     $user_roles= $user_meta->roles;
@@ -53,31 +55,90 @@ function isCustomer($myID) {
         return false;
     }
 }
+
+function getCountTime($path){
+    $countTime = 0;
+    $count = 0;
+    $count = [
+        "totalTime" => 0,
+        "seconds" => 0,
+        "minutes" => 0,
+        "hours" => 0,
+    ];
+    try {
+        $folderMetadata = getFolderMetadata($path);
+        $contents = $folderMetadata["contents"];
+        if (is_array($contents) || is_object($contents)) {
+            foreach ($contents as $metadatos) {
+                $count++;
+                $countTime += isset($metadatos["video_info"]["duration"]) ? $metadatos["video_info"]["duration"] : '';
+            };
+            $uSec = $countTime % 1000;
+            $input = floor($countTime / 1000);
+            $seconds = $input % 60;
+            $input = floor($input / 60);
+            $minutes = $input % 60;
+            $input = floor($input / 60);
+            $hours = $input % 60;
+            $count = [
+                "totalTime" => $countTime,
+                "seconds" => $seconds,
+                "minutes" => $minutes,
+                "hours" => $hours,
+            ];
+        };
+
+    } catch (Exception $e) {
+        //echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    }
+
+    return $count;
+}
+
 function newUser($user_id) {
     if(isCustomer($user_id)) {
         add_user_meta( $user_id, '_new_user', '1' );
         $newUser = get_userdata($user_id);
         $path = $GLOBALS["blushdropPath"]."/".$newUser->user_login;
-        $folderMetadata = $GLOBALS["dbxClient"]->createFolder($path);
+        $GLOBALS["dbxClient"]->createFolder($path);
         create_page_newUser($newUser);
     }
 }
 add_action( 'user_register', 'newUser');
+
 function loginUser( $user_login, $user ) {
     $myID = $user->ID;
     if(isCustomer($myID)){
-        wp_redirect( 'http://localhost:8888/blushdrop/wordpress/'.$user->user_login, 302 ); exit;
+        $thisSite = get_site_url()."/";
+        wp_redirect( $thisSite.$user->user_login, 302 ); exit;
     };
 }
 add_action('wp_login', 'loginUser', 10, 2);
 
+function register_script() {
+    wp_register_script( 'custom_jquery', plugins_url('/js/custom-jquery.js', __FILE__), array('jquery'), '2.5.1' );
 
-/*
-function printMetadata($dbxClient){
-    $path = $GLOBALS["blushdropPath"]."/".$path;
-    $folderMetadata = $dbxClient->getMetadataWithChildren($path);
-    print_r($folderMetadata);
+    wp_register_style( 'new_style', plugins_url('/css/new-style.css', __FILE__), false, '1.0.0', 'all');
 }
-printMetadata($dbxClient, "braden");
-*/
+//add_action('init', 'register_script');
+// use the registered jquery and style above
+//add_action('wp_enqueue_scripts', 'enqueue_style');
+
+function enqueue_style(){
+    wp_enqueue_script('custom_jquery');
+
+    wp_enqueue_style( 'new_style' );
+}
+
+function showTotalTime($wp_query){
+    $current_user = wp_get_current_user();
+    $page_title = $wp_query->post->post_title;
+    if ( 0 == $current_user->ID ) {
+    } else {
+        $folderMetadata = getCountTime($GLOBALS["blushdropPath"]."/".$page_title);
+        return $folderMetadata["totalTime"];
+    }
+}
+
+
 

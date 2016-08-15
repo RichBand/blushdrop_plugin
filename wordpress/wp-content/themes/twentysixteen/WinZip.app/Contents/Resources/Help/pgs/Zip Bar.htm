@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <link rel="StyleSheet" href="../sty/styles.css" type="text/css">
+
+  <title>The Zip Bar</title>
+</head>
+
+<body>
+  <h1>The Zip Bar</h1>
+
+  <p>WinZip<sup>&reg;</sup>'s Zip bar provides summary information about the open Zip file
+  and during zipping and unzipping, displays information about the progress of the zipping or
+  unzipping operation.</p>
+
+  <h6>Zip File Information - Normal</h6>
+
+  <p>When a zip or unzip operation is not in progress, the Zip bar shows summary information about
+  the current Zip file.</p>
+
+  <p><img src="../gfx/Zip%20Bar%20-%20Summary.png"  alt=""></p>
+<br>
+  <ol>
+    <li><b class="Bullet">Zip File Name</b>: the Zip bar displays the name of the Zip file open in
+    this window. <span class="rename">Clicking on the name, the name can be edited, renaming the
+    Zip file.</span></li>
+
+    <li><b class="Bullet">Back button</b>: the back button navigates to the previous folder
+    that the user was viewing.</li>
+
+    <li><b class="Bullet">File path breadcrumbs</b>: the breadcrumbs appear when viewing a subfolder of the Zip file, and it shows the parent folder, its parent and so on back to the name of the Zip file itself.  If there are too many breadcrumb items to fit in the available space, the middle ones are replaced with ellipses.</li>
+
+    <li><b class="Bullet">Size Comparison</b>: the size of the files in the Zip file when unzipped
+    and zipped is displayed to convey the space savings.</li>
+  </ol>
+
+  <h6>Zipping and Unzipping Progress</h6>
+
+  <p>During a zip or unzip operation, a progress meter replaces the summary information.</p>
+
+  <p><img src="../gfx/Zip%20Bar%20-%20Progress.png"  alt=""></p>
+<br>
+  <ol>
+    <li><b class="Bullet">Current Operation</b>: during zipping and unzipping, the status bar
+    indicates the operation underway, either "Zipping files..." or "Unzipping files...". A meter
+    displays the percentage complete and remaining for the operation. When the operation
+    finishes, the Zip bar will indicate the operation is complete and the user can revert the Zip
+    bar back to its summary mode of operation.</li>
+
+    <li><b class="Bullet">Cancel</b>: the current operation can be canceled at any time.
+    If the operation was unzipping, any files completely unzipped will remain in the destination.
+    If the operation was zipping, the Zip file will revert back to the content that existed before
+    the zipping operation was started. An attempt to close WinZip instead of using the <strong>Cancel</strong> button will produce an alert window that WinZip is not finished zipping or unzipping files. A prompt informs the user to wait until all operations are finished. Press the <strong>OK</strong> button to continue.</li>
+  </ol>
+  <br />
+</body>
+</html>

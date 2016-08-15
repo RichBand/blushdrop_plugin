@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+  <link rel="StyleSheet" href="../sty/styles.css" type="text/css">
+
+  <title>Unzipping Selected Files</title>
+</head>
+
+<body>
+  <h1>Unzipping Selected Files</h1>
+
+  <p>To unzip files from within WinZip<sup>&reg;</sup>, you need to <a href="OpenZipFile.htm">open the
+  Zip file</a>. The simplest method for unzipping selected files is to drag them out of the WinZip
+  Mac window and drop them onto the desktop or into a folder in the Finder window. Alternatively,
+  to unzip selected files in the open Zip file, select the files to be unzipped, then click on 
+  <b>Unzip</b> on the <a href=  "Tool%20Bar.htm">toolbar</a> and select a destination or click 
+  on <b>Unzip to My Mac</b> or <b>Unzip to Cloud</b> (and select a destination) from the 
+  <a href=  "Menu%20Bar%20-%20Actions.htm">Actions</a> menu.</p>
+
+  <h6><a name="UnzipToMyMac" id="UnzipToMyMac"></a>Unzip to My Mac</h6>
+  <p><img src="../gfx/UnzipSelected.png"  alt=""></p>
+
+  <ol>
+    <li><b class="Bullet">Unzip Sheet</b>: when the <b>Unzip</b> icon or menu item is selected, the Unzip
+    sheet slides down from the WinZip toolbar. You can select the options and destination for
+    the unzipped files. Once the options have been set, click <b>Unzip</b> to unzip the files to
+    the designated location.</li>
+
+    <li class="UnzipSaveAs"><b class="Bullet">Save As</b>: when a single file is being unzipped, the name of the file
+    is shown. Edit the name to have it saved with a different name. If multiple files are being
+    unzipped, the field displays the first few filenames. Renaming is not allowed when unzipping
+    multiple files.</li>
+
+    <li><b class="Bullet">Where to Unzip</b>: select the destination for the unzipped files. The
+    drop down displays the standard Mac locations plus a list of recent destinations from previous
+    unzip operations. During unzipping, if a file being unzipped has the same name as a file in the
+    destination location, a <a href="#Replace">prompt</a> will display requesting an action to
+    take.</li>
+
+    <li><b class="Bullet">What to Unzip</b>: to unzip selected files, click on the <b>Selected
+    items</b> button. This button is unavailable if there are no selected files in the open Zip
+    file.</li>
+
+    <li><b class="Bullet">Show Results</b>: check <b>Show unzipped files in Finder</b> to have
+    WinZip open a Finder window after unzipping showing the folder in which the files were
+    unzipped.</li>
+  </ol>
+  
+  <h6><a name="UnzipToCloud" id="UnzipToCloud"></a>Unzip to Cloud</h6>
+  <p><img src="../gfx/UnzipSelectedToCloudSelectCloud.png"  alt=""></p>
+
+  <p>Select a cloud storage service from the list of available services in WinZip.</p><br />
+
+  <p><img src="../gfx/UnzipSelectedToCloud.png"  alt=""></p>
+
+  <ol>
+    <li><b class="Bullet">Unzip Sheet</b>: when the <b>Unzip to Cloud</b> icon or menu item is selected, the Unzip
+    sheet slides down from the WinZip toolbar. You can select the options and destination for
+    the unzipped files. Once the options have been set, click <b>Unzip</b> to unzip the files to
+    the designated location.</li>
+
+    <li><b class="Bullet">Where to Unzip</b>: select the destination for the unzipped files by selecting or navigating to 
+	a destination folder. During unzipping, if a file being unzipped has the same name as a file in the
+    destination location, a <a href="#Replace">prompt</a> will display requesting an action to
+    take.</li>
+
+    <li><b class="Bullet">What to Unzip</b>: to unzip selected files, click on the <b>Selected
+    items</b> button. This button is unavailable if there are no selected files in the open Zip
+    file.</li>
+
+  </ol>
+
+  <h6><a name="EncryptedFiles" id="EncryptedFiles"></a>Unzipping Encrypted Files</h6>
+
+  <p>When unzipping an encrypted file, the password must be provided for the operation to continue.
+  The following prompt is displayed:</p>
+
+  <p><img src="../gfx/Password.png"  alt=""></p>
+
+  <h6><a name="Replace" id="Replace"></a>Replace Existing File Prompt</h6>
+
+  <p>During unzipping, if a file being unzipped has the same name as a file in the destination
+  location, the following alert will display requesting an action to take.</p>
+
+  <p><img src="../gfx/Replace.png"  alt=""></p>
+
+  <ol>
+    <li><b class="Bullet">Possible Actions</b>: when a file already exists in the destination
+    location with the same name as the file being unzipped, the available options are
+    <b>Replace</b>, to replace the existing file with the one being unzipped, <b>Don't Replace</b>,
+    to skip unzipping the file and leave the destination file as is, or <b>Stop</b>, to stop the
+    unzipping process. If it is possible that there will be multiple conflicts, check <b>Apply to
+    All</b> and the chosen action will be repeated for each conflict encountered during the
+    remainder of the unzip operation.</li>
+
+    <li><b class="Bullet">Default Action</b>: the default action is <b>Stop</b>. This ends the
+    unzip operation and prevents accidental overwrites if the default action is accidentally
+    chosen.</li>
+  </ol>
+  <br />
+</body>
+</html>

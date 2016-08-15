@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <link rel="StyleSheet" href="../sty/styles.css" type="text/css">
+
+  <title>Configuring WinZip</title>
+</head>
+
+<body>
+  <h1>Configuring WinZip</h1>
+
+  <p>The Preferences window lets you configure the default behavior of WinZip<sup>&reg;</sup>. You
+  can access the Preferences window by clicking on <b>Preferences</b> from the <a href=
+  "Menu%20Bar%20-%20WinZip.htm">WinZip</a> menu.</p>
+
+  <p>The Preference window has three sections:</p>
+
+  <ul>
+    <li><a href="#General">General</a></li>
+
+    <li><a href="#Types">File Types</a></li>
+	
+	<li><a href="#CloudService">Cloud Service</a></li>
+  </ul>
+
+  <h6><a name="General" id="General"></a>General</h6>
+
+  <p>The General pane of the Preferences window displays all the current default preference
+  settings for WinZip and allows the defaults to be changed.</p>
+
+  <p><img src="../gfx/Preferences%20-%20General.png"  alt=""></p>
+
+  <ol>
+    <li class="AutoOpen"><b class="Bullet">Automatic Open</b>: if this option is checked, when opening a Zip file that contains
+    only one file in it, WinZip will unzip the file and open it in its associated program. This
+    only happens if WinZip considers the kind of file to be safe, such as iWork and Microsoft Office
+    files.</li>
+
+	<li><b class="Bullet">Smart View Selection</b>: If this option is checked, WinZip will default to the Icon view if the Zip file contains images. If the option is unchecked, WinZip will use the last view used.</li>
+	
+    <li><b class="Bullet">Updates</b>: if this option is checked, WinZip will check for updates weekly. If an
+    update is found, a "<a href="Notification%20Screen.htm">notification</a>" screen is
+    displayed.</li>
+
+    <li><b class="Bullet">Include</b>: if this option is checked, WinZip will zip hidden files when zipping
+    folders that contain hidden files.</li>
+
+    <li><b class="Bullet">New file location</b>: specifies the default location where new files are saved.</li>
+
+    <li>
+      <b class="Bullet">Default Format</b>: specifies the compression format to use when creating
+      or adding to a Zip file. The choices are Zip (compatibility), Zipx (best compression), and
+      LHA.
+
+      <ul type="disc">
+        <li>
+          <i>Zip (compatibility)</i>
+
+          <p>The <i>Zip</i> option uses a traditional data compression algorithm, known as
+          'deflate', that is supported by all versions of WinZip and virtually all other Zip
+          file utilities. The 'deflate' method is generally considered to be a good all-purpose
+          compression algorithm for most types of files. <i>Zip</i> is your best choice when sharing a Zip
+          file and the recipient's Zip utility is unknown, or known to use older technology. <i>Zip</i>
+          compression creates a Zip file with the extension '.zip'.</p>
+        </li>
+
+        <li>
+          <i>Zipx (best compression)</i>
+
+          <p>The <i>Zipx</i> option allows WinZip to choose the best compression method for
+          each file, based on the kind of file. You may want to choose this option if compressed
+          file size is a primary concern. If sharing the Zip file, be sure that recipients of the
+          Zip file are using WinZip (Mac), WinZip 12.0 (or later) (Windows), or another Zip file
+          utility that is compatible with all of WinZip's compression methods. By default, best
+          method compression creates a Zip file with the extension '.zipx'.</p>
+        </li>
+
+        <li>
+          <i>LHA</i>
+
+          <p>The <i>LHA</i> option uses the LHA compression method. Although not used much in the
+          West, LHA remains popular in Japan. By default, LHA compression creates an LHA file with
+          the extension '.lha'.</p>
+        </li>
+      </ul>
+    </li>
+
+    <li>
+      <b class="Bullet">Encryption Method</b>: specifies the encryption method to use when the
+      encryption option is selected during the Zipping operation. Encryption is only supported for
+      Zip and Zipx compression methods. The choices are AES 128-bit, AES 256-bit, and ZIP 2.0.
+
+      <ul type="disc">
+
+        <li>
+          <i>AES 128-bit (recommended)</i>
+
+          <p>The <i>AES 128-bit</i> option uses AES, the Advanced Encryption Standard, which is the
+          result of a three-year competition sponsored by the U.S. Government's National Institute
+          of Standards (NIST). This encryption method, also known as Rijndael, has been adopted by
+          NIST as a Federal Information Processing Standard. AES 128 refers to the size of the
+          encryption keys that are used to encrypt the data. AES 128 can provide significantly
+          greater security than the standard Zip 2.0 method described below. An advantage of
+          128-bit AES is that it is slightly faster than 256-bit AES, that is, it takes less time
+          to encrypt or decrypt a file. If sharing the Zip file, be sure that recipients of the Zip
+          file are using WinZip (Mac), WinZip 9.0 (or later) (Windows), or another Zip file utility
+          that is compatible with WinZip's AES encryption methods.</p>
+        </li>
+
+        <li>
+          <i>AES 256-bit (higher security)</i>
+
+          <p>The <i>AES 256-bit</i> option uses AES but with 256-bit encryption keys that are used to
+          encrypt the data. AES 256-bit is stronger than AES 128-bit, but both of them can provide
+          significantly greater security than the standard Zip 2.0 method described below. If
+          sharing the Zip file, be sure that recipients of the Zip file are using WinZip (Mac), 
+		  WinZip 9.0 (or later) (Windows), or another Zip file utility that is compatible with
+          WinZip's AES encryption methods.</p>
+        </li>
+
+        <li>
+          <i>ZIP 2.0 (compatibility)</i>
+
+          <p>The <i>Zip 2.0</i> option uses an older encryption technique that provides a measure
+          of protection against casual users who do not have the password and are trying to
+          determine the contents of the files. However, the Zip 2.0 encryption format is known to
+          be relatively weak and cannot be expected to provide protection from individuals with
+          access to specialized password recovery tools. The advantage of Zip 2.0 encryption over
+          the more secure AES encryption is that it is supported by most Zip file utilities,
+          including earlier versions of WinZip. Files that you encrypt using this technique can
+          be unzipped by anyone who knows the correct password and has access to almost any Zip
+          file utility.</p>
+        </li>
+
+      </ul>
+    </li>
+
+    <li>
+      <b class="Bullet">Replace existing items when Unzipping</b>: this option specifies what WinZip should
+      do when you unzip items from a Zip file and items with the same name already exist in the
+      destination location. The options are "Ask me what to do", "Replace the existing item",
+      and "Keep the existing item".
+
+      <ul type="disc">
+        <li>
+          <i>Ask me what to do</i>
+
+          <p>The <i>Ask me what to do</i> option results in a prompt whenever a file exists in the
+          destination that has the same name as a file being unzipped. The prompt provides the
+          choice to replace the existing file.</p>
+        </li>
+
+        <li>
+          <i>Replace the existing item</i>
+
+          <p>The <i>Replace the existing item</i> option replaces the existing item in the destination
+          with the item being unzipped that has the same name.</p>
+        </li>
+
+        <li>
+          <i>Keep the existing item</i>
+
+          <p>The <i>Keep the existing item</i> option leaves the existing item in the
+          destination as is. The item is not replaced and unzipping of the item with the same name
+          is skipped.</p>
+        </li>
+
+      </ul>
+    </li>
+  </ol>
+
+  <h6><a name="Types" id="Types"></a>File Types</h6>
+
+  <p>The File Types pane of the Preferences window displays all the kinds of files that can be
+  associated with WinZip by default and allows the defaults to be changed.</p>
+
+  <p><img src="../gfx/Preferences%20-%20File%20Type.png"  alt=""></p>
+  
+  <ol>
+    <li><b class="Bullet">File Types</b>: WinZip displays a list of supported file types. By
+    default, WinZip will set all of these file types to open in WinZip when they are
+    double-clicked from Finder, Mail, etc.</li>
+
+    <li><b class="Bullet">Associated Programs</b>: A drop down menu for each file type lists WinZip
+    Mac and any other programs that can open that file type. Select the program that you want to
+    use to open files of that type by default.</li>
+  </ol>
+  
+  <h6><a name="CloudService" id="CloudService"></a>Cloud Service</h6>
+   <p>The Cloud Service pane of the Preferences window displays the cloud storage services available in WinZip. One can 
+   Login and Log out of a cloud service or set a default cloud service from this pane also.</p>
+
+  <p><img src="../gfx/Preferences%20-%20Cloud%20Service.png"  alt=""></p>
+
+  <ol>
+    <li><b class="Bullet">Cloud Service Name</b>: WinZip supports these cloud storage services: ZipShare, Google Drive, and Dropbox.</li>
+    <li><b class="Bullet">Status</b>: Displays the space usage of the cloud storage service when logged into the corresponding cloud storage service.</li>
+    <li><b class="Bullet">Login/Log out</b>: Use this section to Login to and Log out of the corresponding cloud storage service.</li>
+    <li><b class="Bullet">Set default</b>: Use this section to set the corresponding cloud storage service as the default cloud storage service.</li>
+
+  </ol>
+    <br />
+</body>
+</html>

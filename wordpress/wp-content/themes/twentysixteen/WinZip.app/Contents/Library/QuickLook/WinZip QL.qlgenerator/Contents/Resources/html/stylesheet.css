@@ -1,0 +1,113 @@
+html, body, div, span, img, ol, ul, li, table, tbody, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+body {
+	font-family: "Lucida Grande";
+	font-size: 11px;
+	min-width: 400px;
+}
+
+#body-encrypted {
+	font-size: 20px;
+	text-align: center;
+}
+
+#header {
+	height: 180px;
+	overflow: hidden;
+	width: 100%;
+}
+
+#header-content {
+	position: relative;
+	float: right;
+	width: 69%;
+	min-width: 400px;
+}
+
+#header-icon {
+	position: absolute;
+	top: 24px;
+	left: 0px;
+}
+
+#header-filename {
+	position: absolute;
+	top: 20px;
+	left: 122px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#header-type {
+	position: absolute;
+	top: 70px;
+	left: 122px;
+	font-size: 14px;
+}
+
+#header-size {
+	position: absolute;
+	top: 102px;
+	left: 122px;
+	font-size: 14px;
+}
+
+#header-time {
+	position: absolute;
+	top: 134px;
+	left: 122px;
+	font-size: 14px;
+}
+
+#file-list {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#file-list th {
+	background: transparent url('header-bg-normal.png') repeat-x left top;
+	border-top: 1px solid #babbc6;
+	border-bottom: 1px solid #babbc6;
+	border-right: 1px solid #babbc6;
+	text-align: left;
+}
+
+#file-list th.heading-unzipped, #file-list td.field-unzipped, 
+#file-list th.heading-zipped, #file-list td.field-zipped {
+	text-align: right;
+}
+
+#file-list th, #file-list td {
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+#file-list .odd {
+	background-color: #f0f0f0;
+}
+
+#file-list .even {
+	background-color: none;
+}
+
+.part-icon {
+	float: left;
+}
+
+.part-icon img {
+	margin-right: 6px;
+}
+
+.part-name {
+	float: left;
+}
+
+.indent {
+	padding-left: 24px;
+}

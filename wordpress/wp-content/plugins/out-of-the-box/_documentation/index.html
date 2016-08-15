@@ -1,0 +1,756 @@
+<!doctype html>  
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	
+	<title>Out-of-the-Box (1.7.4) - Use your Dropbox in WordPress</title>
+	
+	<meta name="description" content="This Plugin will help you to easily integrate Dropbox into your WordPress website or blog. Out-of-the-Box allows you to view, add, delete, rename  files & pictures and stream your favorite music and video’s">
+	<meta name="author" content="F. de Leeuw">
+	<meta name="copyright" content="F. de Leeuw">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2016-04-25T00:00:00+02:00">
+	
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+	
+	
+	
+	<script src="assets/js/jquery.js"></script>
+	
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+	
+	<script>document.createElement('section');var duration='500',easing='swing';</script>
+	<script src="assets/js/script.js"></script>
+	
+	<style>
+		html{background-color:#EEEEEE;color:#383838;}
+		::-moz-selection{background:#333636;color:#008C9E;}
+		::selection{background:#333636;color:#008C9E;}
+		#documenter_sidebar #documenter_logo{background-image:url(assets/images/image_2.png);}
+		a{color:#008C9E;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #0088CC, #006673);
+			  background-image: -ms-linear-gradient(top, #0088CC, #006673);
+			  background-image: -webkit-gradient(linear, 0 0, 0 0088CC%, from(#333636), to(#006673));
+			  background-image: -webkit-linear-gradient(top, #0088CC, #006673);
+			  background-image: -o-linear-gradient(top, #0088CC, #006673);
+			  background-image: linear-gradient(top, #0088CC, #006673);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088CC', endColorstr='#006673', GradientType=0);
+			  border-color: #006673 #006673 #bfbfbf;
+			  color:#FFFFFF;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #0088CC #0088CC #bfbfbf;
+		  background-color: #006673;
+		}
+		hr{border-top:1px solid #D4D4D4;border-bottom:1px solid #FFFFFF;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#333636;color:#FFFFFF;}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #494F4F;-moz-text-shadow:1px 1px 0px #494F4F;text-shadow:1px 1px 0px #494F4F;}
+		#documenter_sidebar ul{border-top:1px solid #212424;}
+		#documenter_sidebar ul a{border-top:1px solid #494F4F;border-bottom:1px solid #212424;color:#FFFFFF;}
+		#documenter_sidebar ul a:hover{background:#333636;color:#008C9E;border-top:1px solid #333636;}
+		#documenter_sidebar ul a.current{background:#333636;color:#008C9E;border-top:1px solid #333636;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+	
+</head>
+<body class="documenter-project-out-of-the-box-174-">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+				
+			<li><a href="#features" title="Features">Features</a></li>
+			<li><a href="#live_demo" title="Live Demo">Live Demo</a></li>
+			<li><a href="#installation" title="Installation">Installation</a></li>
+			<li><a href="#shortcodes" title="Shortcodes">Shortcodes</a></li>
+			<li><a href="#faq_support" title="FAQ & Support">FAQ & Support</a></li>
+			<li><a href="#changelog" title="Changelog ">Changelog </a></li>
+			<li><a href="#sources_and_credits" title="Sources and Credits">Sources and Credits</a></li>
+			<li><a href="#finally" title="Finally">Finally</a></li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright F. de Leeuw 2016<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.0</a> 
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+	<h1>Out-of-the-Box (1.7.4)</h1>
+	<h2>Use your Dropbox in WordPress</h2>
+	<div id="documenter_buttons">
+		
+	</div>
+	<hr>
+	<ul>
+	<li>created: 09/04/2013</li>
+	<li>latest update: 04/25/2016</li>
+	<li>by: F. de Leeuw</li>
+	<li><a href="http://www.florisdeleeuw.nl/wordpress">www.florisdeleeuw.nl/wordpress</a></li>
+	
+	</ul>
+	<p>View, add, delete, rename  files & pictures and stream your favorite music and video’s directly from Dropbox</p>
+	</section>
+	
+	<section id="features">
+	<div class="page-header"><h3>Features</h3><hr class="notop"></div>
+<p>
+	<strong>File browser</strong></p>
+<ul>
+	<li>
+		View Dropbox folders &amp; files directly on your site</li>
+	<li>
+		Upload form so users can upload (multiple) files to Dropbox</li>
+	<li>
+		Add, delete and rename files &amp; folders</li>
+	<li>
+		Download files as zip file</li>
+	<li>
+		Search your Dropbox for files &amp; folders</li>
+	<li>
+		If needed you can restrict users so they are only able to use their &#39;own&#39; Dropbox folder</li>
+</ul>
+<p>
+	<strong>Gallery</strong></p>
+<ul>
+	<li>
+		Great looking grid with lightbox</li>
+	<li>
+		With or without cropping</li>
+	<li>
+		Folder thumbnails shows whats inside the folder</li>
+	<li>
+		Customize image row height</li>
+	<li>
+		Shuffle images</li>
+	<li>
+		Add, delete and rename images</li>
+	<li>
+		Download images as zip file</li>
+</ul>
+<p>
+	<strong>Audio &amp; Video</strong></p>
+<ul>
+	<li>
+		Streams audio files directly from your Dropbox with a HTML 5 audioplayer with flash-fallback
+		<ul>
+			<li>
+				.<strong>m4a </strong>(AAC/H.264)</li>
+			<li>
+				.<strong>oga </strong>(Vorbis/Theora)</li>
+			<li>
+				.<strong>mp3</strong></li>
+		</ul>
+	</li>
+	<li>
+		Streams video files directly from your Dropbox with a HTML 5 audioplayer with flash-fallback
+		<ul>
+			<li>
+				.<strong>webmv&nbsp;</strong>(Vorbis/VP8)</li>
+			<li>
+				.<strong>ogv </strong>(Vorbis/Theora)</li>
+			<li>
+				.<strong>m4v&nbsp;</strong>(AAC/H.264) (always supply a m4v file for cross-browser support)</li>
+			<li>
+				<strong>.mp4&nbsp;</strong>(supports most mp4 files)</li>
+		</ul>
+	</li>
+	<li>
+		Multiple awesome skins</li>
+</ul>
+<p>
+	<strong>General</strong></p>
+<ul>
+	<li>
+		<a href="http://www.gravityforms.com/">Gravity Forms Support:</a> Upload files directly to your Dropbox via a Form</li>
+	<li>
+		Sort files by name, size or modified date</li>
+	<li>
+		Restrict viewing by file extension and file or folder name</li>
+	<li>
+		Restrict uploading files by file extension</li>
+	<li>
+		Restrict which user can see, download, rename or delete your files or upload new ones. You can set the required roles by yourself</li>
+	<li>
+		Secure OAuth 2 authentication</li>
+	<li>
+		Powerful but intuitive shortcode generator</li>
+	<li>
+		WordPress Multi-Site supported</li>
+	<li>
+		Multi language supported</li>
+	<li>
+		Auto-updater</li>
+	<li>
+		And finally... All elements are responsive!</li>
+</ul>
+</section>
+<section id="live_demo">
+	<div class="page-header"><h3>Live Demo</h3><hr class="notop"></div>
+<p>	See the Out-of-the-box plugin in action? <a href="http://www.florisdeleeuw.nl/wordpress-demo/out-of-the-box/demo/">Check our Demo</a>.</p>
+</section>
+<section id="installation">
+	<div class="page-header"><h3>Installation</h3><hr class="notop"></div>
+<h2>
+	Install Out-of-the-box</h2>
+<ol>
+	<li>		<div>
+			Upload the contents of the zip file to&nbsp;<strong>wp-content/plugins/</strong>&nbsp;and activate the plugin in your admin</div>
+		<div>
+			panel</div>
+	</li>
+	<li>		Be sure that the cache directory is writeable. Otherwise your gallery and audio/video player will load very slowly each time.</li>
+	<li>		<span style="font-family: inherit; font-style: inherit; font-weight: inherit;">Authorize the App on the plugin settings page</span></li>
+	<li>		<span style="font-family: inherit; font-style: inherit; font-weight: inherit;">Out-of-the-Box</span><span style="font-family: inherit; font-style: inherit; font-weight: inherit;">&nbsp;is ready to use!</span></li>
+</ol>
+<h2>
+	Use your own Dropbox App</h2>
+<div>
+	If you don&#39;t trust our Dropbox App or if you would limit the permissions, you can create your own App on the&nbsp;<a href="https://www.dropbox.com/developers/apps/" target="_blank">Dropbox website</a>.</div>
+<ul>	<li>		Choose &#39;Dropbox API app&#39; with &#39;Files and datastores&#39; and full access.</li>
+	<li>		You decide if Out-of-the-Box needs to show all file types or specific ones.</li>
+	<li>		Use whatever name you need.</li>
+</ul>
+<p>	<img alt="" src="assets/images/image_1.png" style="width: 898px; height: 1809px;"></p>
+<p>	&nbsp;</p>
+<div class="alert alert-info">
+	If you don&#39;t have a SSL certificate yet but you have your own IP and need one for free, try&nbsp;<a href="http://Startssl.com" target="_blank">Startssl.com</a>. Follow their instructions how to install a SSL certificate.</div>
+<ol>
+	<li>		Get your Dropbox key &amp; secret from the App Console and insert these values on the settings page of the Plugin and save these</li>
+	<li>		Follow (exactly) the instructions on the Out-of-the-Box Settings page</li>
+	<li>		Authorize the App on the plugin settings page</li>
+	<li>		Out-of-the-Box&nbsp;is ready to use!</li>
+</ol>
+<h2>
+	&nbsp;</h2>
+<p>	&nbsp;</p>
+</section>
+<section id="shortcodes">
+	<div class="page-header"><h3>Shortcodes</h3><hr class="notop"></div>
+<p>	You can use [outofthebox] in a page or post. It is possible to use it multiple times on the same page. You can use a lot of attributes to customize Out-of-the-Box&nbsp;on your blog. To make things easier for you, we added a Add Shortcode button in the MCE editor.</p>
+<p>	&nbsp;</p>
+<p>	<img alt="" src="assets/images/image_3.png"  ></p>
+</section>
+<section id="faq_support">
+	<div class="page-header"><h3>FAQ & Support</h3><hr class="notop"></div>
+<p>	Make sure you have the&nbsp;latest version&nbsp;installed.&nbsp;The version on CodeCanyon isn&rsquo;t always the latest version. Older versions can have bugs that have already been solved.</p>
+<ul>	<li>		So please insert your&nbsp;<a href="https://florisdeleeuwnl.zendesk.com/hc/en-us/articles/201834487-Where-can-I-find-my-purchase-code-" rel="nofollow">purchase code</a>&nbsp;on the settings page of the plugin and use the auto-updater.&nbsp;</li>
+</ul>
+<p>	Before you ask for support</p>
+<ul>	<li>		First check the&nbsp;<a href="https://florisdeleeuwnl.zendesk.com/hc/" rel="nofollow">FAQ</a></li>
+	<li>		Check and search the comment section of the plugin on CodeCanyon, chances are high that your question is already answered</li>
+	<li>		If you have&nbsp;feature questions&nbsp;or a&nbsp;feature suggestion&nbsp;post it in the comment section of the plugin</li>
+	<li>		If you can&rsquo;t find an answer or you have problems integrating the plugin on your website you can&nbsp;<a href="https://florisdeleeuwnl.zendesk.com/hc/en-us/requests/new" rel="nofollow">submit a ticket</a>&nbsp;via this website<br>
+		&nbsp;</li>
+</ul>
+<p>	What should you include in your ticket</p>
+<ul>	<li>		Always insert your&nbsp;<a href="https://florisdeleeuwnl.zendesk.com/hc/en-us/articles/201834487-Where-can-I-find-my-purchase-code-" rel="nofollow">purchase code</a>&nbsp;of the item you want support for. Tickets without purchase&nbsp;code will not be processed.&nbsp;I am sorry for this strict rule&hellip; but it is needed due to the amount of illegal versions of the items</li>
+	<li>		Add a link to the page where you are having troubles</li>
+	<li>		To speed things up, please provide an admin login in your email if I have to help integrating the plugin in your website</li>
+</ul>
+<p>	I need an answer now! How fast do you respond?</p>
+<ul>	<li>		Most of the questions will get a response within 72 hours, complicated questions can take a little longer</li>
+	<li>		Please keep in mind that I have a full-time job and only give support in my spare time</li>
+</ul>
+</section>
+<section id="changelog">
+	<div class="page-header"><h3>Changelog </h3><hr class="notop"></div>
+<div>
+	= 1.7.4 (26 April 2016) =</div>
+<ul>
+	<li>
+		Bug Fix for stalling upload function</li>
+	<li>
+		Bug Fix opening and closing multiple Lightboxes</li>
+	<li>
+		Bug Fix notifications for downloads</li>
+	<li>
+		Bug Fix menu items in case inline preview is disabled</li>
+	<li>
+		Bug Fix hidding empty subfolders in Gallery</li>
+	<li>
+		Bug Fix manually linking users to folders on a WordPress Multisite</li>
+	<li>
+		Bug Fix recognizing extensions in File Browser and Media Player</li>
+	<li>
+		Bug Fix User Folder feature</li>
+	<li>
+		Bug Fix in the phpThumb library breaking thumbnails in the Gallery&nbsp;</li>
+	<li>
+		Added hook: outofthebox_download, outofthebox_upload</li>
+	<li>
+		Added %ip% and %location% variable for the notifications template</li>
+	<li>
+		Updated Dropbox SDK to version 1.1.6 with new certificate</li>
+	<li>
+		Updated several jQuery libraries</li>
+	<li>
+		Replaced Auto Updater as previous solution isn&#39;t available anymore.</li>
+</ul>
+<div>
+	= 1.7.3 (9 July 2015) =</div>
+<ul>
+	<li>
+		Added support for folder upload (Currently only supported by Chrome)</li>
+	<li>
+		Added preview support for: &#39;doc&#39;, &#39;docx&#39;, &#39;docm&#39;, &#39;ppt&#39;, &#39;pps&#39;, &#39;ppsx&#39;, &#39;ppsm&#39;, &#39;pptx&#39;, &#39;pptm&#39;, &#39;xls&#39;, &#39;xlsx&#39;, &#39;xlsm&#39;, &#39;rtf&#39; and &#39;pdf&#39;</li>
+	<li>
+		Added download notification for zip downloads</li>
+	<li>
+		Improved notifications, added hook (outofthebox_notification)</li>
+	<li>
+		Improved Upload Feature (removed simpleupload attribute)</li>
+	<li>
+		Improved layout</li>
+	<li>
+		Bug fix deleting multiple files</li>
+	<li>
+		Bug fix max upload size</li>
+</ul>
+<p>
+	= 1.7.2 (16 June 2015) =</p>
+<ul>
+	<li>
+		Added Inline Preview setting</li>
+	<li>
+		Bug fix opening PDF in Lightbox in IE</li>
+	<li>
+		Bug fix browsing in File Browser</li>
+	<li>
+		Bug fix Gravity Forms integration</li>
+</ul>
+<p>
+	= 1.7.1 (25 May 2015) =</p>
+<ul>
+	<li>
+		Bug Fix blank settings page</li>
+	<li>
+		Bug fix images in File Browser</li>
+</ul>
+<p>
+	= 1.7 (22 May 2015) =</p>
+<ul>
+	<li>
+		Added Gravity Forms integration (Missing features? Let me know!)</li>
+	<li>
+		Added iLightBox as Lightbox</li>
+	<li>
+		Added %user_firstname% and %user_lastname% attributes to UserFolder template</li>
+	<li>
+		Added Max Height setting</li>
+	<li>
+		Bug Fix sorting folders</li>
+	<li>
+		Bug Fix template folders</li>
+	<li>
+		Bug Fix notification emails</li>
+	<li>
+		Bug Fix Video Player IE8</li>
+	<li>
+		Bug Fix for weird video dimensions in Video Player</li>
+	<li>
+		Improved performance in general</li>
+	<li>
+		Updated layout File Browser and Gallery</li>
+	<li>
+		Updated Blueimp jQuery File Upload to version 9.9.3</li>
+	<li>
+		Updated qTip2 to version 2.2.1</li>
+	<li>
+		Update Zip Function to 2.0.3</li>
+	<li>
+		Updated Jplayer to 2.9.2</li>
+</ul>
+<p>
+	= 1.6.5 (17 January 2015) =</p>
+<ul>
+	<li>
+		<div>
+			Bug fix overlay Front-End</div>
+	</li>
+	<li>
+		<div>
+			Bug fix sorting files and folders</div>
+	</li>
+	<li>
+		<div>
+			Bug fix Zip archive</div>
+	</li>
+	<li>
+		<div>
+			Bug fix search function</div>
+	</li>
+	<li>
+		<div>
+			Updated jPlayer</div>
+	</li>
+</ul>
+<p>
+	= 1.6.4 (6 November 2014) =</p>
+<ul>
+	<li>
+		Updated Dropbox API SDK (security reasons)</li>
+	<li>
+		Improved security functions</li>
+	<li>
+		Bug fix in-case sensitive&nbsp;folders</li>
+	<li>
+		Bug fix Shortcode Generator</li>
+</ul>
+<p>
+	= 1.6.3 (28 August 2014) =</p>
+<ul>
+	<li>
+		Bug fix gallery due to updated Dropbox API</li>
+	<li>
+		Bug fix Zip function</li>
+</ul>
+<p>
+	= 1.6.2 (7 August 2014) =</p>
+<ul>
+	<li>
+		Added editable shortcodes</li>
+	<li>
+		Added new search option</li>
+	<li>
+		Added purchase button to playlist Media Player</li>
+	<li>
+		Redesign Plugin settings page</li>
+	<li>
+		Redesign ZIP function</li>
+	<li>
+		Updated notification email</li>
+	<li>
+		Bug fix User Roles</li>
+	<li>
+		Bug fix Audio Player playing mp3 files in Chrome</li>
+	<li>
+		Bug fix creating shared links</li>
+	<li>
+		Bug fix User folders</li>
+	<li>
+		Bug fix Skins Audio players</li>
+	<li>
+		Bug fix editable shortcodes</li>
+</ul>
+<p>
+	= 1.6.1 (30 June 2014) =</p>
+<ul>
+	<li>
+		Redesign of default jPlayer skin and added three new skins</li>
+	<li>
+		Added support for custom jPlayer skins</li>
+	<li>
+		Bug fix Dropbox API - PDFs can again viewed inline.</li>
+	<li>
+		Bug fix creating user folders on user registration</li>
+	<li>
+		Bug fix search function</li>
+	<li>
+		Bug fix Google Analytics integration</li>
+	<li>
+		Bug fix uploading mov files from iOS</li>
+	<li>
+		Updated jQuery.Jplayer to 2.6.0&nbsp;</li>
+</ul>
+<p>
+	= 1.6 (16 June 2014) =</p>
+<ul>
+	<li>
+		Added: You can now direct link users to folders</li>
+	<li>
+		Added: Select optional template folder for fresh created user folders</li>
+	<li>
+		Added deletion of multiple files at once</li>
+	<li>
+		Added download button for audio/video files</li>
+	<li>
+		Added auto-updater for WP Multisite</li>
+	<li>
+		Added Google Analytics integration for statistics</li>
+	<li>
+		Added notification for deleting files</li>
+	<li>
+		Bug fix removal of start &amp; cancel buttons&nbsp;</li>
+	<li>
+		Updated Shortcode Generator</li>
+</ul>
+<p>
+	= 1.5.2 (16 April 2014) =</p>
+<ul>
+	<li>
+		Added autoplay option for media player</li>
+	<li>
+		Bug fix folder/file exclusion</li>
+	<li>
+		Bug fix Dropbox case-insensitive folder structure</li>
+	<li>
+		Bug fix qTip popups</li>
+	<li>
+		Bug fix for download function in WP Multisite setup</li>
+	<li>
+		Bug fix gallery for mobile browsers</li>
+</ul>
+<p>
+	= 1.5.1 (20 March 2014) =</p>
+<ul>
+	<li>
+		Improved layout uploadform</li>
+	<li>
+		Added show more button for image</li>
+	<li>
+		Added support for themes which includes Isotope</li>
+	<li>
+		Bug fix creating zip files in gallery</li>
+	<li>
+		Bug fix Colorbox image grouping</li>
+	<li>
+		Bug fix Cache lock</li>
+	<li>
+		Disabled right mouse click in Out-of-the-Box container</li>
+</ul>
+<p>
+	= 1.5 (18 Februari 2014) =</p>
+<ul>
+	<li>
+		Added inline embedded preview (Uses Google Doc viewer)</li>
+	<li>
+		Added &#39;show more&#39; button for Gallery</li>
+	<li>
+		Added simple browser cache</li>
+	<li>
+		Improved layout</li>
+	<li>
+		Bug fix upload function</li>
+	<li>
+		Bug fix CSS dropdown menu</li>
+</ul>
+<p>
+	= 1.4.3 (11 Februari 2014) =</p>
+<ul>
+	<li>
+		Bug fix foldernames</li>
+	<li>
+		Bug fix authorization</li>
+</ul>
+<p>
+	= 1.4.2 (13 Januari 2014) =</p>
+<ul>
+	<li>
+		Bug fix Gallery thumbs</li>
+</ul>
+<p>
+	= 1.4.1 (8 Januari 2014) =</p>
+<ul>
+	<li>
+		Bug fix encryption SSL connection Dropbox API</li>
+	<li>
+		Bug fix Insert Links MCE editor</li>
+</ul>
+<p>
+	= 1.4 (7 Januari 2014) =</p>
+<ul>
+	<li>
+		Added email notification on download/upload</li>
+	<li>
+		Added mp4 support mediaplayer</li>
+	<li>
+		Added include attribute in Shortcode Generator</li>
+	<li>
+		Added direct links in MCE editor</li>
+	<li>
+		Added Auto-Updater</li>
+	<li>
+		Improved cache/thumbnails for large galleries</li>
+	<li>
+		Bug fix fullscreen mediaplayer</li>
+	<li>
+		Bug fix Lightbox gallery</li>
+	<li>
+		Bug fix upload buttons</li>
+	<li>
+		Several small bug fixes</li>
+</ul>
+<p>
+	= 1.3.2 (29 November 2013) =</p>
+<ul>
+	<li>
+		Don&#39;t need to create your own Dropbox App anymore</li>
+	<li>
+		Added Multi-Site support</li>
+	<li>
+		Added new permissions:
+		<ul>
+			<li>
+				renamerole=&gt; renamefoldersrole, renamefilesrole</li>
+			<li>
+				deleterole=&gt; deletefoldersrole, deletefilesrole</li>
+		</ul>
+	</li>
+	<li>
+		Bug fix upload function</li>
+	<li>
+		Bug fix zipping multiple files</li>
+	<li>
+		Bug fix CSS</li>
+</ul>
+<p>
+	= 1.3.1 (22 November 2013) =</p>
+<ul>
+	<li>
+		Added overlay for images or PDF files</li>
+	<li>
+		Added some extra options to the Shortcode Generator</li>
+	<li>
+		Bug fixes Gallery</li>
+	<li>
+		Bug fix renaming folders</li>
+</ul>
+<p>
+	= 1.3 (2 November 2013) =</p>
+<ul>
+	<li>
+		Added zip functionality, choose which files you would like to download or download all files at once</li>
+	<li>
+		Added shortlinks functionality</li>
+	<li>
+		Improved user folders functionality</li>
+	<li>
+		Improved thumbnail function</li>
+	<li>
+		Improved plugin settings page</li>
+	<li>
+		Bug fix shortcode generator</li>
+	<li>
+		Bug fix filenames file browser</li>
+	<li>
+		Bug fix downloading files</li>
+</ul>
+<p>
+	= 1.2.2 (14 Oktober 2013) =</p>
+<ul>
+	<li>
+		Critical security bug fixed</li>
+	<li>
+		Replaced WordPress Capabilities with Roles. Replaced the following shortcode attributes and their possible values:
+		<ul>
+			<li>
+				viewcapability =&gt; viewrole</li>
+			<li>
+				downloadcapability =&gt; downloadrole</li>
+			<li>
+				uploadcapability =&gt; uploadrole</li>
+			<li>
+				renamecapability =&gt; renamerole</li>
+			<li>
+				deletecapability =&gt; deleterole</li>
+			<li>
+				addfoldercapability =&gt; addfolderrole</li>
+		</ul>
+	</li>
+</ul>
+<p>
+	= 1.2.1 (11 Oktober 2013) =</p>
+<ul>
+	<li>
+		Improved Gallery with nice grid. Resizing is done with WordPress own image editor. If WordPress can&#39;t resize the image, Dropbox own thumbnail will be used.</li>
+	<li>
+		Added image shuffle</li>
+</ul>
+<p>
+	= 1.2 (9 Oktober 2013) =</p>
+<ul>
+	<li>
+		Added sort function and sortable columns to the file browser</li>
+	<li>
+		Added search function</li>
+	<li>
+		Improved breadcrumb</li>
+	<li>
+		Reworked video and audio player skin and added responsiveness.</li>
+	<li>
+		Updated shortcode generator</li>
+</ul>
+<p>
+	= 1.1.4 (7 Oktober 2013) =</p>
+<ul>
+	<li>
+		Critical bug fix uploading files to Dropbox</li>
+	<li>
+		Multiple fixes involving adding/renaming/deleting of files and folders</li>
+	<li>
+		Improved file browsing</li>
+	<li>
+		Removed sessions for Out-of-the-Box information</li>
+	<li>
+		Added some CSS</li>
+</ul>
+<p>
+	= 1.1.3 (25 September 2013) =</p>
+<ul>
+	<li>
+		Bug fix &lsquo;addfolder&rsquo; parameter in shortcode gallery</li>
+</ul>
+<p>
+	= 1.1.2 (21 September 2013) =</p>
+<ul>
+	<li>
+		Bug fix location cache files</li>
+</ul>
+<p>
+	= 1.1.1 (19 September 2013) =</p>
+<ul>
+	<li>
+		Improved admin interface</li>
+	<li>
+		Replaced file upload temp directory with WordPress own</li>
+	<li>
+		You can use Out-of-the-Box without SSL-certificate now</li>
+</ul>
+<p>
+	= 1.1 (17 September 2013) =</p>
+<ul>
+	<li>
+		Added a HTML5 audio/video player with flash-fallback</li>
+	<li>
+		Added gallery</li>
+</ul>
+<p>
+	= 1.0 (10 September 2013) =</p>
+<ul>
+	<li>
+		Initial release version</li>
+</ul>
+</section>
+<section id="sources_and_credits">
+	<div class="page-header"><h3>Sources and Credits</h3><hr class="notop"></div>
+<p>	Thanks so much to</p>
+<ul>	<li>		<a href="http://jquery.com/">jQuery</a></li>
+	<li>		<a href="http://jqueryui.com/">jQueryUI</a></li>
+	<li>		<a href="https://www.dropbox.com/developers/core/sdks/">Dropbox Core API SDK</a></li>
+	<li>		<a href="https://github.com/blueimp/jQuery-File-Upload">Blueimp jQuery-File-Upload</a></li>
+	<li>		<a href="http://www.ilightbox.net/‎">iLightbox</a></li>
+	<li>		<a href="http://phpthumb.sourceforge.net/">phpThumb</a></li>
+	<li>		<a href="http://jplayer.org/">jPlayer</a></li>
+</ul>
+</section>
+<section id="finally">
+	<div class="page-header"><h3>Finally</h3><hr class="notop"></div>
+<p>	I spent a lot of time on this thing. Nevertheless it&#39;s still not finished. I like to improve it wherever I can and appreciate your feedback. I&#39;d be glad to help you if you have any questions relating to this plugin. No guarantees, but I&#39;ll do my best to assist.</p>
+</section>
+
+	</div>
+</body>
+</html>

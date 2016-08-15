@@ -1,0 +1,103 @@
+html, body, div, span, img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	background: transparent;
+}
+
+a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+body {
+	width: 940px;
+	height: 560px;
+	overflow: hidden;
+	font-family: "Lucida Grande";
+	font-size: 13px;
+	background: transparent url('body.png') no-repeat left top;
+}
+
+#create-zip {
+	position: absolute;
+	top: 160px;
+	left: 116px;
+	width: 784px;
+	height: 100px;
+}
+
+#existing-zip {
+	position: absolute;
+	top: 314px;
+	left: 116px;
+}
+
+a.welcome-option {
+	display: block;
+	width: 322px;
+	height: 82px;
+	float: left;
+	margin-right: 70px;
+	margin-bottom: 18px;
+	color: black;
+}
+
+a.welcome-option:hover {
+	background: transparent url('welcome-option-hover.png') no-repeat left top;
+}
+
+.option-icon {
+	padding-left: 9px;
+	padding-top: 9px;
+	float: left;
+}
+
+.option-title {
+	padding-left: 80px;
+	margin-top: 5px;
+	margin-bottom: 4px;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: rgba(255, 255, 255, .5) 1px 1px 0px;
+}
+
+.option-description {
+	padding-left: 80px;
+	color: #777;
+	font-size: 12px;
+	text-shadow: rgba(255, 255, 255, .35) 1px 1px 0px;
+}
+
+.extension {
+	color: #888;
+}
+
+.button-group {
+	clear: both;
+}
+
+a.welcome-button {
+	display: inline;
+	width: 190px;
+	height: 24px;
+	float: left;
+	cursor: default;
+	color: white;
+	background: transparent url('bevelled-glossy-button-normal.png') no-repeat left top;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bolder;
+	line-height: 23px;
+	text-shadow: rgba(0, 0, 0, 0.14) 1px 1px 1px;
+	margin-right: 30px;
+}
+
+a.welcome-button:hover {
+	background: transparent url('bevelled-glossy-button-focus.png') no-repeat left top;
+}
+
+
+a.welcome-button:active {
+	background: transparent url('bevelled-glossy-button-pressed.png') no-repeat left top;
+}
