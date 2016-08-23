@@ -683,9 +683,7 @@ class Client
         Checker::argStringNonEmpty("uploadId", $uploadId);
         Path::checkArgNonRoot("path", $path);
         WriteMode::checkArg("writeMode", $writeMode);
-
         $params = array_merge(array("upload_id" => $uploadId), $writeMode->getExtraParams());
-
         $response = $this->doPost(
             $this->contentHost,
             $this->appendFilePath("1/commit_chunked_upload", $path),

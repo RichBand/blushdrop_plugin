@@ -1,0 +1,406 @@
+<!doctype html>
+<!--[if IE 6 ]><html lang="en-us" class="ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en-us" class="ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en-us" class="ie8"> <![endif]-->
+<!--[if (gt IE 7)|!(IE)]><!-->
+<html lang="en-us"><!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title>WooCommerce Custom Fields - Documentation</title>
+
+	<meta name="description" content="WooCommerce Custom Fields">
+	<meta name="author" content="RightPress">
+	<meta name="copyright" content="RightPress">
+	<meta name="generator" content="Documenter v2.0 http://rxa.li/documenter">
+	<meta name="date" content="2015-05-02T00:00:00+02:00">
+
+	<link rel="stylesheet" href="assets/css/documenter_style.css" media="all">
+
+
+
+	<script src="assets/js/jquery.js"></script>
+
+	<script src="assets/js/jquery.scrollTo.js"></script>
+	<script src="assets/js/jquery.easing.js"></script>
+
+	<script>document.createElement('section');var duration='450',easing='easeOutExpo';</script>
+	<script src="assets/js/script.js"></script>
+
+	<style>
+		html{background-color:#F3F3F3;color:#585858;}
+		::-moz-selection{background:#111111;color:#F1F1F1;}
+		::selection{background:#111111;color:#F1F1F1;}
+		#documenter_sidebar #documenter_logo{background-image:url(assets/images/logo.png);}
+		a{color:#111111;}
+		.btn {
+			border-radius:3px;
+		}
+		.btn-primary {
+			  background-image: -moz-linear-gradient(top, #585858, #3B3B3B);
+			  background-image: -ms-linear-gradient(top, #585858, #3B3B3B);
+			  background-image: -webkit-gradient(linear, 0 0, 0 585858%, from(#333333), to(#3B3B3B));
+			  background-image: -webkit-linear-gradient(top, #585858, #3B3B3B);
+			  background-image: -o-linear-gradient(top, #585858, #3B3B3B);
+			  background-image: linear-gradient(top, #585858, #3B3B3B);
+			  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#585858', endColorstr='#3B3B3B', GradientType=0);
+			  border-color: #3B3B3B #3B3B3B #bfbfbf;
+			  color:#F9F9F9;
+		}
+		.btn-primary:hover,
+		.btn-primary:active,
+		.btn-primary.active,
+		.btn-primary.disabled,
+		.btn-primary[disabled] {
+		  border-color: #585858 #585858 #bfbfbf;
+		  background-color: #3B3B3B;
+		}
+		hr{border-top:1px solid #E5E5E5;border-bottom:1px solid #F9F9F9;}
+		#documenter_sidebar, #documenter_sidebar ul a{background-color:#333333;color:#F1F1F1;http://static.revaxarts-themes.com/noise.gif}
+		#documenter_sidebar ul a{-webkit-text-shadow:1px 1px 0px #444444;-moz-text-shadow:1px 1px 0px #444444;text-shadow:1px 1px 0px #444444;}
+		#documenter_sidebar ul{border-top:1px solid #222222;}
+		#documenter_sidebar ul a{border-top:1px solid #444444;border-bottom:1px solid #222222;color:#F1F1F1;}
+		#documenter_sidebar ul a:hover{background:#111111;color:#F1F1F1;border-top:1px solid #111111;}
+		#documenter_sidebar ul a.current{background:#111111;color:#F1F1F1;border-top:1px solid #111111;}
+		#documenter_copyright{display:block !important;visibility:visible !important;}
+	</style>
+
+</head>
+<body class="documenter-project-subscriptio">
+	<div id="documenter_sidebar">
+		<a href="#documenter_cover" id="documenter_logo"></a>
+		<ul id="documenter_nav">
+			<li><a class="current" href="#documenter_cover">Start</a></li>
+
+			<li><a href="#about_plugin" title="About Plugin">About Plugin</a></li>
+			<li><a href="#installation" title="Installation">Installation</a></li>
+			<li><a href="#features" title="Features">Features</a></li>
+			<li><a href="#requirements" title="Requirements">Requirements</a></li>
+			<li><a href="#accessing_admin_area" title="Accessing Admin Area">Accessing Admin Area</a></li>
+			<li><a href="#areas_of_application" title="Areas of Application">Areas of Application</a></li>
+			<li><a href="#managing_fields" title="Managing Fields">Managing Fields</a></li>
+			<li><a href="#field_types" title="Field Types">Field Types</a></li>
+			<li><a href="#managing_options" title="Managing Options">Managing Options</a></li>
+			<li><a href="#managing_conditions" title="Managing Conditions">Managing Conditions</a></li>
+			<li><a href="#frontend_field_display" title="Frontend Field Display">Frontend Field Display</a></li>
+			<li><a href="#backend_field_display" title="Backend Field Display">Backend Field Display</a></li>
+			<li><a href="#plugin_settings" title="Plugin Settings">Plugin Settings</a></li>
+			<li><a href="#support" title="Support">Support</a></li>
+
+		</ul>
+		<div id="documenter_copyright">Copyright RightPress 2015<br>
+		made with the <a href="http://rxa.li/documenter">Documenter v2.0</a>
+		</div>
+	</div>
+	<div id="documenter_content">
+	<section id="documenter_cover">
+	<h1>WooCommerce Custom Fields</h1>
+	<h2>Documentation</h2>
+	<div id="documenter_buttons">
+
+	</div>
+	<hr>
+	<ul>
+	<li>created: 05/02/2015</li>
+	<li>latest update: 05/02/2015</li>
+	<li>by: <a href="http://codecanyon.net/user/RightPress">RightPress</a></li>
+	<li><a href="http://www.rightpress.net/woocommerce-custom-fields">www.rightpress.net/woocommerce-custom-fields</a></li>
+	</ul>
+	<p></p>
+	</section>
+
+<!------------------------------------------------------------------
+	About
+------------------------------------------------------------------>
+<section id="about_plugin">
+<div class="page-header"><h3>About Plugin</h3><hr class="notop"></div>
+<p>WooCommerce Custom Fields plugin is a WooCommerce extension which allows you to create custom fields of various types. With help of this plugin you can create customizable products, product add-ons, display custom product properties, gather additional information on checkout, manage orders more efficiently.</p>
+</section>
+
+<!------------------------------------------------------------------
+	Installation
+------------------------------------------------------------------>
+<section id="installation">
+<div class="page-header"><h3>Installation</h3><hr class="notop"></div>
+<div>To install <strong>WooCommerce Custom Fields</strong> simply:</div>
+<ul>
+<li>Make sure you have WordPress 3.5+ and WooCommerce 2.1+ installed</li>
+<li>Download the plugin from CodeCanyon</li>
+<li>Unzip the downloaded file and locate a file named woocommerce-custom-fields.zip under Plugin</li>
+<li>Log in to your WordPress administrator zone</li>
+<li>Go to Plugins --&gt; Add New --&gt; Upload</li>
+<li>Upload file woocommerce-custom-fields.zip</li>
+<li>Activate the uploaded plugin</li>
+</ul>
+<div> </div>
+<div>In case FTP upload is required:</div>
+<ul>
+<li>Download the plugin from CodeCanyon</li>
+<li>Extract the archive</li>
+<li>Locate a folder named woocommerce-custom-fields under Plugin</li>
+<li>Upload this folder to wp-content/plugins</li>
+<li>In administrator zone, go to Plugins and activate this plugin</li>
+</ul>
+</section>
+
+<!------------------------------------------------------------------
+	Features
+------------------------------------------------------------------>
+<section id="features">
+<div class="page-header"><h3>Features</h3><hr class="notop"></div>
+<ul>
+<li>Create configurable products and product add-ons</li>
+<li>Use Product Properties to display additional information about products</li>
+<li>Gather additional information on checkout</li>
+<li>Manage orders more efficiently with custom order fields</li>
+<li>Upload and link files to products and orders</li>
+<li>Accept files from customers on product page or checkout</li>
+<li>Charge customers more (or less) based on pricing rules</li>
+<li>Set unique key, label and optional description for each field</li>
+<li>Configure conditions that need to be matched for the field to be displayed</li>
+<li>Make fields required, mark fields as private or public</li>
+<li>Add custom CSS to style each field individually</li>
+<li>All major field types supported</li>
+</ul>
+</section>
+
+<!------------------------------------------------------------------
+	Requirements
+------------------------------------------------------------------>
+<section id="requirements">
+<div class="page-header"><h3>Requirements</h3><hr class="notop"></div>
+<ul>
+<li>WordPress 3.5+</li>
+<li>WooCommerce 2.1+</li>
+</ul>
+</section>
+
+<!------------------------------------------------------------------
+	Accessing Admin Area
+------------------------------------------------------------------>
+<section id="accessing_admin_area">
+<div class="page-header"><h3>Accessing Admin Area</h3><hr class="notop"></div>
+<p>As soon as you install <strong>WooCommerce Custom Fields</strong>, you will find the following menu links in the admin interface:</p>
+<p><img src="assets/images/wccf_1.png" alt="" /></p>
+</section>
+
+<!------------------------------------------------------------------
+	Areas of Application
+------------------------------------------------------------------>
+<section id="areas_of_application">
+<div class="page-header"><h3>Areas of Application</h3><hr class="notop"></div>
+<h4>Product Fields</h4>
+<p>Product Fields are fields that appear on the frontend product page for users to fill in before they add a product to the cart. Use Product Fields to make a product configurable, offer product add-ons and gather additional information about user preference.</p>
+<p>To manage Product Fields, go to <strong>WooCommerce</strong> &gt; <strong>Custom Fields</strong> &gt; <strong>Product Fields</strong>.</p>
+<p><img src="assets/images/wccf_4.png" alt="" /></p>
+<p> </p>
+<h4>Product Properties</h4>
+<p>Product Properties are fields that are available on product edit pages for shop managers to fill in. Product Properties can be private or public. Public Product Properties are displayed on product pages and are used to provide customers with more information about each product.</p>
+<p>To manage Product Properties, go to <strong>WooCommerce</strong> &gt; <strong>Custom Fields</strong> &gt; <strong>Product Properties</strong>.</p>
+<p><img src="assets/images/wccf_5.png" alt="" /></p>
+<p> </p>
+<h4>Checkout Fields</h4>
+<p>Checkout Fields appear on the Checkout page and are used to gather additional information from customer, e.g. preferred delivery time, their VAT number for European customers etc. Checkout Field data then appears in a dedicated box on the order page.</p>
+<p>To manage Checkout Fields, go to <strong>WooCommerce</strong> &gt; <strong>Custom Fields</strong> &gt; <strong>Checkout Fields</strong>.</p>
+<p><img src="assets/images/wccf_6.png" alt="" /></p>
+<p> </p>
+<h4>Order Fields</h4>
+<p>Order Fields are used to provide additional information about each order in a structured way. The first use case for Order Fields is to create private fields and use them to store information related to order processing, help with managing orders, add private notes etc. In addition to that, Order Fields can also be used to provide additional information about orders that is then available to customers in My Orders.</p>
+<p>To manage Order Fields, go to <strong>WooCommerce</strong> &gt; <strong>Custom Fields</strong> &gt; <strong>Order Fields</strong>.</p>
+<p><img src="assets/images/wccf_7.png" alt="" /></p>
+<p> </p>
+</section>
+
+<!------------------------------------------------------------------
+	Managing Fields
+------------------------------------------------------------------>
+<section id="managing_fields">
+<div class="page-header"><h3>Managing Fields</h3><hr class="notop"></div>
+<p>Click on <strong>Add Field</strong> button to add a new field.</p>
+<p><img src="assets/images/wccf_2.png" alt="" /></p>
+<p>Fields are presented as a sortable list of collapsible content boxes. Click on the arrow icon on the left and drag to change the order of fields. Click on the X (delete) icon on the right to delete a field.</p>
+<p><img src="assets/images/wccf_3.png" alt="" /></p>
+<p>The following settings are available:</p>
+<ul>
+<li><strong>Unique Key</strong> - unique field key which is used when storing field data, can only contain letters, numbers and underscores. Must only be unique within current context, i.e. Checkout Fields and Product Fields can have identical field keys.</li>
+<li><strong>Field Label</strong> - field label that will be displayed to users.</li>
+<li><strong>Field Type</strong> - field type to use.</li>
+<li><strong>Required</strong> - whether this field is required or is optional. If field is not displayed because of conditions, this property will have no effect for that particular field.</li>
+<li><strong>Advanced</strong> - whether to show Conditions, Field Description and Custom CSS Rules fields.</li>
+<li><strong>Options</strong> - options for field types select, multiselect, checkbox, radio. Described in further detail in section Managing Options.</li>
+<li><strong>Conditions</strong> - conditions that need to be matched for this field to be displayed. Field can also be configured to be dependant on value of other custom field. Described in further detail in section Managing Conditions.</li>
+<li><strong>Field Description</strong> - optional field description that is displayed between label and the field.</li>
+<li><strong>Custom CSS Rules</strong> - option custom CSS rules that will be added to the field element.</li>
+</ul>
+<p>Additional settings available for <strong>Product Fields</strong>:</p>
+<ul>
+<li><strong>Pricing</strong> - whether user will incur a surcharge or get a discount if a value is entered or particular option is selected.</li>
+</ul>
+<p>Additional settings available for <strong>Product Properties</strong>:</p>
+<ul>
+<li><strong>Pricing</strong> - whether user will incur a surcharge or get a discount if a value is entered or particular option is selected by shop manager.</li>
+<li><strong>Public</strong> - whether field is private or public, i.e. will be displayed to customers.</li>
+</ul>
+<p>Additional settings available for <strong>Checkout Fields</strong>:</p>
+<ul>
+<li><strong>Position</strong> - defines field position on the Checkout page. This setting is only displayed when Advanced is checked.</li>
+</ul>
+<p>Additional settings available for <strong>Order Fields</strong>:</p>
+<ul>
+<li><strong>Public</strong> - whether field is private or public, i.e. will be displayed to customers.</li>
+</ul>
+<p> </p>
+</section>
+
+<!------------------------------------------------------------------
+	Field Types
+------------------------------------------------------------------>
+<section id="field_types">
+<div class="page-header"><h3>Field Types</h3><hr class="notop"></div>
+<p>The following field types are available:</p>
+<ul>
+<li>Text</li>
+<li>Text Area</li>
+<li>Password</li>
+<li>Email</li>
+<li>Number</li>
+<li>Datepicker</li>
+<li>Select</li>
+<li>Multiselect</li>
+<li>Checkbox</li>
+<li>Radio Buttons</li>
+<li>File Upload</li>
+</ul>
+<p> </p>
+</section>
+
+<!------------------------------------------------------------------
+	Managing Options
+------------------------------------------------------------------>
+<section id="managing_options">
+<div class="page-header"><h3>Managing Options</h3><hr class="notop"></div>
+<p>Fields of type select, multiselect, checkbox and radio buttons must have one or more options for users to choose from. When one of these four field types is selected, options panel will appear.</p>
+<p><img src="assets/images/wccf_9.png" alt="" /></p>
+<p>To add a new option click on <strong>Add Option</strong>.</p>
+<p>Each option contains the following settings:</p>
+<ul>
+<li><strong>Unique Key</strong> - unique key for an option which must be unique among other option keys for the same field. This key is only used internally.</li>
+<li><strong>Label</strong> - public option label which will be displayed publicly.</li>
+<li><strong>Selected</strong> - whenever a given option needs to be preselected when a page loads.</li>
+</ul>
+<p>In addition to that, if Pricing is enabled for a field, the following settings will be displayed for each option:</p>
+<ul>
+<li><strong>Pricing Method</strong> - whether it is a surcharge or a discount.</li>
+<li><strong>Pricing Value</strong> - amount of surcharge or discount.</li>
+</ul>
+<p> </p>
+</section>
+
+<!------------------------------------------------------------------
+	Managing Conditions
+------------------------------------------------------------------>
+<section id="managing_conditions">
+<div class="page-header"><h3>Managing Conditions</h3><hr class="notop"></div>
+<p>If Advanced is checked for a field, Conditions panel will be displayed. Conditions are used to hide specific fields when specific conditions are not matched.</p>
+<p><img src="assets/images/wccf_10.png" alt="" /></p>
+<p>To add a new Condition click on <strong>Add Condition</strong>.</p>
+<p>The following conditions are available:</p>
+<ul>
+<li><strong>Customer</strong> (not available for Product Properties)</li>
+<ul>
+<li><strong>Is logged in</strong> (not available for Order Fields)</li>
+<li><strong>Role</strong></li>
+<li><strong>Capability</strong></li>
+</ul>
+<li><strong>Product</strong> (not available for Checkout Fields and Order Fields)</li>
+<ul>
+<li><strong>Product</strong></li>
+<li><strong>Product category</strong></li>
+<li><strong>Product type</strong></li>
+</ul>
+<li><strong>Cart</strong> (only available for Checkout Fields)</li>
+<ul>
+<li><strong>Cart subtotal</strong></li>
+<li><strong>Products in cart</strong></li>
+<li><strong>Product categories in cart</strong></li>
+</ul>
+<li><strong>Order</strong> (only available for Order Fields)</li>
+<ul>
+<li><strong>Order total</strong></li>
+<li><strong>Products in order</strong></li>
+<li><strong>Product categories in order</strong></li>
+<li><strong>Payment method</strong></li>
+<li><strong>Shipping method</strong></li>
+</ul>
+<li><strong>Custom Field</strong></li>
+<ul>
+<li><strong>Other Custom Field</strong></li>
+</ul>
+</ul>
+<p>When a condition is selected, corresponding operator and value fields are displayed.</p>
+</section>
+
+<!------------------------------------------------------------------
+	Frontend Field Display
+------------------------------------------------------------------>
+<section id="frontend_field_display">
+<div class="page-header"><h3>Frontend Field Display</h3><hr class="notop"></div>
+<h4>Product Fields</h4>
+<p>Product Fields appear on product pages just above Add To Cart button.</p>
+<p><img src="assets/images/wccf_11.png" alt="" width="247" height="331" /></p>
+<p>When product is configured and added to the cart, all selections are displayed as cart item meta data.</p>
+<p><img src="assets/images/wccf_12.png" alt="" /></p>
+<p> </p>
+<h4>Product Properties</h4>
+<p>Product Properties appear on product pages on a separate tab.</p>
+<p><img src="assets/images/wccf_13.png" alt="" /></p>
+<p> </p>
+<h4>Checkout Fields</h4>
+<p>Checkout Fields appear on the Checkout page but their position depends on a corresponding setting selected for each field, i.e. individual fields can be displayed in different positions on the Checkout page.</p>
+<p><img src="assets/images/wccf_14.png" alt="" /></p>
+<p>Checkout Fields are also displayed to customers after they place an order on the order view page.</p>
+<p> </p>
+<h4>Order Fields</h4>
+<p>Order Fields are only displayed to customers after they are filled in by a shop manager. Order Field data appears as a list of order related data on the order view page.</p>
+</section>
+
+<!------------------------------------------------------------------
+	Backend Field Display
+------------------------------------------------------------------>
+<section id="backend_field_display">
+<div class="page-header"><h3>Backend Field Display</h3><hr class="notop"></div>
+<h4>Product Properties</h4>
+<p>Product Properties appear as fields for shop managers to fill in when creating or updating a product in WooCommerce product editor.</p>
+<p><img src="assets/images/wccf_15.png" alt="" /></p>
+<p> </p>
+<h4>Order Fields</h4>
+<p>Order Fields appear as fields to be filled in by a shop manager on each order edit page.</p>
+<p><img src="assets/images/wccf_16.png" alt="" /></p>
+<p> </p>
+</section>
+
+<!------------------------------------------------------------------
+	Plugin Settings
+------------------------------------------------------------------>
+<section id="plugin_settings">
+<div class="page-header"><h3>Plugin Settings</h3><hr class="notop"></div>
+<p>To manage plugin settings go to <strong>WooCommerce</strong> &gt; <strong>Custom Fields</strong> &gt; <strong>Settings</strong>.</p>
+<p><img src="assets/images/wccf_8.png" alt="" /></p>
+<p>The following settings are available:</p>
+<ul>
+<li><strong>Date format</strong> - date format to use for fields of type datepicker.</li>
+<li><strong>Aliases for application area names</strong> - if provided, they will appear as header titles when fields of specific type are displayed in backend or frontend.</li>
+</ul>
+</section>
+
+<!------------------------------------------------------------------
+	Support
+------------------------------------------------------------------>
+<section id="support">
+<div class="page-header"><h3>Support</h3><hr class="notop"></div>
+<p>If you have any questions, feel free to visit the <a style="text-decoration:underline;" href="http://support.rightpress.net/hc/en-us/categories/200391455-WooCommerce-Custom-Fields">support center</a> or submit a <a style="text-decoration:underline;" href="http://support.rightpress.net/hc/en-us/requests/new">support ticket</a>.</p>
+</section>
+
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 /*
 *This function check whenever a user is registered and set _new_user as true
 */
-add_action( 'user_register', 'newUser');
+add_action( 'user_register', 'newCustomer');
 function newUser($user_id) {
     add_user_meta( $user_id, '_new_user', '1' );
 }
@@ -33,7 +33,7 @@ function loginCustomer($user_login, $user) {
     if ($logincontrol) {//if is a new user
         update_user_meta( $user->ID, '_new_user', '0' );
         if(isCustomer($user->ID)){
-            create_page_newUser($user);
+            createPageCustomer($user);
         }
         if(isCustomer($user->ID)){
             wp_redirect( 'http://localhost:8888/blushdrop/wordpress/'.$user->user_login, 302 ); exit;

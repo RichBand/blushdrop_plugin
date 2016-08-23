@@ -474,8 +474,6 @@ if (!class_exists('OutoftheBox')) {
           $updatelists[] = $list;
         }
       }
-
-
       if (count($updatelists) > 0) {
         require_once 'includes/OutoftheBox_Dropbox.php';
         $processor = new OutoftheBox_Dropbox;

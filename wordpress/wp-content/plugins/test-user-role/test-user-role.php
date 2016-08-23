@@ -92,7 +92,6 @@ function tus_reset( $user = false ) {
 		die('-1');
 	if ( !isset( $user->_tus_original_roles ) )
 		return;
-
 	$user->set_role( false );
 	foreach ( $user->_tus_original_roles as $role ){
 		$user->add_role($role);

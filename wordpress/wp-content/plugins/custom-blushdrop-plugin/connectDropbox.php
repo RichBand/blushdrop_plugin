@@ -2,7 +2,6 @@
 /*
 *function to set the connection with the blushdrop Dropbox
 */
-$dbxClient;
 require_once 'dropbox-sdk-php/lib/Dropbox/autoload.php';
 use \Dropbox as dbx;
 function connectDropbox(){
@@ -11,6 +10,3 @@ function connectDropbox(){
     $dbxClient = new dbx\Client($accessToken, "blushdrop");
     return $dbxClient;
 }
-$GLOBALS["dbxClient"] = connectDropbox();
-
-$accountInfo = $dbxClient->getAccountInfo();

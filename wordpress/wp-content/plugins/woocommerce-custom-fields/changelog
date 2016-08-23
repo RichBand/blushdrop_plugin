@@ -1,0 +1,41 @@
+Version 1.2.1, 12 April 2016
+------------------------------------------------------------------------------------
+[*] Fixes an issue when select field option keys were displayed instead of labels
+[*] Improved compatibility with Wordpress 4.5
+[*] Fixed an issue with numbers in field keys
+[*] Other minor improvements
+
+Version 1.2, 21 December 2015
+------------------------------------------------------------------------------------
+[+] Added a new pricing option for text fields - price per character
+[+] Added an option to set character limit for text fields
+[+] Added an option to attach submitted files to New Order email
+[+] Customers can now download their own uploaded files
+[+] Added support for automatic updates
+[*] Improved language file loading - now also looks in WP_LANG_DIR
+[*] Improved file upload functionality
+[*] Fixed a bug related to file upload fields
+[*] Fixed a bug related to conditions method "All of selected"
+[*] Fixed a bug related to numeric conditions
+[*] Fixed a warning related to products with no categories assigned
+[*] Fixed a bug related to fields with numeric unique keys
+[*] Fixed a bug that prevented admin from downloading product files in frontend
+[*] Improved admin user interface
+[*] Other minor bug fixes and improvements
+
+Version 1.1.1, 26 September 2015
+------------------------------------------------------------------------------------
+[*] Frontend JS error fix
+
+Version 1.1, 18 September 2015
+------------------------------------------------------------------------------------
+[+] Product add-on pricing is now displayed on product, checkout and order pages
+[+] Product price is now updated live when product add-ons are selected
+[*] Fixed bad field labels in order confirmation email
+[*] Fixed several bugs related to conditional field display
+[*] Fixed a bug related to file download capability check
+[*] Other minor bug fixes and improvements
+
+Version 1.0, 1 May 2015
+------------------------------------------------------------------------------------
+[+] Initial release

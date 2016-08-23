@@ -1,0 +1,432 @@
+/**
+ * WooCommerce Custom Fields Plugin Backend Styles
+ */
+.rp_wccf_tabs_container {
+    width: 100%;
+}
+.rp_wccf_tabs_container h2.nav-tab-wrapper {
+    border-bottom: 1px solid #ccc;
+    margin-right: 20px;
+}
+.rp_wccf_settings_container {
+    width: 100%;
+    float: left;
+    border: 1px solid #dfdfdf;
+    border-top: none;
+    background-color: #fcfcfc;
+}
+.rp_wccf_settings_container p.submit {
+    margin-top: 0;
+}
+.rp_wccf_settings_container p {
+    padding: 12px 25px 0px 25px;
+}
+.rp_wccf_settings_container .rp_wccf_section_info {
+    padding-top: 0;
+}
+.rp_wccf_settings_container .rp_wccf_file_warning {
+    text-align: center;
+    color: red;
+    margin-bottom: 0;
+}
+.rp_wccf_settings_container tr {
+    height: 45px;
+}
+.rp_wccf_settings_container th {
+    width: 300px;
+    padding: 15px 10px 5px 0;
+}
+.rp_wccf_settings_container td {
+    padding: 10px 10px 5px 10px;
+}
+.rp_wccf_settings_container h2,
+.rp_wccf_settings_container h3 {
+    padding: 10px 0 10px 15px;
+    border-top: 1px solid #dfdfdf;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #f9f9f9;
+    margin: 0;
+}
+.rp_wccf_settings_container .form-table {
+    margin: 10px 0 10px 25px;
+    width: auto;
+}
+.rp_wccf_settings_container .submit {
+    border-top: 1px solid #dfdfdf;
+    padding: 15px 0 10px 15px;
+}
+.rp_wccf_settings_container input {
+    vertical-align: middle;
+}
+.rp_wccf_settings_container select {
+    line-height: 27px;
+    height: 27px;
+}
+.rp_wccf_settings_container .rp_wccf_field_short {
+    width: 100px;
+}
+.rp_wccf_settings_container .rp_wccf_field_medium {
+    width: 200px;
+}
+.rp_wccf_settings_container .rp_wccf_field_long {
+    width: 300px;
+}
+
+#rp_wccf_fb {
+    padding: 15px;
+}
+#rp_wccf_fb_no_fields {
+    text-align: center;
+}
+#rp_wccf_fb input,
+#rp_wccf_fb select {
+    font-family: inherit;
+    font-size: inherit;
+}
+#rp_wccf_fb_add_field {
+    margin-top: 15px;
+    text-align: right;
+}
+.rp_wccf_fb_add_option,
+.rp_wccf_fb_add_condition {
+    margin: 8px 35px 4px 10px;
+    text-align: right;
+}
+#rp_wccf_fb_field_wrapper {
+    font-size: 1em;
+    font-family: inherit;
+}
+.rp_wccf_accordion_handle {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #a8a8a8;
+}
+.rp_wccf_fb_field_sort_handle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    cursor: pointer;
+    padding-right: 5px
+}
+.rp_wccf_fb_field_remove_handle {
+    float: right;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.rp_wccf_fb_field_sort_handle i,
+.rp_wccf_fb_field_remove_handle i {
+    color: #a8a8a8;
+    font-size: 0.9em;
+    vertical-align: middle;
+}
+.rp_wccf_fb_field_sort_handle:hover i {
+    color: #444;
+}
+.rp_wccf_fb_field_remove_handle:hover i {
+    color: red;
+}
+.rp_wccf_fb_field_title {
+    line-height: 20px;
+}
+.rp_wccf_field_title_label {
+    font-weight: 700;
+    padding-right: 5px;
+}
+#rp_wccf_fb label {
+    font-weight: 700;
+}
+#rp_wccf_fb .rp_wccf_accordion_handle {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background: #f9f9f9;
+}
+#rp_wccf_fb .ui-accordion-header-active {
+    background: #ffffff;
+}
+#rp_wccf_fb .rp_wccf_fb_field_content {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+#rp_wccf_fb .rp_wccf_fb_field_content {
+    padding: 10px 20px;
+    background: 0;
+    background-color: #fcfcfc;
+    border: 1px solid #a8a8a8;
+    border-top: 0;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting {
+    float: left;
+    padding: 5px 0 10px 0;
+    font-size: 12px;
+    line-height: 24px;
+    color: #555;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_single {
+    width: 25%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_double {
+    width: 50%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_full_size {
+    width: 100%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_checkbox {
+    float: left;
+    width: 25%;
+    min-width: 70px;
+}
+.rp_wccf_fb_field_setting input,
+.rp_wccf_fb_field_setting select {
+    display: block;
+}
+.rp_wccf_fb_field_setting_single input,
+.rp_wccf_fb_field_setting_single select {
+    height: 27px;
+    width: 95%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_double input,
+#rp_wccf_fb .rp_wccf_fb_field_setting_double select {
+    height: 27px;
+    width: 97.5%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_double input.rp_wccf_input_css {
+    width: 100%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_setting_checkbox input {
+    margin-top: 5px;
+    margin-left: 1px;
+    width: auto;
+    height: 16px;
+}
+#rp_wccf_fb .rp_wccf_fb_field_inner_wrapper {
+    border: 1px solid #cccccc;
+    padding: 10px 5px;
+    background: #f9f9f9;
+}
+#rp_wccf_fb .rp_wccf_fb_field_inner_wrapper_pricing {
+    padding-left: 15px;
+}
+
+.rp_wccf_fb_no_options,
+.rp_wccf_fb_no_conditions {
+    text-align: center;
+}
+.rp_wccf_fb_option_wrapper,
+.rp_wccf_fb_condition_wrapper {
+
+}
+.rp_wccf_fb_option_sort,
+.rp_wccf_fb_condition_sort,
+.rp_wccf_fb_option_remove,
+.rp_wccf_fb_condition_remove {
+    display: table-cell;
+    width: 20px;
+    min-width: 30px;
+    height: 100%;
+    vertical-align: top;
+}
+.rp_wccf_fb_option_sort,
+.rp_wccf_fb_condition_sort {
+    border-right: 0;
+}
+.rp_wccf_fb_option_remove,
+.rp_wccf_fb_condition_remove {
+    border-left: 0;
+}
+.rp_wccf_fb_option_sort_handle,
+.rp_wccf_fb_condition_sort_handle,
+.rp_wccf_fb_option_remove_handle,
+.rp_wccf_fb_condition_remove_handle {
+    width: 20px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative;
+    top: 4px;
+}
+.rp_wccf_fb_option_sort_handle i,
+.rp_wccf_fb_condition_sort_handle i,
+.rp_wccf_fb_option_remove i,
+.rp_wccf_fb_condition_remove i {
+    color: #cccccc;
+    line-height: 30px;
+}
+.rp_wccf_fb_option_sort_handle:hover i,
+.rp_wccf_fb_condition_sort_handle:hover i {
+    color: #444;
+}
+.rp_wccf_fb_option_remove_handle:hover i,
+.rp_wccf_fb_condition_remove_handle:hover i {
+    color: red;
+}
+.rp_wccf_fb_option_content,
+.rp_wccf_fb_condition_content {
+    display: table-cell;
+    padding: 0 5px;
+    width: 100%;
+}
+#rp_wccf_fb .rp_wccf_fb_option_setting,
+#rp_wccf_fb .rp_wccf_fb_condition_setting {
+    float: left;
+    width: 31%;
+    padding: 5px 0;
+    font-size: 12px;
+    line-height: 24px;
+    color: #555;
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting {
+    width: 20%;
+    /*padding-right: 1%;*/
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields {
+    float: left;
+    width: 80%;
+    padding: 5px 0;
+    line-height: 24px;
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_single {
+    float: left;
+    width: 31.97%;
+    margin-left: 1.36%;
+    /*padding-right: 1.36%;*/
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_double {
+    float: left;
+    width: 48.64%;
+    margin-left: 1.36%;
+    /*padding-right: 1.36%;*/
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_triple {
+    float: left;
+    width: 98.64%;
+    margin-left: 1.36%;
+    /*padding-right: 1.36%;*/
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting_type {
+    /*margin-right: 1%;*/
+}
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_single input,
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_double input,
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_triple input,
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_single select,
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_double select,
+#rp_wccf_fb .rp_wccf_fb_condition_setting_fields_triple select {
+    height: 27px;
+    width: 100%;
+}
+.rp_wccf_fb_option_setting_single input,
+.rp_wccf_fb_option_setting_single select {
+    height: 27px;
+    width: 97.5%;
+}
+.rp_wccf_fb_condition_setting_single input,
+.rp_wccf_fb_condition_setting_single select {
+    height: 27px;
+    width: 100%;
+}
+.rp_wccf_fb_option_header {
+    width: 100%;
+}
+.rp_wccf_fb_option_header_item {
+    float: left;
+    line-height: initial;
+    width: 31%;
+}
+.rp_wccf_fb_option_header_item_checkbox {
+    width: 7%;
+}
+.rp_wccf_fb_option_content_header {
+    height: auto;
+    padding: 0 5px;
+}
+#rp_wccf_fb .rp_wccf_fb_option .rp_wccf_fb_option_setting_checkbox {
+    width: 7%;
+}
+#rp_wccf_fb .rp_wccf_option_selected {
+    margin-top: 5px;
+}
+#rp_wccf_fb .rp_wccf_fb_option_setting_single .rp_wccf_option_price_method {
+    display: initial;
+    width: 68%;
+}
+#rp_wccf_fb .rp_wccf_fb_option_setting_single .rp_wccf_option_price_value {
+    display: initial;
+    width: 25%;
+}
+#rp_wccf_fb .rp_wccf_fb_field_price_row .rp_wccf_fb_field_setting_double {
+    padding-bottom: 5px;
+}
+
+#rp_wccf_fb .select2-selection--multiple .select2-selection__rendered .select2-search__field {
+    margin-top: 3px;
+    padding: 3px 5px 3px 0px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+#wccf_product_admin .inside {
+    padding: 5px 10px 10px 10px;
+    margin: 0;
+}
+.wccf_meta_box_field_container {
+    padding: 5px 0;
+    margin: 0;
+}
+.wccf_meta_box_field_container label {
+    font-weight: 700;
+}
+.wccf_meta_box_field_container small {
+    display: block;
+}
+.wccf_meta_box_field_container .wccf_text,
+.wccf_meta_box_field_container .wccf_textarea,
+.wccf_meta_box_field_container .wccf_password,
+.wccf_meta_box_field_container .wccf_email,
+.wccf_meta_box_field_container .wccf_number,
+.wccf_meta_box_field_container .wccf_date,
+.wccf_meta_box_field_container .wccf_select,
+.wccf_meta_box_field_container .wccf_multiselect,
+.wccf_meta_box_field_container .wccf_file {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+.wccf_meta_box_field_container ul {
+    margin: 4px 0 0 0;
+}
+
+#wccf_checkout .inside {
+    padding: 12px;
+    margin: 0;
+}
+#wccf_checkout th {
+    padding: 0 2em 1em 0;
+    text-align: left;
+}
+#wccf_checkout td {
+    vertical-align: top;
+    padding: 0;
+}
+#wccf_checkout td p {
+    line-height: 1.5em;
+    margin: 0;
+    padding: 0;
+}
+
+.wccf_delete_file {
+    color: red;
+    text-decoration: none;
+}

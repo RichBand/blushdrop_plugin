@@ -7,12 +7,12 @@ https://www.dropbox.com/developers-v1/core/docs#metadata
  * */
 function getFolderMetadata($path){
     $folderMetadata = null;
+    $GLOBALS["dbxClient"] = connectDropbox();
     $folderMetadata = $GLOBALS["dbxClient"]->getMetadataWithChildren($path);
     return $folderMetadata;
 }
 
 function getFolderMetadata_ajax() {
-
     // The $_REQUEST contains all the data sent via ajax
     if ( isset($_REQUEST) ) {
         $path = $_REQUEST['path'];
