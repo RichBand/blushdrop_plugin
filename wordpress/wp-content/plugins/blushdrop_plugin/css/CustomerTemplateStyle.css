@@ -1,6 +1,13 @@
 /**
  * Created by ricardobandala on 2016-08-15.
  */
+
+#bdpMain *{
+
+}
+.bdpLefthN{
+    border-style: solid;
+}
 .bdpContents{
     width: 100%;
     padding: 1em;

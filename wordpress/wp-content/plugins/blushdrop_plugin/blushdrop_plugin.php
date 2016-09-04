@@ -8,11 +8,13 @@
  * Author URI: http://ricardobandala.com
  * License: private
  */
+
 //TODO experiment with App folder type at dropbox developers
 $blushdropPath = "/blushdrop";
 require_once 'connectDropbox.php';
 require_once 'getFolderMetadata.php';
 require_once 'blushdrop-woocommerce.php';
+//require_once 'hola.php';
 
 add_action('admin_menu', 'plugin_setup_menu');
 //add_action( 'admin_init', 'register_my_cool_plugin_settings' );
@@ -117,6 +119,7 @@ function getCountTime($path){
     return $count;
 }
 
+add_action( 'wp_ajax_example_ajax_request', 'getFolderMetadata_ajax' );
 //TODO this is not an appropoate way to check if the user is new, a new method to check it is neccesary in sake of good practices
 function newCustomer($user_id) {
     if(isCustomer($user_id)) {
@@ -153,7 +156,7 @@ function enqueue_style(){
     wp_enqueue_script('custom_js');
     wp_enqueue_style( 'new_style' );
 }
-
+//TODO get out the validatiosn form here, the determination belongs to an upper method
 function showTotalTime($wp_query){
     $current_user = wp_get_current_user();
     $page_title = $wp_query->post->post_title;

@@ -4,14 +4,14 @@
  */
 
 var model = {
-    main: {name: "", id: 51, price:0, sale-price:0, regu},
-    minutes: {name: "minutes", id: 79, quantity:0, price:0},
-    music:{name: "music", id: 0, quantity:1, price:0},
-    dvd:{name: "dvd", id:0, quantity:0, price:0},
-    raw:{name: "raw", id:0, quantity:0, price:0},
+    main: {name: "", id: 0, price:0, sale_price:0, regular_price:0},
+    minutes: {name: "", id: 0, price:0, sale_price:0, regular_price:0},
+    music:{name: "", id: 0, price:0, sale_price:0, regular_price:0},
+    dvd:{name: "", id: 0, price:0, sale_price:0, regular_price:0},
+    raw:{name: "", id: 0, price:0, sale_price:0, regular_price:0},
     currentTotalTime:0,
     isCustomer:"",
-    mainProduct: <?php echo hola?>,
+    mainProduct: 0,
     musicTrack:[],
     baseProducts: [],
     abspath:"",
@@ -25,6 +25,7 @@ var view = {
     dvd:{name: "dvd", id:0, quantity:0, price:0},
     raw:{name: "raw", id:0, quantity:0, price:0},
     order: new Array(),
+    totalOrder:0,
     ajaxCart:function(){
       var order = view.order;
       var xhttp = new XMLHttpRequest();
@@ -42,49 +43,57 @@ var view = {
     },
     setDVD:function(quantity){
       var input = document.getElementById("eleInputDVDAmount");
-      var val = parseInt(input.value) + quantity;
-      if(val <= 0 || val == null ){
+      var q = (parseInt(input.value) == quantity)? quantity : parseInt(input.value) + quantity;
+      if(q <= 0 || q == null ){
         view.dvd.quantity = 0;
         input.value = 0;
       }
       else{
         view.dvd.id = model.baseProducts[1].id;
-        view.dvd.quantity = val;
-        input.value = val;
+        view.dvd.quantity = q;
+        input.value = q;
       }
     },
     setRAW:function(obj){
       if(obj.checked){
         view.raw.id = model.baseProducts[0].id;
         view.raw.quantity = 1;
+        setTotalOrder(view.minutes.price);
       }
       else{
         view.raw.quantity = 0;
+        setTotalOrder(-(view.minutes.price));
       }
     },
     setOrder:function(){
-      this.order.push(this.main);
+      view.order.push(view.main);
 
-      if(this.music.quantity > 0 ){
-        this.order.push(this.music)
+      if(view.music.quantity > 0 ){
+        view.order.push(view.music)
       };
-      if(this.dvd.quantity > 0 ){
-        this.order.push(this.dvd)
+      if(view.dvd.quantity > 0 ){
+        view.order.push(view.dvd)
       };
-      if(this.raw.quantity > 0 ){
-        this.order.push(this.raw)
+      if(view.raw.quantity > 0 ){
+        view.order.push(view.raw)
       };
-      if(this.minutes.quantity > 0){
-        this.order.push(this.minutes)
+      if(view.minutes.quantity > 0){
+        view.order.push(view.minutes)
       };
       view.ajaxCart();
     },
     setMinutes:function(amount){
-      this.minutes.quantity = amount;
+      view.minutes.quantity = amount;
+      amount = amount * view.minutes.price;
+      view.setTotalOrder(amount);
     },
     setMusic:function(product){
       view.music.id = product;
     },
+    setTotalOrder: function(amount){
+        view.totalOrder += amount;
+        //document.getElementById('bdpRight2').innerHTML = "Total: $"+view.totalOrder;
+    }
 };
 var dropboxUIContainer = {
     container: null,
@@ -221,6 +230,7 @@ function renderElements(){
             var eleRight2 = document.createElement("DIV");
             eleRight2.id = "bdpRight2";
             eleRight2.className = "bdpRightN";
+            eleRight2.innerHTML = "Total: $";
             eleRight.appendChild(eleRight2);
 
                 var buttonSubmitOrder = document.createElement("BUTTON");
@@ -231,7 +241,6 @@ function renderElements(){
                   view.setOrder();
                 };
                 eleRight2.appendChild(buttonSubmitOrder);
-
 }
 function selectMusic(container){
     for(nP = 0, nPz = model.musicTrack.length; nP < nPz; nP++ ){
@@ -247,6 +256,4 @@ function selectMusic(container){
 };
 window.onload = function(){
     renderElements();
-
 }
-</script>

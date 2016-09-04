@@ -11,7 +11,6 @@ function getFolderMetadata($path){
     $folderMetadata = $GLOBALS["dbxClient"]->getMetadataWithChildren($path);
     return $folderMetadata;
 }
-
 function getFolderMetadata_ajax() {
     // The $_REQUEST contains all the data sent via ajax
     if ( isset($_REQUEST) ) {
@@ -29,5 +28,4 @@ function getFolderMetadata_ajax() {
     // Always die in functions echoing ajax content
     die();
 }
-add_action( 'wp_ajax_example_ajax_request', 'getFolderMetadata_ajax' );
 
