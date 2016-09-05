@@ -2,96 +2,30 @@
 /**
  * Created by PhpStorm.
  * User: ricardobandala
- *
  * Date: 2016-08-25
  * Time: 22:38
  */
+//require_once 'connectDropbox.php';
+add_action( 'wp_loaded', 'loadModel');
 
-function loadData($bdp, $userID)
-{ $settings = $bdp['settings'];
-	$user = get_user_by($userID);
-
-	$extraminutes = getExtraMinutes($bdp, $user);
-	?>
-	<script>
-		//model.currentTotalTime = 0<?php echo $extraminutes;?>;
-		<?php $url = get_site_url(); ?>;
-		model.url = "<?php echo $url ?>";
-		model.products = {
-			main: <?php echo getProduct($settings['prodID_EditingPacakage'], $userID)?>,
-			minute: <?php echo getProduct($settings['prodID_ExtraMinute'],  $userID)?>,
-			raw: <?php echo getProduct($settings['prodID_RawMaterial'], $userID)?>,
-			url: <?php echo getProduct($settings['prodID_URL'], $userID)?>,
-			disc: <?php echo getProduct($settings['prodID_Disc'], $userID)?>,
-			music: <?php echo getMusic($settings['prodID_Disc'], $userID)?>,
-		};<?php
-}
-function getProduct($bdp, $userID)
-{
-	$product = null;
-	isBought($prodID, $userID);
-
-
-
-
-
-	return $product;
-	//Return a json string with product data, call to is bougth
-}
-function getMusic($category, $userID)
-{
-
-	//Return an array of json with product data, call to is bougth
-}
-function isBought($prodID, $userID)
-{
-	$founded = false;
-	//get the data of the shoping cart return true if boughted
-	return $founded;
-}
-function getExtraMinutes($bdp, $user)
-{
-	$minutes = 0;
-	$path = $bdp->path.$user.login;
-	$minutes = $bdp->bdp_dpx->getVideoMinutes($path);
-	return $minutes;
-}
-
-
-
-
-
-
-
-
-
-
-
-/**
-//<?php $current_user = wp_get_current_user();
-			$ifBought = isBoughted($current_user, 51) ? "1" : "0"?>
-			model.isBoughtMainProduct = <?php echo $ifBought ?>;
-	<?php
-	getMusic(); //Get the music
-
-
-
-
-
-
-
-}
-echo "adios";
-
-
-
-$args = [
-    "path" => null,
-];
-$bdp = new Blushdrop_dropbox();?>
-
-    };
-
+function loadModel(){
+    if ( isCustomer() || is_admin() ) { ?>
+        <script>
+            model.abspath = '<?php echo get_site_url(); ?>';
+            model.currentTotalTime = 0<?php echo $totalTime = showTotalTime();?>;
+            <?php $url = get_site_url(); ?>;
+            model.url = "<?php echo $url ?>";
+            model.main = <?php echo getProduct('base, main')?>;
+            model.dvd = <?php echo getProduct('base, disc')?>;
+            model.raw = <?php echo getProduct('base, raw')?>;
+            model.music =
+            <?php $current_user = wp_get_current_user();
+                $ifBought = isBoughted($current_user, 51) ? "1" : "0"?>
+                model.isBoughtMainProduct = <?php echo $ifBought ?>;
+        </script>
+        <?php
+    }
+};
 function getMusic(){
     $params = array(
         'post_type' => 'product',
@@ -153,4 +87,3 @@ function getProduct($productTag){
 }
 
 
-**/

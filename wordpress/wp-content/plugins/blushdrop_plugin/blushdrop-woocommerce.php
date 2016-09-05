@@ -12,7 +12,7 @@ if ( is_plugin_active( 'woocommerce/woocommerce.php' ) )
     function add_blushdropFull_to_cart()
     {
         $current_user = wp_get_current_user();
-        if ( isCustomer($current_user->ID) ) {
+        if ( is_customer($current_user->ID) ) {
             $product_id = 51;
             $found = isInCart($product_id);
             //check if product already in cart
