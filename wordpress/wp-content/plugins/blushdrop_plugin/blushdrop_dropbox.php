@@ -8,6 +8,7 @@
  */
 use \Dropbox as dbx;
 require_once 'dropbox-sdk-php/lib/Dropbox/autoload.php';
+
 if (!class_exists('Blushdrop_dropbox')) {
 	class Blushdrop_dropbox
 	{

@@ -11,65 +11,53 @@
  * @class Blushdrop
  * @version  1.0
  */
-
-/*
- *
- * */
-require_once 'blushdrop_dropbox.php';
+if ( ! defined( 'ABSPATH' ) ) {
+//	exit; // Exit if accessed directly
+}
 if (!class_exists('Blushdrop')) {
+	require_once 'blushdrop_dropbox.php';
+	require_once 'blushdrop_woocommerce.php';
 	class Blushdrop
 	{
 		private $bdp_dpx = null;
+		private $bdp_wcm = null;
 		private $path = "";
 		private $settings = null;
-
 		function __construct($args)
 		{
 			$this->setConfigValues();
-			$this->settings = $this->getSettings();
-			$this->path = $this->getPath($args);
+			$this->settings = $this->loadSettings();
+			$this->path = $this->setPath($args);
 			$this->bdp_dpx = new Blushdrop_dropbox($this->path);
+			$this->bdp_wcm = new Blushdrop_woocommerce();
 			add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
 			add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);
-			add_shortcode('blushdrop_products', array(&$this, 'blushdrop_LoadMinutes'));
+			add_shortcode('blushdrop_products', array(&$this, 'blushdrop_loadMinutes'));
+			add_action('wp_ajax_getMinutes', array(&$this, 'ajax_getMinutes'));
+			add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
 		}
-
-		private function getPath($args)
-	{
-		$path = ($args['path'] == null || $args['path'] == "")
-			?$this->settings['dropbox_path']
-			: $args['path'];
-		return $path;
-	}
-
-		private function getSettings()
+		public function ajax_addOrderToCart()
 		{
-			$settings = get_option('blushdrop_settings', array(
-				'dropbox_path' => '',
-				'prodCat_Music' => '',
-				'prodID_Disc' => '',
-				'prodID_EditingPacakage' => '',
-				'prodID_ExtraMinute' => '',
-				'prodID_RawMaterial' => '',
-				'prodID_URL' => '',
-			));
-			return $settings;
+			$order = $_REQUEST['order'];
+			$wcm = $this->bdp_wcm;
+			$res = $wcm->add_arrayToCart($order);
+			header('Content-Type: application/json');
+			echo json_encode($res);
+			exit;
 		}
 
-		public function setConfigValues()
+		public function ajax_getMinutes()
 		{
-			add_option('blushdrop_settings', array(
-				'dropbox_path' => '/blushdrop/',
-				'prodCat_Music' => 'music',
-				'prodID_Disc' => '31',
-				'prodID_EditingPacakage' => '51',
-				'prodID_ExtraMinute' => '79',
-				'prodID_RawMaterial' => '67',
-				'prodID_URL' => '94',
-			));
+			$userID     = absint( $_REQUEST['userID'] );
+			$user = get_userdata($userID);
+			$path = $this->path.$user->user_login;
+			$minutes = $this->bdp_dpx->getVideoMinutes($path);
+			header('Content-Type: text/plain');
+			echo $minutes;
+			exit;
 		}
 
-		public function blushdrop_LoadMinutes()
+		public function blushdrop_loadMinutes()
 		{
 			$userID = wp_get_current_user()->ID;
 			$authorID = get_the_author_meta('ID');
@@ -92,36 +80,55 @@ if (!class_exists('Blushdrop')) {
 			}
 		}
 
-		public function createPageCustomer($newUser, $path)
-		{//TODO, check if its neccessary to add a / after $path
-			//TODO check construction of shortode of $oob
-			$oob = '[outofthebox 
-	    dir="' + $path + '" 
-	    mode="files" 
-	    viewrole="administrator|author|customer|guest" 
-	    downloadrole="administrator|author|subscriber|customer" 
-	    upload="1" 
-	    rename="1" 
-	    renamefilesrole="administrator|editor|author|contributor" 
-	    renamefoldersrole="administrator|editor|author|contributor" 
-	    move="1" 
-	    delete="1" 
-	    deletefilesrole="administrator|editor|author|contributor" 
-	    deletefoldersrole="administrator|editor|author|contributor" 
-	    addfolder="1" 
-	    addfolderrole="administrator|editor|author|contributor"]';
+		public function createPageCustomer($user, $path)
+		{
+			$oob = '[outofthebox dir="'.$path.'" mode="files"'
+				.' viewrole="administrator|editor|author|contributor|subscriber|customer|guest"'
+				.' downloadrole="administrator|editor|author|contributor|subscriber" upload="1" overwrite="1" rename="1"'
+				.' renamefilesrole="administrator|editor|author|contributor|customer"'
+				.' renamefoldersrole="administrator|editor|author|contributor|customer" move="1" delete="1"'
+				.' deletefilesrole="administrator|editor|author|contributor|customer"'
+				.' deletefoldersrole="administrator|editor|author|contributor|customer"'
+				.' addfolder="1" addfolderrole="administrator|editor|author|contributor|customer|guest"]';
 			$oob .="[blushdrop_products]";
 			$page['post_type'] = 'page';
 			$page['post_content'] = $oob;
 			$page['post_parent'] = 0;
-			$page['post_author'] = $newUser->ID;
+			$page['post_author'] = $user->ID;
 			$page['post_status'] = 'publish';
-			$page['post_title'] = $newUser->user_login;
-			//$page = apply_filters('yourplugin_add_new_page', $page, 'teams');
+			$page['post_title'] = $username = $this->sanitizeUserName($user->user_login);
 			$pageid = wp_insert_post($page);
 			if ($pageid == 0) {
 				//TODO find what to do with the error, maybe a suggestion to reload?
 			}
+		}
+		/**
+		 * @return Blushdrop_dropbox|null
+		 */
+		public function getBdpDpx()
+		{
+			return $this->bdp_dpx;
+		}
+		/**
+		 * @return Blushdrop_woocommerce|null
+		 */
+		public function getBdpWcm()
+		{
+			return $this->bdp_wcm;
+		}
+		/**
+		 * @return $this->settings|null
+		 */
+		public function getSettings()
+		{
+			return $this->settings;
+		}
+		/**
+		 * @return string|Blushdrop
+		 */
+		public function getPath()
+		{
+			return $this->path;
 		}
 
 		public function isCustomer($ID)
@@ -145,6 +152,20 @@ if (!class_exists('Blushdrop')) {
 			}
 		}
 
+		public function loadSettings()
+		{
+			$settings = get_option('blushdrop_settings', array(
+				'dropbox_path' => '',
+				'prodCat_Music' => '',
+				'prodID_Disc' => '',
+				'prodID_EditingPacakage' => '',
+				'prodID_ExtraMinute' => '',
+				'prodID_RawMaterial' => '',
+				'prodID_URL' => '',
+			));
+			return $settings;
+		}
+
 		public function redirectIfCustomer($user_login, $user)
 		{
 			$myID = $user->ID;
@@ -155,14 +176,45 @@ if (!class_exists('Blushdrop')) {
 			};
 		}
 
+		public function sanitizeUserName($username)
+		{
+			//TODO improove with regex;
+			$username = wp_strip_all_tags( $username );
+			$username = remove_accents( $username );
+			$username = str_replace("@","_at_",$username);
+			$username = str_replace(" ","_",$username);
+			return $username;
+		}
+		public function setConfigValues()
+		{
+			add_option('blushdrop_settings', array(
+				'dropbox_path' => '/blushdrop/',
+				'prodCat_Music' => 'music',
+				'prodID_Disc' => '31',
+				'prodID_EditingPacakage' => '51',
+				'prodID_ExtraMinute' => '79',
+				'prodID_RawMaterial' => '67',
+				'prodID_URL' => '94',
+			));
+		}
+
+		private function setPath($args)
+		{
+			$path = ($args['path'] == null || $args['path'] == "")
+				?$this->settings['dropbox_path']
+				: $args['path'];
+			return $path;
+		}
+
 		public function whenNewCustomer($user_id)
 		{
-			if ($this->isCustomer($user_id)) {
+			if ($this->isCustomer($user_id)){
 				$newUser = get_userdata($user_id);
-				$path = $this->path . $newUser->user_login;
+				$username = $this->sanitizeUserName($newUser->user_login);
+				$path = $this->path.$username;
 				$this->bdp_dpx->createFolder($path);
 				$this->createPageCustomer($newUser, $path);
 			}
 		}
-	}//end, of class
+	}//end of class
 }//end, If class exist

@@ -10,27 +10,29 @@
  */
 
 
-//function init(){
-	require_once 'blushdrop.php';
-	$args = [
-		"path" => null,
-	];
-	$bdp = new Blushdrop($args);
-//}
-//add_action( 'wp_login', 'init', 10);
+require_once 'blushdrop.php';
+$args = [
+	"path" => null,
+];
+$bdp = new Blushdrop($args);
+
 function enqueue_style()
 {
 	wp_enqueue_script('custom_js');
 	wp_enqueue_style('new_style');
-} //OK
+}
+
+
 function register_script()
 {
 	//TODO, check the parameter 'all' to apply it only where's necessary
 	wp_register_script('custom_js', plugins_url('/js/blushdrop.js', __FILE__));
 	wp_register_style('new_style', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
-} //OK
+}
 add_action('init', 'register_script');
 add_action('wp_enqueue_scripts', 'enqueue_style');
+
+
 
 
 
@@ -62,7 +64,7 @@ add_action('wp_enqueue_scripts', 'enqueue_style');
 $blushdropPath = "/blushdrop";
 require_once 'connectDropbox.php';
 require_once 'getFolderMetadata.php';
-require_once 'blushdrop-woocommerce.php';
+require_once 'blushdrop_woocommerce.php';
 require_once 'setModel.php';
 
 add_action('admin_menu', 'plugin_setup_menu');

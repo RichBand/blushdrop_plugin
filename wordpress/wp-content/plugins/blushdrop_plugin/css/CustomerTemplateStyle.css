@@ -1,12 +1,24 @@
 /**
  * Created by ricardobandala on 2016-08-15.
  */
-
-#bdpMain *{
-
+#bdpMain{
+  display: block;
 }
-.bdpLefthN{
+.bdp_ele {
+  width: 100%;
+}
+.bdpLefthOpt, .bdpRightOpt{
     border-style: solid;
+}
+#bdpLefth, #bdpRight{
+  float: left;
+  display: inline-block;
+}
+#bdpLefth{
+    width: 84%;
+}
+#bdpRight{
+    width: 14%;
 }
 .bdpContents{
     width: 100%;

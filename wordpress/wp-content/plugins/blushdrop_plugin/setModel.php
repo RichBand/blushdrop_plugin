@@ -6,151 +6,70 @@
  * Date: 2016-08-25
  * Time: 22:38
  */
-
+ ?>
+ <div id="bdpMain">
+	 <div id="bdpLefth">
+		 <div id="prod_EditingPacakage" class="bdp_LeftOpt">
+		 		<p>Editing Package: (ten minutes of raw material included) </p>
+		 </div>
+		 <div id="prod_Music" class="bdp_LeftOpt">
+		 	<p>Select a song: </p>
+		 	<select id="eleSelMusic"></select>
+		 </div>
+		 <div id="prod_Disc" class="bdp_LeftOpt">
+		 	<p>Number of DVD's : </p>
+		 	<p onclick = "view.setProductDVD(1)"; >+</p>
+		 	<input id="eleInputDiscAmount" type="number" min="0" max="99" onblur = "view.setProductDVD(this.value);">
+		 	<p onclick = "view.setProductDVD(-1)";>-</p>
+		 </div>
+		 <div id="prod_Raw" class="bdp_LeftOpt">
+		 	<p>Include raw Footage? </p>
+		 	<input id="eleCheckboxRaw" type="checkbox">
+		 </div>
+		 <div id="prod_Minute" class="bdp_LeftOpt">
+		 	<p>No extra minutes yet </p>
+		 	<input id="eleExtraMinutes" disabled="">
+		 </div>
+	 </div>
+	 <div id="bdpRight">
+	 	<div id="info_Subtotal" class="bdp_RightOpt">
+	 		Total: $
+		</div>
+		<div id="info_Submit" class="bdp_RightOpt">
+		 <button id="bdpSubmitOrder" class="" onclick="submitOrder()">Submit Order</button>
+	 </div>
+		 <button id="bdpSubmitOrder" class="" onclick="ajax_getMinutes()">Get minutes</button>
+	 </div>
+ </div>
+<?php
 function loadData($bdp, $userID)
-{ $settings = $bdp['settings'];
-	$user = get_user_by($userID);
+{
+	$settings = $bdp->getSettings();
+	$wcm = $bdp->getBdpWcm();
+	$dpx = $bdp->getBdpDpx();
+	$user = get_user_by('id', $userID);
+	$path = $bdp->getPath().$user->user_login;
+	$author =  get_the_author_meta('ID');
 
-	$extraminutes = getExtraMinutes($bdp, $user);
 	?>
-	<script>
-		//model.currentTotalTime = 0<?php echo $extraminutes;?>;
-		<?php $url = get_site_url(); ?>;
-		model.url = "<?php echo $url ?>";
+	<script type="text/javascript">
+		model.ajaxurl ='<?php echo admin_url('admin-ajax.php'); ?>';
+		model.customer = 0<?php echo $author ?>;
+		model.currentTotalMinutes = 0<?php echo $dpx->getVideoMinutes($path);?>;
 		model.products = {
-			main: <?php echo getProduct($settings['prodID_EditingPacakage'], $userID)?>,
-			minute: <?php echo getProduct($settings['prodID_ExtraMinute'],  $userID)?>,
-			raw: <?php echo getProduct($settings['prodID_RawMaterial'], $userID)?>,
-			url: <?php echo getProduct($settings['prodID_URL'], $userID)?>,
-			disc: <?php echo getProduct($settings['prodID_Disc'], $userID)?>,
-			music: <?php echo getMusic($settings['prodID_Disc'], $userID)?>,
-		};<?php
-}
-function getProduct($bdp, $userID)
-{
-	$product = null;
-	isBought($prodID, $userID);
-
-
-
-
-
-	return $product;
-	//Return a json string with product data, call to is bougth
-}
-function getMusic($category, $userID)
-{
-
-	//Return an array of json with product data, call to is bougth
-}
-function isBought($prodID, $userID)
-{
-	$founded = false;
-	//get the data of the shoping cart return true if boughted
-	return $founded;
-}
-function getExtraMinutes($bdp, $user)
-{
-	$minutes = 0;
-	$path = $bdp->path.$user.login;
-	$minutes = $bdp->bdp_dpx->getVideoMinutes($path);
-	return $minutes;
-}
-
-
-
-
-
-
-
-
-
-
-
-/**
-//<?php $current_user = wp_get_current_user();
-			$ifBought = isBoughted($current_user, 51) ? "1" : "0"?>
-			model.isBoughtMainProduct = <?php echo $ifBought ?>;
+			main: <?php echo $wcm->getProduct($settings['prodID_EditingPacakage'], $user)?>,
+			minute: <?php echo $wcm->getProduct($settings['prodID_ExtraMinute'],  $user)?>,
+			raw: <?php echo $wcm->getProduct($settings['prodID_RawMaterial'], $user)?>,
+			url: <?php echo $wcm->getProduct($settings['prodID_URL'], $user)?>,
+			disc: <?php echo $wcm->getProduct($settings['prodID_Disc'], $user)?>,
+		};
+		var x = <?php echo $wcm->getMusic($settings['prodCat_Music'], $user)?>;
+		for (var i = 0, len = x.length; i < len; ++i) {
+			x[i] = JSON.parse(x[i]);
+		}
+		model.products.music = x;
+		model.url = "<?php echo get_site_url(); ?>";
+		console.log(model);
+	</script>
 	<?php
-	getMusic(); //Get the music
-
-
-
-
-
-
-
 }
-echo "adios";
-
-
-
-$args = [
-    "path" => null,
-];
-$bdp = new Blushdrop_dropbox();?>
-
-    };
-
-function getMusic(){
-    $params = array(
-        'post_type' => 'product',
-        'product_cat' => 'music'
-    );
-    $wc_query = new WP_Query($params);
-    if ($wc_query->have_posts()):
-        while($wc_query->have_posts()):
-            $wc_query->the_post();
-            $thisProductID = $wc_query->post->ID;
-            $_product = wc_get_product( $thisProductID );?>
-            var track = {
-            'id': <?php echo $thisProductID ?>,
-            'title':'<?php the_title() ?>',
-            <?php
-            $inCart = isInCart($thisProductID)? "1" : "0";
-            $ifBought = isBoughted($current_user, $thisProductID)? "1" : "0"?>
-            'inCart': <?php echo $inCart ?>,
-            'excerpt':'<?php echo $wc_query->post->post_excerpt;
-            $wewe = $_product->get_price();?>',
-            'price':'<?php echo $_product->get_price(); ?>',
-            'reg-price':'<?php echo $_product->get_regular_price(); ?>',
-            'sale-price':'<?php echo $_product->get_sale_price(); ?>'
-            }
-            model.musicTrack.push(track);
-            console.log(track.title);
-            <?php
-        endwhile;
-    endif;
-    wp_reset_postdata();
- }
-function getProduct($productTag){
-    $res = "";
-    $params = array(
-        'post_type' => 'product',
-        'product_cat' => $productTag
-    );
-    $wc_query = new WP_Query($params);
-    if ($wc_query->have_posts()):
-        while($wc_query->have_posts()):
-            $wc_query->the_post();
-            $thisProductID = $wc_query->post->ID;
-            $_product = wc_get_product( $thisProductID );
-            $inCart = isInCart($thisProductID)? "1" : "0";
-
-            $res .=  '{id:'.$thisProductID.', '
-                .'title:'.the_title().','
-                .'inCart:'.$inCart.','
-                .'image:'.$_product->get_image_id().','
-                .'excerpt:'.$wc_query->post->post_excerpt.','
-                .'price:'.$_product->get_price().','
-                .'reg-price:'.$_product->get_regular_price().','
-                .'sale-price:'.$_product->get_sale_price()
-                .'};';
-        endwhile;
-    endif;
-    wp_reset_postdata();
-    return $res;
-}
-
-
-**/
