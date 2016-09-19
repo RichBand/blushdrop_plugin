@@ -1,23 +1,19 @@
 <?php
-
+/**
+ * Plugin Name: Custom blushdrop Plugin
+ * Description: handle all the custom needs of blushdrop.
+ * Version: 1.0
+ * Author: Ricardo Bandala
+ * Live to code, code to live, MVC is beautiful
+ * Author URI: http://ricardobandala.com
+ * License: private
+ */
 //TODO experiment with App folder type at dropbox developers
-/***
 $blushdropPath = "/blushdrop";
 require_once 'connectDropbox.php';
 require_once 'getFolderMetadata.php';
 require_once 'blushdrop-woocommerce.php';
-require_once 'setModel.php';
 
-add_action('admin_menu', 'plugin_setup_menu');
-//add_action( 'admin_init', 'register_my_cool_plugin_settings' );
-
-function plugin_setup_menu(){
-    add_menu_page( 'Blushdrop Plugin Page', 'Blushdrop Plugin', 'manage_options', 'blushdrop-plugin', 'blushdrop_init');
-}
-
-function blushdrop_init(){
-    require_once 'plugin-admin.php';
-}
 function createFolder($path){
     $metadata = null;
     $exist = getFolderMetadata($path);
@@ -57,10 +53,10 @@ function createPageCustomer($newUser){
     }
 }
 //todo page hook load methadata
-function is_customer($myID) {
+function isCustomer($myID) {
     $user_meta = get_userdata($myID);
     if($user_meta != null) {
-        $user_roles = $user_meta->roles;
+    $user_roles = $user_meta->roles;
         if (in_array("Customer", $user_roles) || in_array("customer", $user_roles)) {
             return true;
         }
@@ -111,10 +107,9 @@ function getCountTime($path){
     return $count;
 }
 
-add_action( 'wp_ajax_example_ajax_request', 'getFolderMetadata_ajax' );
 //TODO this is not an appropoate way to check if the user is new, a new method to check it is neccesary in sake of good practices
 function newCustomer($user_id) {
-    if(is_customer($user_id)) {
+    if(isCustomer($user_id)) {
         add_user_meta( $user_id, '_new_user', '1' );
         $newUser = get_userdata($user_id);
         $path = $GLOBALS["blushdropPath"]."/".$newUser->user_login;
@@ -127,7 +122,7 @@ add_action( 'user_register', 'newCustomer');
 
 function loginUser( $user_login, $user ) {
     $myID = $user->ID;
-    if(is_customer($myID)){
+    if(isCustomer($myID)){
         $GLOBALS["dbxClient"] = connectDropbox();
         $accountInfo = $GLOBALS["dbxClient"]->getAccountInfo();
         $thisSite = get_site_url()."/";
@@ -137,9 +132,9 @@ function loginUser( $user_login, $user ) {
 add_action('wp_login', 'loginUser', 10, 2);
 
 function register_script() {
-    wp_register_script( 'custom_js', plugins_url('/js/blushdrop.js', __FILE__));
+    wp_register_script( 'custom_js', plugins_url('/js/CustomerTemplateJS.js', __FILE__));
 //todo, chech the parameter 'all' to apply it only where's neccesary
-    wp_register_style( 'new_stye', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
+    wp_register_style( 'new_style', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
 }
 add_action('init', 'register_script');
 add_action('wp_enqueue_scripts', 'enqueue_style');
@@ -148,7 +143,7 @@ function enqueue_style(){
     wp_enqueue_script('custom_js');
     wp_enqueue_style( 'new_style' );
 }
-//TODO get out the validatiosn form here, the determination belongs to an upper method
+
 function showTotalTime($wp_query){
     $current_user = wp_get_current_user();
     $page_title = $wp_query->post->post_title;
@@ -158,4 +153,3 @@ function showTotalTime($wp_query){
         return $folderMetadata["minutes"];
     }
 }
- * ***/

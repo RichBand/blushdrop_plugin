@@ -1,0 +1,35 @@
+/**
+ * Created by ricardobandala on 2016-08-15.
+ */
+.bdpContents{
+    padding: 1em;
+    display: inline-block;
+    margin-bottom: 1em;
+    -webkit-box-shadow: 5px 5px 18px 3px rgba(0,0,0,0.45);
+    -moz-box-shadow: 5px 5px 18px 3px rgba(0,0,0,0.45);
+    box-shadow: 5px 5px 18px 3px rgba(0,0,0,0.45);
+}
+#bdpCustomerWrapper{
+    //background-color: aquamarine;
+    width: 100%;
+}
+#bdpCustomerOptions{
+    //background-color: darkolivegreen;
+    width: 70%;
+}
+#bdpCustomerMusic{
+    width: 100%;
+}
+#bdpCustomerDiscs{
+    width: 100%;
+}
+#bdpCustomerRawFootage{
+    width: 100%;
+}
+#bdpCustomerWidget{
+    width: 20%;
+    background-color: red;
+}
+#bdpCustomerSubmit {
+
+}
