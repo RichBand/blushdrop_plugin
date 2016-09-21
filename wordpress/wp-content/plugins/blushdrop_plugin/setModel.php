@@ -15,8 +15,8 @@ function loadData($bdp, $userID)
 	$user = get_user_by('id', $userID);
 	$path = $bdp->getPath().$user->user_login;
 	$author =  get_the_author_meta('ID');
-	echo file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html");
 	?>
+
 	<script type="text/javascript">
 		model.ajaxurl ='<?php echo admin_url('admin-ajax.php'); ?>';
 		model.customer = 0<?php echo $author ?>;

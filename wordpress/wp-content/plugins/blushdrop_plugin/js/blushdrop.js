@@ -43,7 +43,7 @@ var controller = {
         }
     },
     ajax_addTocart:function(order){
-        var resposnse = "";
+        var response = "";
     jQuery(document).ready(function($){
         $.ajax({
             url: model.ajaxurl,
@@ -64,7 +64,7 @@ var controller = {
         return response;
     },
     ajax_getMinutes:function(){
-        var resposnse = "";
+        var response = "";
     jQuery(document).ready(function($){
         $.ajax({
             url: model.ajaxurl,

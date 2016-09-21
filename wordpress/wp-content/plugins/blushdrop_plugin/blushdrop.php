@@ -9,7 +9,7 @@
  * Main Blushdrop Class.
  *
  * @class Blushdrop
- * @version  1.0
+ * @version  1.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
 //	exit; // Exit if accessed directly
@@ -42,14 +42,17 @@ if (!class_exists('Blushdrop')) {
 
 		private function createPageCustomer($user, $path)
 		{
-			$oob = '[outofthebox dir="'.$path.'" mode="files"'
-				.' viewrole="administrator|editor|author|contributor|subscriber|customer|guest"'
-				.' downloadrole="administrator|editor|author|contributor|subscriber" upload="1" overwrite="1" rename="1"'
+			$oob = '[outofthebox dir="'.$path.'"'
+				.' mode="files" upload="1" rename="1" move="1" delete="1" addfolder="1"'
+				.' viewrole="administrator|author|customer|guest"'
+				.' addfolderrole="administrator|editor|author|contributor|customer"'
+				.' uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"'
+				.' downloadrole="administrator|author|subscriber|customer"'
 				.' renamefilesrole="administrator|editor|author|contributor|customer"'
-				.' renamefoldersrole="administrator|editor|author|contributor|customer" move="1" delete="1"'
-				.' deletefilesrole="administrator|editor|author|contributor|customer"'
-				.' deletefoldersrole="administrator|editor|author|contributor|customer"'
-				.' addfolder="1" addfolderrole="administrator|editor|author|contributor|customer|guest"]';
+				.' renamefoldersrole="administrator|editor|author|customer"'
+				.' deletefilesrole="administrator|editor|author|customer"'
+				.' deletefoldersrole="administrator|editor|author|customer"'
+				.' ]';
 			$oob .="[blushdrop_products]";
 			$page['post_type'] = 'page';
 			$page['post_content'] = $oob;
@@ -93,32 +96,41 @@ if (!class_exists('Blushdrop')) {
 					}
 				}
 				if($id == $settings['prodID_Disc']){
-					$order['added'] = $wcm->setQuantityInCart($inCart['key'], $qty);
+					if($inCart['ok']) {
+						$order['added'] = $wcm->setQuantityInCart($inCart['key'], ($qty + $order['qty']));
+					}else{
+						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
+					}
 					array_push($res, $order);
 				}
 				if($id == $settings['prodID_ExtraMinute']) {
 					if($inCart['ok']) {
-						if($qty > $inCart['qty']) {
+						if($qty > $inCart['qty']) {// The client add minutes, has 10 minues in cart the order is 15, just include 5
 							$order['qty'] = $qty - $inCart['qty'];
-							array_push($res, $order);
-							// The client has 10 minues in cart the order is 15, just include 5
+							$order['added'] = $wcm->setQuantityInCart($inCart['key'], ($qty + $inCart['qty']));
+								array_push($res, $order);
 						}
-						if($qty < $inCart['qty']) {
+						if($qty < $inCart['qty']) {// The client substract minutes, has 20 minutes in cart the order is 10, delete 10 from the cart
 							//Modify cart? or delete item by key they
-							$order['qty'] = $qty - $inCart['qty'];
+							$order['qty'] = $inCart['qty'] - $qty;
+							$order['added'] = $wcm->setQuantityInCart($inCart['key'], $order['qty']);
 							array_push($res, $order);
-							// The client has 20 minutes in cart the order is 10, delete 10 from the cart
+
 						}
 					}
 					else {
+						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
 						array_push($res, $order);
 					}
 				}
 				if($id == $settings['prodID_RawMaterial'] ||$settings['prodID_EditingPackage'] ) {
-					if(!$inCart['ok']) {
-						$order['qty'] = 1;
-						array_push($res, $order);
+					if($inCart['ok']) {
+						$order['added'] = 0;
 					}
+					else{
+						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
+					}
+					array_push($res, $order);
 				}
 			}
 			unset ($order);
@@ -195,13 +207,13 @@ if (!class_exists('Blushdrop')) {
 		private function setConfigValues()
 		{
 			add_option('blushdrop_settings', array(
-				'dropbox_path' => '/blushdrop/',
+				'dropbox_path' => '/blushdrop', //FIXME
 				'prodCat_Music' => 'music',
 				'prodID_Disc' => '31',
-				'prodID_EditingPacakage' => '51',
+				'prodID_EditingPacakage' => '32',
 				'prodID_ExtraMinute' => '79',
 				'prodID_RawMaterial' => '67',
-				'prodID_URL' => '94',
+				'prodID_URL' => '34',
 			));
 		}
 
@@ -228,9 +240,8 @@ if (!class_exists('Blushdrop')) {
 		{
 			$orders = $_REQUEST['order'];
 			$wcm = $this->bdp_wcm;
-			$filtered = $this->filterProductsToAdd($orders, $wcm);
-			$res = $wcm->add_arrayToCart($filtered);
-			header('Content-Type: application/json');
+			$res = $this->filterProductsToAdd($orders, $wcm);
+			header('Content-Type:./ application/json');
 			echo json_encode($res);
 			exit;
 		}
@@ -283,7 +294,6 @@ if (!class_exists('Blushdrop')) {
 		{
 			return $this->path;
 		}
-
 		public function register_CustomerFiles()
 		{
 			//TODO, check the parameter 'all' to apply it only where's necessary
@@ -294,7 +304,7 @@ if (!class_exists('Blushdrop')) {
 		{
 			if( $this->isAuthorOrAdmin()) {
 				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html")) {
-					//echo file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html");
+					echo file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html");
 				}
 				else {
 					echo 'An error has occurred, please reload the page, if the problem

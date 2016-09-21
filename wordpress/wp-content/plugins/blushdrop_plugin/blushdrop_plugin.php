@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Blushdrop Plugin
  * Description: handle all the custom needs of blushdrop.
- * Version: 1.0
+ * Version: 1.1
  * Author: Ricardo Bandala
  * Live to code, code to live, MVC is beautiful
  * Author URI: http://ricardobandala.com

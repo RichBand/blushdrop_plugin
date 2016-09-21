@@ -23,6 +23,10 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			unset ($order);
 			return $res;
 		}
+		public function add_ToCart($id, $qty){
+			$res = WC()->cart->add_to_cart($id, $qty);
+			return $res;
+		}
 
 		public function isBought($productID, $user)
 		{
@@ -36,9 +40,10 @@ if (!class_exists('Blushdrop_woocommerce')) {
 				"qty"=>0,
 				"key"=>0
 			);
-			if ( sizeof( WC()->cart->get_cart() ) > 0 )
+			$cart = WC()->cart->get_cart();
+			if ( sizeof( $cart ) > 0 )
 			{
-				foreach ( WC()->cart->get_cart() as $cart_item_key => $values )
+				foreach ( $cart as $cart_item_key => $values )
 				{
 					$id = $values['product_id'];
 					if ($id == $productID)
@@ -99,8 +104,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 
 		public function setQuantityInCart($key, $qty)
 		{
-			$my_cart = new WC_Cart();
-			$res = $my_cart::set_quantity($key, $qty, 1);
+			$res = WC()->cart->set_quantity($key, $qty, 1);
 			return $res;
 		}
 
