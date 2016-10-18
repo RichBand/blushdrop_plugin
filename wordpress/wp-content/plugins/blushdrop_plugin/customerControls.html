@@ -11,25 +11,26 @@
 		 <div id="prod_Disc" class="bdp_LeftOpt">
 			 <label id="labeleleInputDiscAmount" for="eleInputDiscAmount">Number of DVD's :</label>
 		 	<p onclick = "view.setDVD(1)"; >+</p>
-		 	<input id="eleInputDiscAmount" type="number" min="0" max="99" onblur = "view.setProductDVD(this.value);">
+		 	<input id="eleInputDiscAmount" type="number" min="0" max="99" onchange = "view.updateSubtotal();">
 		 	<p onclick = "view.setDVD(-1)";>-</p>
 		 </div>
 		 <div id="prod_Raw" class="bdp_LeftOpt">
 		 	<p>Include raw Footage? </p>
-		 	<input id="eleCheckboxRaw" type="checkbox">
+		 	<input id="eleCheckboxRaw" type="checkbox" onchange="view.updateSubtotal();">
 		 </div>
 		 <div id="prod_Minute" class="bdp_LeftOpt">
 		 	<label id="labelExtraMinutes" for="eleExtraMinutes"></label>
-		 	<input id="eleExtraMinutes" disabled="">
+		 	<input id="eleExtraMinutes" onchange="view.updateSubtotal();" disabled >
 		 </div>
 	 </div>
 	 <div id="bdpRight">
 	 	<div id="info_Subtotal" class="bdp_RightOpt">
-	 		Total: $
+			<div>Total: $</div>
+			<div id="info_Subtotal__amount"></div>
 		</div>
-		<div id="info_Submit" class="bdp_RightOpt">
-		 <button id="bdpSubmitOrder" class="" onclick="controller.submitOrder()">Submit Order</button>
-	 </div>
-		 <button id="bdpSubmitOrder" class="" onclick="controller.ajax_getMinutes()">Get minutes</button>
+	 	<div id="info_Submit" class="bdp_RightOpt">
+			 <button id="bdpSubmitOrder" class="" onclick="controller.submitOrder()">Submit Order</button>
+			 <!--button id="bdpSubmitOrder" class="" onclick="controller.ajax_getMinutes()">Get minutes</button-->
+	 	</div>
 	 </div>
  </div>

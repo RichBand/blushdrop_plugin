@@ -39,7 +39,6 @@ if (!class_exists('Blushdrop')) {
 			add_shortcode('blushdrop_ClientControls', array(&$this, 'setClientControls'));
 			add_shortcode('blushdrop_ClientModel', array(&$this, 'setClientModel'));
 		}
-
 		private function createPageCustomer($user, $path)
 		{
 			$oob = '[outofthebox dir="'.$path.'"'
@@ -78,52 +77,52 @@ if (!class_exists('Blushdrop')) {
 		 * If the new qty is < remove the difference of minutes in cart vs qty
 		 * *
 	 **/
-		private function filterProductsToAdd($orders, $wcm)
+		private function filterProductsToAdd($orders)
 		{
+			$wcm = $this->bdp_wcm;
 			$settings = $this->settings;
+			$musicIDs = $wcm->getMusicIDs($settings['prodCat_Music']);
 			$res = Array();
 			foreach ($orders as $order){
 				$id = absint($order['id']);
 				$qty = absint($order['qty']);
 				$inCart = $wcm->isInCart($id);
-				if($id == $settings['prodID_Music']){
-					if($inCart['ok']){
-						//TODO remove the product and then
-						array_push($res,$order);
-					}
-					else{
-						array_push($res,$order);
-					}
-				}
-				if($id == $settings['prodID_Disc']){
+				//Unlimited: ***Disc***
+				if($id == $settings['prodID_Disc'] && $qty){
 					if($inCart['ok']) {
 						$order['added'] = $wcm->setQuantityInCart($inCart['key'], ($qty + $order['qty']));
+						$order['qty'] = ($order['added'])? ($qty + $order['qty']): 0;
 					}else{
 						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
 					}
 					array_push($res, $order);
+					continue;
 				}
-				if($id == $settings['prodID_ExtraMinute']) {
+				//add or delete according with the amount in the Cart: ***MINUTE***
+				if($id == $settings['prodID_ExtraMinute'] && $qty) {
 					if($inCart['ok']) {
 						if($qty > $inCart['qty']) {// The client add minutes, has 10 minues in cart the order is 15, just include 5
 							$order['qty'] = $qty - $inCart['qty'];
 							$order['added'] = $wcm->setQuantityInCart($inCart['key'], ($qty + $inCart['qty']));
-								array_push($res, $order);
+							array_push($res, $order);
+							continue;
 						}
 						if($qty < $inCart['qty']) {// The client substract minutes, has 20 minutes in cart the order is 10, delete 10 from the cart
 							//Modify cart? or delete item by key they
 							$order['qty'] = $inCart['qty'] - $qty;
 							$order['added'] = $wcm->setQuantityInCart($inCart['key'], $order['qty']);
 							array_push($res, $order);
-
+							continue;
 						}
 					}
 					else {
 						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
 						array_push($res, $order);
+						continue;
 					}
 				}
-				if($id == $settings['prodID_RawMaterial'] ||$settings['prodID_EditingPackage'] ) {
+				//***One per Cart: RAW & Editing package***
+				if($id == $settings['prodID_RawMaterial'] || $id == $settings['prodID_EditingPacakage'] && $qty) {
 					if($inCart['ok']) {
 						$order['added'] = 0;
 					}
@@ -131,13 +130,25 @@ if (!class_exists('Blushdrop')) {
 						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
 					}
 					array_push($res, $order);
+					continue;
+				}
+				//***Just One per car, different ID's : MUSIC***
+				if(in_array($id, $musicIDs)){
+					$authorID = get_the_author_meta('ID');
+					$musicInCart = $wcm->thereIsMusicInCart($settings['prodCat_Music'], $authorID);
+					if($musicInCart) {
+						$deleted = $wcm->removeMusicFromCart($settings['prodCat_Music']);
+					}
+					$order['added'] = $wcm->addToCart($id, $qty);
+					array_push($res,$order);
+					continue;
 				}
 			}
 			unset ($order);
 			return $res;
 		}
-
-		private function isAuthorOrAdmin(){
+		private function isAuthorOrAdmin()
+		{
 			$userID = wp_get_current_user()->ID;
 			$authorID = get_the_author_meta('ID');
 			$istheAuthor = ($userID == $authorID)? 1 : 0;
@@ -224,23 +235,11 @@ if (!class_exists('Blushdrop')) {
 				: $args['path'];
 			return $path;
 		}
-
-		public function whenNewCustomer($user_id)
-		{
-			if ($this->isCustomer($user_id)){
-				$newUser = get_userdata($user_id);
-				$username = $this->sanitizeUserName($newUser->user_login);
-				$path = $this->path.$username;
-				$this->bdp_dpx->createFolder($path);
-				$this->createPageCustomer($newUser, $path);
-			}
-		}
 		/**Public functions ***********************************/
 		public function ajax_addOrderToCart()
 		{
 			$orders = $_REQUEST['order'];
-			$wcm = $this->bdp_wcm;
-			$res = $this->filterProductsToAdd($orders, $wcm);
+			$res = $this->filterProductsToAdd($orders);
 			header('Content-Type:./ application/json');
 			echo json_encode($res);
 			exit;
@@ -296,7 +295,6 @@ if (!class_exists('Blushdrop')) {
 		}
 		public function register_CustomerFiles()
 		{
-			//TODO, check the parameter 'all' to apply it only where's necessary
 			wp_register_script('custom_js', plugins_url('/js/blushdrop.js', __FILE__));
 			wp_register_style('new_style', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
 		}
@@ -304,10 +302,10 @@ if (!class_exists('Blushdrop')) {
 		{
 			if( $this->isAuthorOrAdmin()) {
 				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html")) {
-					echo file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html");
+					return file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html");
 				}
 				else {
-					echo 'An error has occurred, please reload the page, if the problem
+					return 'An error has occurred, please reload the page, if the problem
 				persist, please get in contact with customer service';
 				}
 			}
@@ -323,9 +321,19 @@ if (!class_exists('Blushdrop')) {
 				}
 				else
 				{
-					echo 'An error has occurred, please reload the page, if the problem
+					return 'An error has occurred, please reload the page, if the problem
 					persist, please get in contact with customer service';
 				}
+			}
+		}
+		public function whenNewCustomer($user_id)
+		{
+			if ($this->isCustomer($user_id)){
+				$newUser = get_userdata($user_id);
+				$username = $this->sanitizeUserName($newUser->user_login);
+				$path = $this->path.$username;
+				$this->bdp_dpx->createFolder($path);
+				$this->createPageCustomer($newUser, $path);
 			}
 		}
 	}//end of class

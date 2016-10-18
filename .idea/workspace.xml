@@ -5,118 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22ddbb44-6a7e-49f0-a07a-7675e92686d9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/.idea/copyright/profiles_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/.idea/custom-blushdrop-plugin.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/PageTemplater.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/TemporalCodeBucket.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/WoocommerceAddProductID/WoocommerceAddProductID.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/blushdrop-woocommerce.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/blushdrop.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/connectDropbox.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/css/CustomerTemplateStyle.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings (Copia en conflicto de CuchoLambreta 2016-09-13).xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace (Copia en conflicto de CuchoLambreta 2016-09-13).xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace (rich's conflicted copy 2016-09-19).xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/custom-blushdrop-plugin.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/customer-blushdrop.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/ChangeLog.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/License.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/ReadMe.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/composer.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/account-info.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/authorize.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/create-shareable-link.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/delta.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/direct-link.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/download-file.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/get-metadata.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/helper.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/link.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/test-ssl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/upgrade-oauth1-token.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/upload-file.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/examples/web-file-browser.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/AppInfo.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/AppInfoLoadException.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/ArrayEntryStore.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/AuthBase.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/AuthInfo.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/AuthInfoLoadException.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Checker.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Client.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Curl.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/CurlStreamRelay.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/DeserializeException.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/DropboxMetadataHeaderCatcher.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/BadRequest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/BadResponse.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/BadResponseCode.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/InvalidAccessToken.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/NetworkIO.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/OverQuota.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/ProtocolError.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/RetryLater.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Exception/ServerError.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Host.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/HostLoadException.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/HttpResponse.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/OAuth1AccessToken.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/OAuth1Upgrader.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Path.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/RequestUtil.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/RootCertificates.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/SSLTester.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/SdkVersion.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Security.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/StreamReadException.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/Util.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/ValueStore.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuth.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthBase.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthException/BadRequest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthException/BadState.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthException/Csrf.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthException/NotApproved.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthException/Provider.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WebAuthNoRedirect.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/WriteMode.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/autoload.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/certs/trusted-certs.crt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/lib/Dropbox/strict.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/support/check-style-codesniffer" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/support/check-style-phpcsfixer" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/support/codesniffer.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/support/generate-api-docs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/test/ClientTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/test/ConfigLoadTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/test/UtilTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/test/ValidationTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/dropbox-sdk-php/test/upload.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/getFolderMetadata.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/js/CustomerTemplateJS.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/custom-blushdrop-plugin/test-sandbox-dropbox.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/out-of-the-box/out-of-the-box (Copia en conflicto de CuchoLambreta 2016-09-13).php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/uploads/GeoIP.dat" afterPath="$PROJECT_DIR$/wordpress/wp-content/uploads/GeoIP.dat" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/uploads/GeoIPv6.dat" afterPath="$PROJECT_DIR$/wordpress/wp-content/uploads/GeoIPv6.dat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings (Copia en conflicto de CuchoLambreta 2016-09-13).xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings (Copia en conflicto de CuchoLambreta 2016-09-13).xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/localhost_debug.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/localhost_debug.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace (Copia en conflicto de CuchoLambreta 2016-09-13).xml" afterPath="$PROJECT_DIR$/.idea/workspace (Copia en conflicto de CuchoLambreta 2016-09-13).xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/misc.xml" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/modules.xml" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/workspace.xml" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop.php" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_plugin.php" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_plugin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/setModel.php" afterPath="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/setModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/twentysixteen/ciao.php" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/twentysixteen/ciao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/twentysixteen/template-blushdropCustomer (Copia en conflicto de CuchoLambreta 2016-09-13).php" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/twentysixteen/template-blushdropCustomer (Copia en conflicto de CuchoLambreta 2016-09-13).php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wordpress/wp-content/themes/twentysixteen/template-blushdropCustomer.php" afterPath="$PROJECT_DIR$/wordpress/wp-content/themes/twentysixteen/template-blushdropCustomer.php" />
     </list>
     <ignored path="blushdrop.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -144,38 +45,49 @@
     <favorites_list name="blushdrop" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.34416446">
+    <splitter split-orientation="horizontal" split-proportion="0.40095848">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="blushdrop.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="blushdrop.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="648">
-                  <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+                <state relative-caret-position="480">
+                  <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
                   <folding>
                     <element signature="e#190#234#0" expanded="false" />
                     <element signature="e#265#323#0" expanded="false" />
-                    <element signature="e#350#551#0" expanded="false" />
-                    <element signature="e#617#1164#0" expanded="false" />
-                    <element signature="e#2364#2599#0" expanded="false" />
-                    <element signature="e#2642#2774#0" expanded="false" />
-                    <element signature="e#2819#2966#0" expanded="false" />
-                    <element signature="e#3013#3325#0" expanded="false" />
-                    <element signature="e#3370#3787#0" expanded="false" />
-                    <element signature="e#3818#5623#0" expanded="false" />
+                    <element signature="e#366#498#0" expanded="false" />
+                    <element signature="e#543#690#0" expanded="false" />
+                    <element signature="e#737#1049#0" expanded="false" />
+                    <element signature="e#1086#1328#0" expanded="false" />
+                    <element signature="e#1763#1995#0" expanded="false" />
+                    <element signature="e#2434#6242#0" expanded="false" />
+                    <element signature="e#3045#3569#0" expanded="false" />
+                    <element signature="e#3601#4204#0" expanded="false" />
+                    <element signature="e#4235#6217#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="blushdrop_plugin.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="blushdrop_plugin.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_plugin.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+                <state relative-caret-position="360">
+                  <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
                   <folding>
                     <element signature="e#6#256#0#PHP" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CustomerTemplateStyle.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="192">
+                  <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -184,18 +96,24 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="blushdrop.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="blushdrop.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="742">
-                  <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+                <state relative-caret-position="1656">
+                  <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
                   <folding>
-                    <element signature="e#2490#2967#0#PHP" expanded="false" />
-                    <element signature="e#4858#5216#0#PHP" expanded="false" />
-                    <element signature="e#5220#5579#0#PHP" expanded="false" />
-                    <element signature="e#5583#5907#0#PHP" expanded="false" />
-                    <element signature="e#5911#6137#0#PHP" expanded="false" />
-                    <element signature="e#6141#6433#0#PHP" expanded="false" />
+                    <element signature="e#1333#2486#0#PHP" expanded="false" />
+                    <element signature="e#2489#2966#0#PHP" expanded="false" />
+                    <element signature="e#5485#5846#0#PHP" expanded="false" />
+                    <element signature="e#5850#6209#0#PHP" expanded="false" />
+                    <element signature="e#6213#6537#0#PHP" expanded="false" />
+                    <element signature="e#6541#6767#0#PHP" expanded="false" />
+                    <element signature="e#6771#7063#0#PHP" expanded="false" />
+                    <element signature="e#7067#7394#0#PHP" expanded="false" />
+                    <element signature="e#7398#7570#0#PHP" expanded="false" />
+                    <element signature="e#8133#8398#0#PHP" expanded="false" />
+                    <element signature="e#8449#8510#0#PHP" expanded="false" />
+                    <element signature="e#8565#8626#0#PHP" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -204,16 +122,23 @@
           <file leaf-file-name="blushdrop_woocommerce.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="35" column="17" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="17" />
+                <state relative-caret-position="576">
+                  <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
                   <folding>
-                    <element signature="e#177#593#0#PHP" expanded="false" />
-                    <element signature="e#596#700#0#PHP" expanded="false" />
-                    <element signature="e#704#837#0#PHP" expanded="false" />
-                    <element signature="e#841#1306#0#PHP" expanded="false" />
-                    <element signature="e#1393#2116#0#PHP" expanded="false" />
-                    <element signature="e#2120#2603#0#PHP" expanded="false" />
+                    <element signature="e#719#852#0#PHP" expanded="false" />
+                    <element signature="e#2761#2987#0#PHP" expanded="false" />
+                    <element signature="e#3349#3469#0#PHP" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="customerControls.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="744">
+                  <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -221,8 +146,8 @@
           <file leaf-file-name="setModel.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/setModel.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
-                  <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+                <state relative-caret-position="648">
+                  <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -288,14 +213,14 @@
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/out-of-the-box/includes/OutoftheBox_Processor.php" />
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_dropbox.php" />
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/showCustomerControls.php" />
-        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css" />
-        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html" />
-        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js" />
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/includes/class-wc-cart.php" />
-        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php" />
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_plugin.php" />
+        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css" />
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/setModel.php" />
+        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php" />
         <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop.php" />
+        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js" />
+        <option value="$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html" />
       </list>
     </option>
   </component>
@@ -315,9 +240,10 @@
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/websites/blushdrop" />
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="948" />
+    <option name="x" value="-1920" />
+    <option name="y" value="22" />
+    <option name="width" value="1920" />
+    <option name="height" value="1178" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -355,7 +281,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -368,16 +294,10 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -521,12 +441,21 @@
       <workItem from="1474288311709" duration="730000" />
       <workItem from="1474338837934" duration="10028000" />
       <workItem from="1474422480571" duration="251000" />
-      <workItem from="1474498748293" duration="221000" />
+      <workItem from="1474498748293" duration="449000" />
+      <workItem from="1474579058831" duration="1983000" />
+      <workItem from="1474690417029" duration="18029000" />
+      <workItem from="1475329191052" duration="6099000" />
+      <workItem from="1475541832576" duration="2907000" />
+      <workItem from="1475623118362" duration="1399000" />
+      <workItem from="1475625980285" duration="5857000" />
+      <workItem from="1476310356006" duration="6461000" />
+      <workItem from="1476736783069" duration="2561000" />
+      <workItem from="1476808300768" duration="5224000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="354562000" />
+    <option name="totallyTimeSpent" value="405310000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -538,16 +467,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="948" extended-state="6" />
+    <frame x="-1920" y="22" width="1920" height="1178" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1990232" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2657082" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29076087" sideWeight="0.509768" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.490232" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.9554217" sideWeight="0.495116" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.954717" sideWeight="0.495116" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -558,9 +487,9 @@
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32914045" sideWeight="0.497558" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36827195" sideWeight="0.492674" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36792454" sideWeight="0.492674" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28502995" sideWeight="0.77689034" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21208791" sideWeight="0.77689034" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -586,34 +515,20 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php</url>
-          <line>107</line>
-          <option name="timeStamp" value="544" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/includes/class-wc-cart.php</url>
           <line>474</line>
           <option name="timeStamp" value="558" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/includes/class-wc-cart.php</url>
-          <line>1105</line>
-          <option name="timeStamp" value="563" />
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js</url>
+          <line>185</line>
+          <option name="timeStamp" value="616" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/includes/class-wc-cart.php</url>
-          <line>1107</line>
-          <option name="timeStamp" value="564" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php</url>
-          <line>27</line>
-          <option name="timeStamp" value="566" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop.php</url>
-          <line>89</line>
-          <option name="timeStamp" value="567" />
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js</url>
+          <line>131</line>
+          <properties />
+          <option name="timeStamp" value="633" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -623,7 +538,7 @@
           </selected-grouping-rules>
         </breakpoints-dialog>
       </breakpoints-dialog>
-      <option name="time" value="568" />
+      <option name="time" value="635" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PhpWebAppRunConfigurationType">
@@ -805,13 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/wp-db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="667" column="32" selection-start-line="667" selection-start-column="32" selection-end-line="667" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -854,46 +762,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="758" column="0" selection-start-line="758" selection-start-column="0" selection-end-line="758" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/load.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="670" column="0" selection-start-line="670" selection-start-column="0" selection-end-line="670" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/includes/class-wc-cart (Copia en conflicto de CuchoLambreta 2016-09-13).php" />
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/woocommerce.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="87" column="9" selection-start-line="87" selection-start-column="9" selection-end-line="87" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_dropbox.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -913,79 +786,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/cache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1093">
+          <caret line="758" column="0" selection-start-line="758" selection-start-column="0" selection-end-line="758" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/load.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="672" column="0" selection-start-line="672" selection-start-column="0" selection-end-line="672" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-includes/wp-db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="668" column="0" selection-start-line="668" selection-start-column="0" selection-end-line="668" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/woocommerce/includes/class-wc-cart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="1116" column="0" selection-start-line="1116" selection-start-column="0" selection-end-line="1116" selection-end-column="0" />
+        <state relative-caret-position="204">
+          <caret line="933" column="0" selection-start-line="933" selection-start-column="0" selection-end-line="933" selection-end-column="0" />
           <folding>
             <marker date="1474411151000" expanded="true" signature="15657:16455" ph="SELECT SUM( $" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js">
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_dropbox.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
-          <folding>
-            <element signature="e#190#234#0" expanded="false" />
-            <element signature="e#265#323#0" expanded="false" />
-            <element signature="e#350#551#0" expanded="false" />
-            <element signature="e#617#1164#0" expanded="false" />
-            <element signature="e#2364#2599#0" expanded="false" />
-            <element signature="e#2642#2774#0" expanded="false" />
-            <element signature="e#2819#2966#0" expanded="false" />
-            <element signature="e#3013#3325#0" expanded="false" />
-            <element signature="e#3370#3787#0" expanded="false" />
-            <element signature="e#3818#5623#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-90">
+          <caret line="48" column="14" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_plugin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
             <element signature="e#6#256#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/css/CustomerTemplateStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="742">
-          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+        <state relative-caret-position="1656">
+          <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
           <folding>
-            <element signature="e#2490#2967#0#PHP" expanded="false" />
-            <element signature="e#4858#5216#0#PHP" expanded="false" />
-            <element signature="e#5220#5579#0#PHP" expanded="false" />
-            <element signature="e#5583#5907#0#PHP" expanded="false" />
-            <element signature="e#5911#6137#0#PHP" expanded="false" />
-            <element signature="e#6141#6433#0#PHP" expanded="false" />
+            <element signature="e#1333#2486#0#PHP" expanded="false" />
+            <element signature="e#2489#2966#0#PHP" expanded="false" />
+            <element signature="e#5485#5846#0#PHP" expanded="false" />
+            <element signature="e#5850#6209#0#PHP" expanded="false" />
+            <element signature="e#6213#6537#0#PHP" expanded="false" />
+            <element signature="e#6541#6767#0#PHP" expanded="false" />
+            <element signature="e#6771#7063#0#PHP" expanded="false" />
+            <element signature="e#7067#7394#0#PHP" expanded="false" />
+            <element signature="e#7398#7570#0#PHP" expanded="false" />
+            <element signature="e#8133#8398#0#PHP" expanded="false" />
+            <element signature="e#8449#8510#0#PHP" expanded="false" />
+            <element signature="e#8565#8626#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/blushdrop_woocommerce.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="35" column="17" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="17" />
+        <state relative-caret-position="576">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding>
-            <element signature="e#177#593#0#PHP" expanded="false" />
-            <element signature="e#596#700#0#PHP" expanded="false" />
-            <element signature="e#704#837#0#PHP" expanded="false" />
-            <element signature="e#841#1306#0#PHP" expanded="false" />
-            <element signature="e#1393#2116#0#PHP" expanded="false" />
-            <element signature="e#2120#2603#0#PHP" expanded="false" />
+            <element signature="e#719#852#0#PHP" expanded="false" />
+            <element signature="e#2761#2987#0#PHP" expanded="false" />
+            <element signature="e#3349#3469#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/setModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="648">
+          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/js/blushdrop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="44" column="43" selection-start-line="44" selection-start-column="43" selection-end-line="44" selection-end-column="43" />
+          <folding>
+            <element signature="e#190#234#0" expanded="false" />
+            <element signature="e#265#323#0" expanded="false" />
+            <element signature="e#366#498#0" expanded="false" />
+            <element signature="e#543#690#0" expanded="false" />
+            <element signature="e#737#1049#0" expanded="false" />
+            <element signature="e#1086#1328#0" expanded="false" />
+            <element signature="e#1763#1995#0" expanded="false" />
+            <element signature="e#2434#6242#0" expanded="false" />
+            <element signature="e#3045#3569#0" expanded="false" />
+            <element signature="e#3601#4204#0" expanded="false" />
+            <element signature="e#4235#6217#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordpress/wp-content/plugins/blushdrop_plugin/customerControls.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="744">
+          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
           <folding />
         </state>
       </provider>

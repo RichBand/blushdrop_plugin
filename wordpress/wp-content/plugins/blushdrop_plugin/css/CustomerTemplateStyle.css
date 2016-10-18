@@ -1,8 +1,11 @@
 /**
  * Created by ricardobandala on 2016-08-15.
  */
+#OutoftheBox,
 #bdpMain{
-  //display: block;
+    display: block;
+    float: left;
+    width:100%;
 }
 .bdp_ele {
   width: 100%;

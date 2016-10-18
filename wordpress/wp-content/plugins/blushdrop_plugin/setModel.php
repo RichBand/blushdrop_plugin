@@ -22,18 +22,23 @@ function loadData($bdp, $userID)
 		model.customer = 0<?php echo $author ?>;
 		model.currentTotalMinutes = 0<?php echo $dpx->getVideoMinutes($path);?>;
 		model.products = {
-		disc: <?php echo $wcm->getProduct($settings['prodID_Disc'], $user)?>,
-		main: <?php echo $wcm->getProduct($settings['prodID_EditingPacakage'], $user)?>,
-		minute: <?php echo $wcm->getProduct($settings['prodID_ExtraMinute'],  $user)?>,
+		disc: <?php echo json_encode($wcm->getProduct($settings['prodID_Disc'], $user))?>,
+		main: <?php echo json_encode($wcm->getProduct($settings['prodID_EditingPacakage'], $user))?>,
+		minute: <?php echo json_encode($wcm->getProduct($settings['prodID_ExtraMinute'],  $user))?>,
 		music: (function () {
-			var x = <?php echo $wcm->getMusic($settings['prodCat_Music'], $user)?>;
+			<?php $soundtrack = $wcm->getMusic($settings['prodCat_Music'], $user);
+			for($i = 0, $j = count($soundtrack); $i<$j; $i++){
+				$soundtrack[$i] = json_encode($soundtrack[$i]);
+			}
+			?>
+			var x = <?php echo json_encode($soundtrack) ?>;
 			for (var i = 0, len = x.length; i < len; ++i) {
 				x[i] = JSON.parse(x[i]);
 			}
 			return x;
 		}()),
-		raw: <?php echo $wcm->getProduct($settings['prodID_RawMaterial'], $user)?>,
-		url: <?php echo $wcm->getProduct($settings['prodID_URL'], $user)?>
+		raw: <?php echo json_encode($wcm->getProduct($settings['prodID_RawMaterial'], $user));?>,
+		url: <?php echo json_encode($wcm->getProduct($settings['prodID_URL'], $user));?>
 		};
 		model.url = "<?php echo get_site_url(); ?>";
 		console.log(model);

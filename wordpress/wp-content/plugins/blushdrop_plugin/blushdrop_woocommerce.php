@@ -23,8 +23,8 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			unset ($order);
 			return $res;
 		}
-		public function add_ToCart($id, $qty){
-			$res = WC()->cart->add_to_cart($id, $qty);
+		public function addToCart($id, $qty){
+			$res = WC()->cart->add_to_cart(absint($id), absint($qty));
 			return $res;
 		}
 
@@ -70,22 +70,23 @@ if (!class_exists('Blushdrop_woocommerce')) {
 				$WC_product = wc_get_product( $productID);
 				$product = $WC_product->post;
 			//}
+			$product->isBought = ($user)? ($this->isBought($productID, $user)? 1: 0) : 0;
 			$product->isBought = ($this->isBought($productID, $user)? 1: 0);
 			$productInCart = $this->isInCart($productID);
-			unset($productInCart['key']);
+			//unset($productInCart['key']); //TODO check if this is not deleting a product in the cart by reference
 			$product->isInCart = $productInCart;
 			$product->price =  floatval($WC_product->get_price());
 			$product->reg_price = floatval($WC_product->get_regular_price());
 			$product->sale_price = floatval($WC_product->get_sale_price());
-			return json_encode($product);
+			return $product;
 		}
 
-		public function getMusic($category, $user)
+		public function getMusic($musicCategory, $user)
 		{
 			$music = array();
 			$params = array(
 				'post_type' => 'product',
-				'product_cat' => $category
+				'product_cat' => $musicCategory
 			);
 			$wc_query = new WP_Query($params);
 			if ($wc_query->have_posts())
@@ -99,7 +100,31 @@ if (!class_exists('Blushdrop_woocommerce')) {
 				}
 			}
 			wp_reset_postdata();
-			return json_encode($music);
+			return $music;
+		}
+
+		public function getMusicIDs($musicCategory)
+		{
+			$res = Array();
+			$music = $this->getMusic($musicCategory, 0);
+			for($i = 0, $j = count($music); $i<$j; $i++){
+				array_push($res, $music[$i]->ID);
+			}
+			return $res;
+		}
+
+		public function removeMusicFromCart($musicCategory)
+		{
+			$res = array();
+			$music = $this->getMusic($musicCategory, 0);
+			for($i = 0, $j = count($music); $i<$j; $i++){
+				$wala = $music[$i]->isInCart;
+				if($wala['ok']){
+					$isDeleted = $this->setQuantityInCart($wala['key'], -1);
+					array_push($res, $isDeleted);
+				}
+			}
+			return $res;
 		}
 
 		public function setQuantityInCart($key, $qty)
@@ -107,6 +132,17 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			$res = WC()->cart->set_quantity($key, $qty, 1);
 			return $res;
 		}
-
+		public function thereIsMusicInCart($musicCategory, $user)
+		{
+			$res = 0;
+			$musicIDs = $this->getMusicIDs($musicCategory, $user);
+			for($i = 0, $j = count($musicIDs); $i<$j; $i++){
+				$inCart = $this->isInCart($musicIDs[$i]);
+				if($inCart['ok']){
+					$res = 1;
+				}
+			}
+			return $res;
+		}
 	}
 }
