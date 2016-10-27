@@ -27,13 +27,12 @@ var view = {
     },
     populateExtraMinutes: function(container){
         var ele = view.get(container);
-        var minutes = model.currentTotalMinutes;
+        var minutes = model.currentTotalMinutes - 10;
         var hasExtraMinutes = (minutes > 0 )? 1 : 0;
-        view.get("labelExtraMinutes").innerHTML = (hasExtraMinutes)? "Extra minutes:" : "No extra minutes yet";
         ele.value = (hasExtraMinutes)? minutes : 0;
     },
     populateInfoElements:function(){
-        this.populateCheckRaw("eleCheckboxRaw");
+        //this.populateCheckRaw("eleCheckboxRaw");
         this.populateDiscAmount("eleInputDiscAmount");
         this.populateExtraMinutes("eleExtraMinutes");
         this.populateSelMusic("eleSelMusic");
@@ -44,8 +43,8 @@ var view = {
         var htm ="";
         for (nP = 0, nPz = $music_Catalog.length; nP < nPz; nP++) {
             var track = $music_Catalog[nP];
-            htm +="<option id='"+track.ID+"' value='"+track.ID+"' ";
-            htm +=">"+track.post_title+"</option>";
+            htm +="<option id='" + track.ID + "' value='" + track.ID + "'"
+                + ( (track.isInCart.ok)? "selected" : "") + ">" + track.post_title + "</option>";
         }
         this.get(container).innerHTML = htm;
     },
@@ -62,6 +61,7 @@ var view = {
     updateSubtotal:function(){
         var products = model.products;
         var sum = 0;
+        sum += ( model.products.main.price );
         sum += ( this.get("eleInputDiscAmount").value ) * ( products.disc.price );
         sum += ( this.get("eleExtraMinutes").value ) * ( products.minute.price );
         sum += ( this.get("eleCheckboxRaw").checked )? products.raw.price : 0;
@@ -89,6 +89,7 @@ var controller = {
         var response = "";
     jQuery(document).ready(function($){
         $.ajax({
+            async: false,
             url: model.ajaxurl,
             data: {
                 'action':'addOrderToCart',
@@ -119,8 +120,6 @@ var controller = {
             success:function(data) {
                 console.log(data);
                 response = data;
-                //document.write(response);
-                //return data;
             },
             error: function(errorThrown){
                 console.log(errorThrown);
@@ -130,17 +129,15 @@ var controller = {
         return response;
     },
     submitOrder: function () {
-        var order = [];
+        view.get("bdp_background").classList.add("bdp_background--on");
         var products = model.products;
-        order.push({ // Default editing package
-            id: parseInt(products.main.ID),
-            qty: 1
-        });
+        var order = [{id: parseInt(products.main.ID), qty: 1}];//Always add the main product
         var disc = view.get("eleInputDiscAmount");
-        if (isNaN(disc.value) || disc.value < 0 || disc.value > 99) {
+        var discValue = parseInt(disc.value);
+        if (isNaN(discValue) || discValue < 0 || discValue > 99){
             var disclabel = view.get("labeleleInputDiscAmount");
             discLabel.innerHTML = "Please enter a valid number of discs";
-            disc.value = 0;
+            discValue = 0;
             disc.focus();
             return false;
         }
@@ -151,39 +148,42 @@ var controller = {
             })
         }
         var raw = view.get("eleCheckboxRaw");
-        if (raw.checked) {
-            order.push({
-                id: parseInt(products.raw.ID),
-                qty: 1,
-            })
-        }
+        order.push({
+            id: parseInt(products.raw.ID),
+            qty: (raw.checked)? 1  : 0
+        });
         var music = view.get("eleSelMusic");
         if (music.value) {
             order.push({
                 id: parseInt(music.value),
-                qty: 1,
+                qty: 1
             })
         }
-        var updatedMinutes =  parseInt(this.ajax_getMinutes());
-        var minutes = model.currentTotalMinutes;
-        if(minutes != updatedMinutes){
-            var updatedAreMore = (updatedMinutes > minutes)? 1 : 0;
-            var newMinutes = (updatedAreMore)? updatedMinutes - minutes : minutes - updatedMinutes;
-            var msg = "You have " + newMinutes + ((updatedAreMore)?
-                " more extraMinutes, and will be added to the checkout"
-                :" less extraMinutes, and will be taken to the checkout");
-            var r = confirm(msg);
-            if (r == true) {
-                order.push({
-                    id: parseInt(products.minute.ID),
-                    qty: parseInt(updatedMinutes),// or zero?
-                })
-            } else {
-                return false
+        var updatedMinutes = parseInt(this.ajax_getMinutes() - 10);
+        var minutes = model.products.minute.isInCart.qty;
+        var diff = updatedMinutes - minutes;
+        if(diff) {
+            order.push({
+                id: parseInt(products.minute.ID),
+                qty: updatedMinutes
+            });
+            if(minutes){
+                var msg = "You have " + Math.abs(diff) + ((diff > 0) ?
+                        " more extraMinutes, and will be added to the checkout"
+                        : " less extraMinutes, and will be taken to the checkout");
+                if (!confirm(msg)) {
+                    view.get("bdp_background").classList.remove("bdp_background--on");
+                    return false
+                }
             }
         }
+        if (this.ajax_addTocart(order)) {
+            window.location.href = model.url + '/cart';
+        }
+        else {
+            alert("an unexpected error happen, please reload or try in few minutes")
+        }
         console.log(order);
-        this.ajax_addTocart(order);
     },
     zzz_controller:0,
 };

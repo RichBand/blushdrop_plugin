@@ -23,11 +23,12 @@ if (!class_exists('Blushdrop')) {
 		private $bdp_wcm = null;
 		private $path = "";
 		private $settings = null;
+
 		function __construct($args)
 		{
-			$this->setConfigValues();
+			$this->setConfigValues($args);
 			$this->settings = $this->loadSettings();
-			$this->path = $this->setPath($args);
+			$this->path = $this->settings['dropbox_path'];
 			$this->bdp_dpx = new Blushdrop_dropbox($this->path);
 			$this->bdp_wcm = new Blushdrop_woocommerce();
 			add_action('init', array(&$this, 'register_CustomerFiles'));
@@ -83,55 +84,31 @@ if (!class_exists('Blushdrop')) {
 			$settings = $this->settings;
 			$musicIDs = $wcm->getMusicIDs($settings['prodCat_Music']);
 			$res = Array();
+			$regProdIDs = Array(
+				$settings['prodID_Disc'],
+				$settings['prodID_ExtraMinute'],
+				$settings['prodID_RawMaterial'],
+				$settings['prodID_EditingPacakage']
+			);
 			foreach ($orders as $order){
 				$id = absint($order['id']);
-				$qty = absint($order['qty']);
+				$qty = intval($order['qty']);
 				$inCart = $wcm->isInCart($id);
-				//Unlimited: ***Disc***
-				if($id == $settings['prodID_Disc'] && $qty){
-					if($inCart['ok']) {
-						$order['added'] = $wcm->setQuantityInCart($inCart['key'], ($qty + $order['qty']));
-						$order['qty'] = ($order['added'])? ($qty + $order['qty']): 0;
-					}else{
-						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
-					}
-					array_push($res, $order);
-					continue;
-				}
-				//add or delete according with the amount in the Cart: ***MINUTE***
-				if($id == $settings['prodID_ExtraMinute'] && $qty) {
-					if($inCart['ok']) {
-						if($qty > $inCart['qty']) {// The client add minutes, has 10 minues in cart the order is 15, just include 5
-							$order['qty'] = $qty - $inCart['qty'];
-							$order['added'] = $wcm->setQuantityInCart($inCart['key'], ($qty + $inCart['qty']));
-							array_push($res, $order);
-							continue;
-						}
-						if($qty < $inCart['qty']) {// The client substract minutes, has 20 minutes in cart the order is 10, delete 10 from the cart
-							//Modify cart? or delete item by key they
-							$order['qty'] = $inCart['qty'] - $qty;
-							$order['added'] = $wcm->setQuantityInCart($inCart['key'], $order['qty']);
-							array_push($res, $order);
-							continue;
-						}
-					}
-					else {
-						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
+
+				if(in_array($id, $regProdIDs)){
+					if($inCart['qty'] == $qty){
+						$order['added'] = 0;
 						array_push($res, $order);
 						continue;
 					}
-				}
-				//***One per Cart: RAW & Editing package***
-				if($id == $settings['prodID_RawMaterial'] || $id == $settings['prodID_EditingPacakage'] && $qty) {
 					if($inCart['ok']) {
-						$order['added'] = 0;
-					}
-					else{
-						$order['added'] = $wcm->addToCart($order['id'], $order['qty']);
-					}
+						$order['added'] = $wcm->setQuantityInCart($inCart['key'], $qty);
+					}else{
+						$order['added'] = $wcm->addToCart($id, $qty);
+					};
 					array_push($res, $order);
 					continue;
-				}
+				};
 				//***Just One per car, different ID's : MUSIC***
 				if(in_array($id, $musicIDs)){
 					$authorID = get_the_author_meta('ID');
@@ -142,11 +119,12 @@ if (!class_exists('Blushdrop')) {
 					$order['added'] = $wcm->addToCart($id, $qty);
 					array_push($res,$order);
 					continue;
-				}
+				};
 			}
 			unset ($order);
 			return $res;
 		}
+
 		private function isAuthorOrAdmin()
 		{
 			$userID = wp_get_current_user()->ID;
@@ -215,25 +193,9 @@ if (!class_exists('Blushdrop')) {
 			return $username;
 		}
 
-		private function setConfigValues()
+		private function setConfigValues($args)
 		{
-			add_option('blushdrop_settings', array(
-				'dropbox_path' => '/blushdrop', //FIXME
-				'prodCat_Music' => 'music',
-				'prodID_Disc' => '31',
-				'prodID_EditingPacakage' => '32',
-				'prodID_ExtraMinute' => '79',
-				'prodID_RawMaterial' => '67',
-				'prodID_URL' => '34',
-			));
-		}
-
-		private function setPath($args)
-		{
-			$path = ($args['path'] == null || $args['path'] == "")
-				?$this->settings['dropbox_path']
-				: $args['path'];
-			return $path;
+			add_option('blushdrop_settings', $args);
 		}
 		/**Public functions ***********************************/
 		public function ajax_addOrderToCart()
@@ -261,8 +223,10 @@ if (!class_exists('Blushdrop')) {
 			$user_login = wp_get_current_user()->user_login;
 			$isAdmin = current_user_can('administrator');
 			if(is_page($user_login) || $isAdmin){
+				wp_enqueue_style('mdl_css');
+				wp_enqueue_style('custom_css');
+				wp_enqueue_script('mdl_js');
 				wp_enqueue_script('custom_js');
-				wp_enqueue_style('new_style');
 			}
 		}
 		/**
@@ -295,8 +259,10 @@ if (!class_exists('Blushdrop')) {
 		}
 		public function register_CustomerFiles()
 		{
+			wp_register_style('mdl_css', plugins_url('/mdl/material.css', __FILE__), false, null, 'all');
+			wp_register_style('custom_css', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
+			wp_register_script('mdl_js', plugins_url('/mdl/material.js', __FILE__));
 			wp_register_script('custom_js', plugins_url('/js/blushdrop.js', __FILE__));
-			wp_register_style('new_style', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
 		}
 		public function setClientControls()
 		{

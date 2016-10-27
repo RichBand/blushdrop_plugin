@@ -118,9 +118,9 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			$res = array();
 			$music = $this->getMusic($musicCategory, 0);
 			for($i = 0, $j = count($music); $i<$j; $i++){
-				$wala = $music[$i]->isInCart;
-				if($wala['ok']){
-					$isDeleted = $this->setQuantityInCart($wala['key'], -1);
+				$inCart = $music[$i]->isInCart;
+				if($inCart['ok']){
+					$isDeleted = $this->setQuantityInCart($inCart['key'], -1);
 					array_push($res, $isDeleted);
 				}
 			}

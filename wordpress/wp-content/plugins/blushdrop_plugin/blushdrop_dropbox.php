@@ -14,13 +14,13 @@ if (!class_exists('Blushdrop_dropbox')) {
 	{
 		protected $path = null;
 		private $client = null;
-
 		function __construct($path)
 		{
 			$this->path = $path;
 			$this->client = $this->setClient();
 
 		}
+
 		public function createFolder($path)
 		{
 			$metadata = null;
@@ -30,6 +30,7 @@ if (!class_exists('Blushdrop_dropbox')) {
 			}
 			return $metadata;
 		}
+
 		private function setClient()
 		{
 			$dbxClient = null;
@@ -48,8 +49,8 @@ if (!class_exists('Blushdrop_dropbox')) {
 
 		public function getVideoMinutes($path)
 		{
-			$folderMetadata = $this->getVideoTime($path);
-			return $folderMetadata["minutes"];
+			$videoTime = $this->getVideoTime($path);
+			return $videoTime["minutes"] + ( $videoTime["hours"] * 60 );
 		}
 		public function getVideoTime($path)
 		{

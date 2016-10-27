@@ -1,36 +1,69 @@
-
+<div id="bdp_background" class="bdp_background">
+    <div class="bdp-spinner mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
+</div>
 <div id="bdpMain">
-	 <div id="bdpLefth">
-		 <div id="prod_EditingPacakage" class="bdp_LeftOpt">
-		 		<p>Editing Package: (ten minutes of raw material included) </p>
-		 </div>
-		 <div id="prod_Music" class="bdp_LeftOpt">
-		 	<p>Select a song: </p>
-		 	<select id="eleSelMusic"></select>
-		 </div>
-		 <div id="prod_Disc" class="bdp_LeftOpt">
-			 <label id="labeleleInputDiscAmount" for="eleInputDiscAmount">Number of DVD's :</label>
-		 	<p onclick = "view.setDVD(1)"; >+</p>
-		 	<input id="eleInputDiscAmount" type="number" min="0" max="99" onchange = "view.updateSubtotal();">
-		 	<p onclick = "view.setDVD(-1)";>-</p>
-		 </div>
-		 <div id="prod_Raw" class="bdp_LeftOpt">
-		 	<p>Include raw Footage? </p>
-		 	<input id="eleCheckboxRaw" type="checkbox" onchange="view.updateSubtotal();">
-		 </div>
-		 <div id="prod_Minute" class="bdp_LeftOpt">
-		 	<label id="labelExtraMinutes" for="eleExtraMinutes"></label>
-		 	<input id="eleExtraMinutes" onchange="view.updateSubtotal();" disabled >
-		 </div>
-	 </div>
-	 <div id="bdpRight">
-	 	<div id="info_Subtotal" class="bdp_RightOpt">
-			<div>Total: $</div>
-			<div id="info_Subtotal__amount"></div>
-		</div>
-	 	<div id="info_Submit" class="bdp_RightOpt">
-			 <button id="bdpSubmitOrder" class="" onclick="controller.submitOrder()">Submit Order</button>
-			 <!--button id="bdpSubmitOrder" class="" onclick="controller.ajax_getMinutes()">Get minutes</button-->
-	 	</div>
-	 </div>
- </div>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+            <div class="bdp-cell mdl-grid">
+                <div class="bdp-cell mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <span> Editing Package: </span> <br/>
+                    </span> (includes 10 minutes of raw material)</span>
+                </div>
+                <div class="bdp-cell mdl-cell mdl-cell--middle mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                    <label for="chkbox1" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                        <input type="checkbox" id="chkbox1" class="mdl-checkbox__input" checked disabled>
+                    </label>
+                </div>
+
+                <div class="bdp-cell mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <span> Extra minutes of raw material:</span>
+                </div>
+                <div class="mdl-cell mdl-cell--middle mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input id="eleExtraMinutes" onchange="view.updateSubtotal();" class="mdl-textfield__input"
+                               type="text" pattern="-?[0-9]*(\.[0-9]+)?" disabled>
+                    </div>
+                </div>
+                <div class=" bdp-cell mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <span>Select a song:</span>
+                </div>
+                <div class="mdl-cell mdl-cell--middle mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <select id="eleSelMusic" class="mdl-textfield__input"></select>
+                    </div>
+                </div>
+
+                <div class="bdp-cell mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <span> DVD disc quantity:</span>
+                </div>
+                <div class="mdl-cell mdl-cell--middle mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input id="eleInputDiscAmount" onchange="view.updateSubtotal();" class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" >
+                        <label class="mdl-textfield__label" for="eleExtraMinutes">Number...</label>
+                        <span class="mdl-textfield__error">Input is not a number!</span>
+                    </div>
+                </div>
+                <div class="bdp-cell mdl-cell mdl-cell--8-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
+                    <span> Include raw Footage ?</span>
+                </div>
+                <div class="mdl-cell mdl-cell--middle mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                    <label for="eleCheckboxRaw" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                        <input type="checkbox" id="eleCheckboxRaw" class="mdl-checkbox__input"
+                               onchange="view.updateSubtotal();" />
+                    </label>
+                </div>
+            </div><!--end grid left block-->
+        </div> <!--end left block-->
+        <div class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
+            <div class="mdl-grid">
+                <div id="info_Subtotal" class="mdl-cell mdl-cell--12-col">
+                    <div>Total: $</div>
+                    <div id="info_Subtotal__amount"></div>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col">
+                    <button id="bdpSubmitOrder" class="" onclick="controller.submitOrder()">Submit Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

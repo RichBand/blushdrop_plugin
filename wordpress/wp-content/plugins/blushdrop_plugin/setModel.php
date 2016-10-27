@@ -14,33 +14,33 @@ function loadData($bdp, $userID)
 	$dpx = $bdp->getBdpDpx();
 	$user = get_user_by('id', $userID);
 	$path = $bdp->getPath().$user->user_login;
-	$author =  get_the_author_meta('ID');
+	$author =  0 + ( get_the_author_meta('ID') );
 	?>
 
 	<script type="text/javascript">
-		model.ajaxurl ='<?php echo admin_url('admin-ajax.php'); ?>';
-		model.customer = 0<?php echo $author ?>;
-		model.currentTotalMinutes = 0<?php echo $dpx->getVideoMinutes($path);?>;
+		model.ajaxurl ='<?= admin_url('admin-ajax.php'); ?>';
+		model.customer = <?= $author ?>;
+		model.currentTotalMinutes = 0 + <?= $dpx->getVideoMinutes($path);?>;
 		model.products = {
-		disc: <?php echo json_encode($wcm->getProduct($settings['prodID_Disc'], $user))?>,
-		main: <?php echo json_encode($wcm->getProduct($settings['prodID_EditingPacakage'], $user))?>,
-		minute: <?php echo json_encode($wcm->getProduct($settings['prodID_ExtraMinute'],  $user))?>,
+		disc: <?= json_encode($wcm->getProduct($settings['prodID_Disc'], $user))?>,
+		main: <?= json_encode($wcm->getProduct($settings['prodID_EditingPacakage'], $user))?>,
+		minute: <?= json_encode($wcm->getProduct($settings['prodID_ExtraMinute'],  $user))?>,
 		music: (function () {
-			<?php $soundtrack = $wcm->getMusic($settings['prodCat_Music'], $user);
+			<? $soundtrack = $wcm->getMusic($settings['prodCat_Music'], $user);
 			for($i = 0, $j = count($soundtrack); $i<$j; $i++){
 				$soundtrack[$i] = json_encode($soundtrack[$i]);
 			}
 			?>
-			var x = <?php echo json_encode($soundtrack) ?>;
-			for (var i = 0, len = x.length; i < len; ++i) {
-				x[i] = JSON.parse(x[i]);
+			var soundtrack = <?= json_encode($soundtrack) ?>;
+			for (var i = 0, len = soundtrack.length; i < len; ++i) {
+				soundtrack[i] = JSON.parse(soundtrack[i]);
 			}
-			return x;
+			return soundtrack;
 		}()),
-		raw: <?php echo json_encode($wcm->getProduct($settings['prodID_RawMaterial'], $user));?>,
-		url: <?php echo json_encode($wcm->getProduct($settings['prodID_URL'], $user));?>
+		raw: <?= json_encode($wcm->getProduct($settings['prodID_RawMaterial'], $user));?>,
+		url: <?= json_encode($wcm->getProduct($settings['prodID_URL'], $user));?>
 		};
-		model.url = "<?php echo get_site_url(); ?>";
+		model.url = "<?= get_site_url(); ?>";
 		console.log(model);
 	</script>
 	<?php
