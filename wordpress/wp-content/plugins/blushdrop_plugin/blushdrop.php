@@ -41,19 +41,20 @@ if (!class_exists('Blushdrop')) {
 			add_shortcode('blushdrop_ClientModel', array(&$this, 'setClientModel'));
 		}
 		private function createPageCustomer($user, $path)
-		{
+		{//[outofthebox dir="'.$path.'"'
 			$oob = '[outofthebox dir="'.$path.'"'
-				.' mode="files" upload="1" rename="1" move="1" delete="1" addfolder="1"'
-				.' viewrole="administrator|author|customer|guest"'
-				.' addfolderrole="administrator|editor|author|contributor|customer"'
-				.' uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"'
-				.' downloadrole="administrator|author|subscriber|customer"'
-				.' renamefilesrole="administrator|editor|author|contributor|customer"'
-				.' renamefoldersrole="administrator|editor|author|customer"'
-				.' deletefilesrole="administrator|editor|author|customer"'
-				.' deletefoldersrole="administrator|editor|author|customer"'
-				.' ]';
-			$oob .="[blushdrop_ClientModel][blushdrop_ClientControls]";
+				.'mode="files"'
+				.'viewrole="administrator|author|customer|guest"'
+				.'downloadrole="administrator|author|subscriber|customer"'
+				.'upload="1" rename="1" '
+				.'renamefilesrole="administrator|editor|author|contributor|customer" '
+				.'renamefoldersrole="administrator|editor|author|customer" '
+				.'move="1" delete="1" deletefilesrole="administrator|editor|author|customer"'
+				.'deletefoldersrole="administrator|editor|author|customer" addfolder="1" '
+				.'addfolderrole="administrator|editor|author|contributor|customer" '
+				.'uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"]
+';
+			$oob .=" [blushdrop_ClientModel][blushdrop_ClientControls]";
 			$page['post_type'] = 'page';
 			$page['post_content'] = $oob;
 			$page['post_parent'] = 0;
@@ -172,7 +173,7 @@ if (!class_exists('Blushdrop')) {
 			));
 			return $settings;
 		}
-
+		//TODO determine if it's private or public
 		public function redirectIfCustomer($user_login, $user)
 		{
 			$myID = $user->ID;

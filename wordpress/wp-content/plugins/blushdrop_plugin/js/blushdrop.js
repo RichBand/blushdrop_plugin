@@ -160,6 +160,7 @@ var controller = {
             })
         }
         var updatedMinutes = parseInt(this.ajax_getMinutes() - 10);
+        updatedMinutes = (updatedMinutes > 0)? updatedMinutes : 0
         var minutes = model.products.minute.isInCart.qty;
         var diff = updatedMinutes - minutes;
         if(diff) {

@@ -14,51 +14,16 @@
     top: 50%;
     left: 50%;
 }
-
 #eleExtraMinutes{
     color: inherit;
+    border: none;
 }
 #info_Subtotal *{
     display: inline-block;
     float: left;
 }
-.bdp_ele {
-  width: 100%;
-}
-.bdpLefthOpt, .bdpRightOpt{
-    border-style: solid;
-}
-#bdpLefth, #bdpRight{
-  float: left;
-  display: inline-block;
-}
-#bdpLefth{
-    width: 80%;
-}
-#bdpLefth ul li{
-    list-style: none;
-    border-style: solid;
-    border-width: 1px;
-}
-
-
-
-
-
-
-
-
-#bdpRight{
-    width: 20%;
-}
-.bdpContents{
-    width: 100%;
-    padding: 1em;
-    display: inline-block;
-    margin-bottom: 1em;
-    -webkit-box-shadow: 1px 1px 2px 3px rgba(0,0,0,0.45);
-    -moz-box-shadow: 1px 1px 2px 3px rgba(0,0,0,0.45);
-    box-shadow: 1px 1px 2px 3px rgba(0,0,0,0.45);
+.bdp-leftBlock{
+    min-width: 100px;
 }
 .bdp_background{
     display:none;
@@ -75,13 +40,7 @@
     display:block;
     transition: all 0.5s ease;
 }
-#prod_Disc{
-    width:100%;
-}
-#prod_Disc *{
-    float: left;
-}
-#prod_Disc input{
-    width: 80%;
+#eleCheckboxEditing{
+    border:none;
 }
 
