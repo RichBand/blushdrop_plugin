@@ -212,7 +212,7 @@ jQuery.fn = jQuery.prototype = {
 
 	// Get the Nth element in the matched element set OR
 	// Get the whole matched element set as a clean array
-	get: function( num ) {
+	get: function(num ) {
 		return num == null ?
 
 			// Return a 'clean' array
@@ -2357,7 +2357,7 @@ jQuery.fn.extend({
 jQuery.extend({
 	valHooks: {
 		option: {
-			get: function( elem ) {
+			get: function(elem ) {
 				// attributes.value is undefined in Blackberry 4.7 but
 				// uses .value. See #6932
 				var val = elem.attributes.value;
@@ -2365,7 +2365,7 @@ jQuery.extend({
 			}
 		},
 		select: {
-			get: function( elem ) {
+			get: function(elem ) {
 				var value, i, max, option,
 					index = elem.selectedIndex,
 					values = [],
@@ -2538,7 +2538,7 @@ jQuery.extend({
 		// Use the value property for back compat
 		// Use the nodeHook for button elements in IE6/7 (#1954)
 		value: {
-			get: function( elem, name ) {
+			get: function(elem, name ) {
 				if ( nodeHook && jQuery.nodeName( elem, "button" ) ) {
 					return nodeHook.get( elem, name );
 				}
@@ -2608,7 +2608,7 @@ jQuery.extend({
 
 	propHooks: {
 		tabIndex: {
-			get: function( elem ) {
+			get: function(elem ) {
 				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
 				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
 				var attributeNode = elem.getAttributeNode("tabindex");
@@ -2628,7 +2628,7 @@ jQuery.attrHooks.tabindex = jQuery.propHooks.tabIndex;
 
 // Hook for boolean attributes
 boolHook = {
-	get: function( elem, name ) {
+	get: function(elem, name ) {
 		// Align boolean attributes with corresponding properties
 		// Fall back to attribute presence where some booleans are not supported
 		var attrNode,
@@ -2668,7 +2668,7 @@ if ( !getSetAttribute ) {
 	// Use this for any attribute in IE6/7
 	// This fixes almost every IE6/7 issue
 	nodeHook = jQuery.valHooks.button = {
-		get: function( elem, name ) {
+		get: function(elem, name ) {
 			var ret;
 			ret = elem.getAttributeNode( name );
 			return ret && ( fixSpecified[ name ] ? ret.nodeValue !== "" : ret.specified ) ?
@@ -2720,7 +2720,7 @@ if ( !getSetAttribute ) {
 if ( !jQuery.support.hrefNormalized ) {
 	jQuery.each([ "href", "src", "width", "height" ], function( i, name ) {
 		jQuery.attrHooks[ name ] = jQuery.extend( jQuery.attrHooks[ name ], {
-			get: function( elem ) {
+			get: function(elem ) {
 				var ret = elem.getAttribute( name, 2 );
 				return ret === null ? undefined : ret;
 			}
@@ -2730,7 +2730,7 @@ if ( !jQuery.support.hrefNormalized ) {
 
 if ( !jQuery.support.style ) {
 	jQuery.attrHooks.style = {
-		get: function( elem ) {
+		get: function(elem ) {
 			// Return undefined in the case of empty string
 			// Normalize to lowercase since IE uppercases css property names
 			return elem.style.cssText.toLowerCase() || undefined;
@@ -2745,7 +2745,7 @@ if ( !jQuery.support.style ) {
 // Accessing the parent's selectedIndex property fixes it
 if ( !jQuery.support.optSelected ) {
 	jQuery.propHooks.selected = jQuery.extend( jQuery.propHooks.selected, {
-		get: function( elem ) {
+		get: function(elem ) {
 			var parent = elem.parentNode;
 
 			if ( parent ) {
@@ -2770,7 +2770,7 @@ if ( !jQuery.support.enctype ) {
 if ( !jQuery.support.checkOn ) {
 	jQuery.each([ "radio", "checkbox" ], function() {
 		jQuery.valHooks[ this ] = {
-			get: function( elem ) {
+			get: function(elem ) {
 				// Handle the case where in Webkit "" is returned instead of "on" if a value isn't specified
 				return elem.getAttribute("value") === null ? "on" : elem.value;
 			}
@@ -6461,7 +6461,7 @@ jQuery.extend({
 	// behavior of getting and setting a style property
 	cssHooks: {
 		opacity: {
-			get: function( elem, computed ) {
+			get: function(elem, computed ) {
 				if ( computed ) {
 					// We should always get a number back from opacity
 					var ret = curCSS( elem, "opacity", "opacity" );
@@ -6594,7 +6594,7 @@ jQuery.curCSS = jQuery.css;
 
 jQuery.each(["height", "width"], function( i, name ) {
 	jQuery.cssHooks[ name ] = {
-		get: function( elem, computed, extra ) {
+		get: function(elem, computed, extra ) {
 			var val;
 
 			if ( computed ) {
@@ -6628,7 +6628,7 @@ jQuery.each(["height", "width"], function( i, name ) {
 
 if ( !jQuery.support.opacity ) {
 	jQuery.cssHooks.opacity = {
-		get: function( elem, computed ) {
+		get: function(elem, computed ) {
 			// IE uses filters for opacity
 			return ropacity.test( (computed && elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || "" ) ?
 				( parseFloat( RegExp.$1 ) / 100 ) + "" :
@@ -6672,7 +6672,7 @@ jQuery(function() {
 	// for it is not run until after DOM ready
 	if ( !jQuery.support.reliableMarginRight ) {
 		jQuery.cssHooks.marginRight = {
-			get: function( elem, computed ) {
+			get: function(elem, computed ) {
 				// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
 				// Work around by temporarily setting element display to inline-block
 				var ret;
@@ -7080,7 +7080,7 @@ jQuery.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".sp
 	};
 });
 
-jQuery.each( [ "get", "post" ], function( i, method ) {
+jQuery.each( [ "get", "post" ], function(i, method ) {
 	jQuery[ method ] = function( url, data, callback, type ) {
 		// shift arguments if data argument was omitted
 		if ( jQuery.isFunction( data ) ) {

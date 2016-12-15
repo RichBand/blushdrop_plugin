@@ -30,7 +30,7 @@ window.wp = window.wp || {};
 		//
 		// If no `selector` is provided, it will grab all subviews attached
 		// to the view's root.
-		get: function( selector ) {
+		get: function(selector ) {
 			selector = selector || '';
 			return this._views[ selector ];
 		},

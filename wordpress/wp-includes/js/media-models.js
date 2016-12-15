@@ -389,7 +389,7 @@ Attachment = Backbone.Model.extend({
 	 * @param {Backbone.Model|undefined} attachment
 	 * @returns {wp.media.model.Attachment}
 	 */
-	get: _.memoize( function( id, attachment ) {
+	get: _.memoize( function(id, attachment ) {
 		var Attachments = wp.media.model.Attachments;
 		return Attachments.all.push( attachment || { id: id } );
 	})

@@ -65,7 +65,7 @@
 		 *
 		 * @return {Function} The view constructor.
 		 */
-		get: function( type ) {
+		get: function(type ) {
 			return views[ type ];
 		},
 

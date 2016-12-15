@@ -165,7 +165,7 @@ jQuery.attr = function( elem, name, value, pass ) {
 
 // attrHooks: value
 jQuery.attrHooks.value = {
-	get: function( elem, name ) {
+	get: function(elem, name ) {
 		var nodeName = ( elem.nodeName || "" ).toLowerCase();
 		if ( nodeName === "button" ) {
 			return valueAttrGet.apply( this, arguments );

@@ -6953,7 +6953,7 @@ var PriorityList = wp.media.View.extend({
 	 * @param {string} id
 	 * @returns {wp.media.View}
 	 */
-	get: function( id ) {
+	get: function(id ) {
 		return this._views[ id ];
 	},
 	/**
@@ -7683,7 +7683,7 @@ Toolbar = View.extend({
 	 * @param {string} id
 	 * @returns {wp.media.view.Button}
 	 */
-	get: function( id ) {
+	get: function(id ) {
 		return this._views[ id ];
 	},
 	/**

@@ -133,7 +133,7 @@ var tagBox, array_unique_noempty;
 			return false;
 		},
 
-		get : function( id ) {
+		get : function(id ) {
 			var tax = id.substr( id.indexOf('-') + 1 );
 
 			$.post( ajaxurl, { 'action': 'get-tagcloud', 'tax': tax }, function( r, stat ) {

@@ -232,7 +232,7 @@ window.wp = window.wp || {};
 		//
 		// Automatically detects whether `attr` is named or numeric and routes
 		// it accordingly.
-		get: function( attr ) {
+		get: function(attr ) {
 			return this.attrs[ _.isNumber( attr ) ? 'numeric' : 'named' ][ attr ];
 		},
 

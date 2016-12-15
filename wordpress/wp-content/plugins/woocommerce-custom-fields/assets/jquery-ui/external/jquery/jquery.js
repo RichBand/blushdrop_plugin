@@ -234,7 +234,7 @@ jQuery.fn = jQuery.prototype = {
 
 	// Get the Nth element in the matched element set OR
 	// Get the whole matched element set as a clean array
-	get: function( num ) {
+	get: function(num ) {
 		return num == null ?
 
 			// Return a 'clean' array
@@ -4278,7 +4278,7 @@ jQuery.fn.extend({
 jQuery.extend({
 	valHooks: {
 		option: {
-			get: function( elem ) {
+			get: function(elem ) {
 				// Use proper attribute retrieval(#6932, #12072)
 				var val = jQuery.find.attr( elem, "value" );
 				return val != null ?
@@ -4287,7 +4287,7 @@ jQuery.extend({
 			}
 		},
 		select: {
-			get: function( elem ) {
+			get: function(elem ) {
 				var value, option,
 					options = elem.options,
 					index = elem.selectedIndex,
@@ -4478,7 +4478,7 @@ jQuery.extend({
 
 	propHooks: {
 		tabIndex: {
-			get: function( elem ) {
+			get: function(elem ) {
 				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
 				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
 				// Use proper attribute retrieval(#12072)
@@ -4587,7 +4587,7 @@ if ( !getSetAttribute ) {
 					null;
 		};
 	jQuery.valHooks.button = {
-		get: function( elem, name ) {
+		get: function(elem, name ) {
 			var ret = elem.getAttributeNode( name );
 			return ret && ret.specified ?
 				ret.value :
@@ -4625,7 +4625,7 @@ if ( !jQuery.support.hrefNormalized ) {
 	// href/src property should get the full normalized URL (#10299/#12915)
 	jQuery.each([ "href", "src" ], function( i, name ) {
 		jQuery.propHooks[ name ] = {
-			get: function( elem ) {
+			get: function(elem ) {
 				return elem.getAttribute( name, 4 );
 			}
 		};
@@ -4634,7 +4634,7 @@ if ( !jQuery.support.hrefNormalized ) {
 
 if ( !jQuery.support.style ) {
 	jQuery.attrHooks.style = {
-		get: function( elem ) {
+		get: function(elem ) {
 			// Return undefined in the case of empty string
 			// Note: IE uppercases css property names, but if we were to .toLowerCase()
 			// .cssText, that would destroy case senstitivity in URL's, like in "background"
@@ -4650,7 +4650,7 @@ if ( !jQuery.support.style ) {
 // Accessing the parent's selectedIndex property fixes it
 if ( !jQuery.support.optSelected ) {
 	jQuery.propHooks.selected = {
-		get: function( elem ) {
+		get: function(elem ) {
 			var parent = elem.parentNode;
 
 			if ( parent ) {
@@ -4696,7 +4696,7 @@ jQuery.each([ "radio", "checkbox" ], function() {
 		}
 	};
 	if ( !jQuery.support.checkOn ) {
-		jQuery.valHooks[ this ].get = function( elem ) {
+		jQuery.valHooks[ this ].get = function(elem ) {
 			// Support: Webkit
 			// "" is returned instead of "on" if a value isn't specified
 			return elem.getAttribute("value") === null ? "on" : elem.value;
@@ -6946,7 +6946,7 @@ jQuery.extend({
 	// behavior of getting and setting a style property
 	cssHooks: {
 		opacity: {
-			get: function( elem, computed ) {
+			get: function(elem, computed ) {
 				if ( computed ) {
 					// We should always get a number back from opacity
 					var ret = curCSS( elem, "opacity" );
@@ -7304,7 +7304,7 @@ function actualDisplay( name, doc ) {
 
 jQuery.each([ "height", "width" ], function( i, name ) {
 	jQuery.cssHooks[ name ] = {
-		get: function( elem, computed, extra ) {
+		get: function(elem, computed, extra ) {
 			if ( computed ) {
 				// certain elements can have dimension info if we invisibly show them
 				// however, it must have a current display style that would benefit from this
@@ -7333,7 +7333,7 @@ jQuery.each([ "height", "width" ], function( i, name ) {
 
 if ( !jQuery.support.opacity ) {
 	jQuery.cssHooks.opacity = {
-		get: function( elem, computed ) {
+		get: function(elem, computed ) {
 			// IE uses filters for opacity
 			return ropacity.test( (computed && elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || "" ) ?
 				( 0.01 * parseFloat( RegExp.$1 ) ) + "" :
@@ -7380,7 +7380,7 @@ if ( !jQuery.support.opacity ) {
 jQuery(function() {
 	if ( !jQuery.support.reliableMarginRight ) {
 		jQuery.cssHooks.marginRight = {
-			get: function( elem, computed ) {
+			get: function(elem, computed ) {
 				if ( computed ) {
 					// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
 					// Work around by temporarily setting element display to inline-block
@@ -7397,7 +7397,7 @@ jQuery(function() {
 	if ( !jQuery.support.pixelPosition && jQuery.fn.position ) {
 		jQuery.each( [ "top", "left" ], function( i, prop ) {
 			jQuery.cssHooks[ prop ] = {
-				get: function( elem, computed ) {
+				get: function(elem, computed ) {
 					if ( computed ) {
 						computed = curCSS( elem, prop );
 						// if curCSS returns percentage, fallback to offset
@@ -8270,7 +8270,7 @@ jQuery.extend({
 	}
 });
 
-jQuery.each( [ "get", "post" ], function( i, method ) {
+jQuery.each( [ "get", "post" ], function(i, method ) {
 	jQuery[ method ] = function( url, data, callback, type ) {
 		// shift arguments if data argument was omitted
 		if ( jQuery.isFunction( data ) ) {
@@ -9238,7 +9238,7 @@ Tween.prototype.init.prototype = Tween.prototype;
 
 Tween.propHooks = {
 	_default: {
-		get: function( tween ) {
+		get: function(tween ) {
 			var result;
 
 			if ( tween.elem[ tween.prop ] != null &&
