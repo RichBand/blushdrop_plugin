@@ -12,21 +12,21 @@ var view = {
     aaa_view:function(){
         view.populateInfoElements();
     },
-    get: function(container) {
+    getDomElement: function(container) {
         return document.getElementById(container);
     },
     populateCheckRaw: function(container){
-        var ele = this.get(container);
+        var ele = this.getDomElement(container);
         var raw = model.products.raw;
         ele.checked = (raw.isInCart.ok)? 1 : 0;
     },
     populateDiscAmount: function(container){
-        var ele = view.get(container);
+        var ele = view.getDomElement(container);
         var disc = model.products.disc;
         ele.value = (disc.isInCart.ok)? disc.isInCart.qty:0;
     },
     populateExtraMinutes: function(container){
-        var ele = view.get(container);
+        var ele = view.getDomElement(container);
         var minutes = model.currentTotalMinutes - 10;
         var hasExtraMinutes = (minutes > 0 )? 1 : 0;
         ele.value = (hasExtraMinutes)? minutes : 0;
@@ -46,10 +46,10 @@ var view = {
             htm +="<option id='" + track.ID + "' value='" + track.ID + "'"
                 + ( (track.isInCart.ok)? "selected" : "") + ">" + track.post_title + "</option>";
         }
-        this.get(container).innerHTML = htm;
+        this.getDomElement(container).innerHTML = htm;
     },
     setDVD:function(qty) {
-        var input = this.get("eleInputDiscAmount");
+        var input = this.getDomElement("eleInputDiscAmount");
         if (qty == 1) {
             input.value++;
         }
@@ -62,10 +62,10 @@ var view = {
         var products = model.products;
         var sum = 0;
         sum += ( model.products.main.price );
-        sum += ( this.get("eleInputDiscAmount").value ) * ( products.disc.price );
-        sum += ( this.get("eleExtraMinutes").value ) * ( products.minute.price );
-        sum += ( this.get("eleCheckboxRaw").checked )? products.raw.price : 0;
-        this.get("info_Subtotal__amount").innerHTML = sum;
+        sum += ( this.getDomElement("eleInputDiscAmount").value ) * ( products.disc.price );
+        sum += ( this.getDomElement("eleExtraMinutes").value ) * ( products.minute.price );
+        sum += ( this.getDomElement("eleCheckboxRaw").checked )? products.raw.price : 0;
+        this.getDomElement("info_Subtotal__amount").innerHTML = sum;
     },
     zzz_view: 0
 };
@@ -129,13 +129,13 @@ var controller = {
         return response;
     },
     submitOrder: function () {
-        view.get("bdp_background").classList.add("bdp_background--on");
+        view.getDomElement("bdp_background").classList.add("bdp_background--on");
         var products = model.products;
         var order = [{id: parseInt(products.main.ID), qty: 1}];//Always add the main product
-        var disc = view.get("eleInputDiscAmount");
+        var disc = view.getDomElement("eleInputDiscAmount");
         var discValue = parseInt(disc.value);
         if (isNaN(discValue) || discValue < 0 || discValue > 99){
-            var disclabel = view.get("labeleleInputDiscAmount");
+            var disclabel = view.getDomElement("labeleleInputDiscAmount");
             discLabel.innerHTML = "Please enter a valid number of discs";
             discValue = 0;
             disc.focus();
@@ -147,12 +147,12 @@ var controller = {
                 qty: parseInt(disc.value),
             })
         }
-        var raw = view.get("eleCheckboxRaw");
+        var raw = view.getDomElement("eleCheckboxRaw");
         order.push({
             id: parseInt(products.raw.ID),
             qty: (raw.checked)? 1  : 0
         });
-        var music = view.get("eleSelMusic");
+        var music = view.getDomElement("eleSelMusic");
         if (music.value) {
             order.push({
                 id: parseInt(music.value),
@@ -173,7 +173,7 @@ var controller = {
                         " more extraMinutes, and will be added to the checkout"
                         : " less extraMinutes, and will be taken to the checkout");
                 if (!confirm(msg)) {
-                    view.get("bdp_background").classList.remove("bdp_background--on");
+                    view.getDomElement("bdp_background").classList.remove("bdp_background--on");
                     return false
                 }
             }

@@ -23,6 +23,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			unset ($order);
 			return $res;
 		}
+
 		public function addToCart($id, $qty){
 			$res = WC()->cart->add_to_cart(absint($id), absint($qty));
 			return $res;
@@ -132,6 +133,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			$res = WC()->cart->set_quantity($key, $qty, 1);
 			return $res;
 		}
+
 		public function thereIsMusicInCart($musicCategory, $user)
 		{
 			$res = 0;

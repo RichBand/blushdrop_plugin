@@ -37,11 +37,12 @@ if (!class_exists('Blushdrop')) {
 			add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
 			add_action('wp_enqueue_scripts', array(&$this, 'enqueue_CustomerFiles'));
 			add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
-			add_shortcode('blushdrop_ClientControls', array(&$this, 'setClientControls'));
-			add_shortcode('blushdrop_ClientModel', array(&$this, 'setClientModel'));
+			add_shortcode('blushdrop_ClientControls', array(&$this, 'loadClientControls'));
+			add_shortcode('blushdrop_ClientModel', array(&$this, 'loadClientModel'));
+			add_shortcode('blushdrop_ClientCartRules', array(&$this, 'loadClientCartRules'));
 		}
 		private function createPageCustomer($user, $path)
-		{//[outofthebox dir="'.$path.'"'
+		{
 			$oob = '[outofthebox dir="'.$path.'"'
 				.'mode="files"'
 				.'viewrole="administrator|author|customer|guest"'
@@ -52,8 +53,7 @@ if (!class_exists('Blushdrop')) {
 				.'move="1" delete="1" deletefilesrole="administrator|editor|author|customer"'
 				.'deletefoldersrole="administrator|editor|author|customer" addfolder="1" '
 				.'addfolderrole="administrator|editor|author|contributor|customer" '
-				.'uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"]
-';
+				.'uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"]';
 			$oob .=" [blushdrop_ClientModel][blushdrop_ClientControls]";
 			$page['post_type'] = 'page';
 			$page['post_content'] = $oob;
@@ -139,7 +139,7 @@ if (!class_exists('Blushdrop')) {
 			return false;
 		}
 
-		private function isCustomer($ID)
+		private function isCustomer($ID = null)
 		{
 			$user = ($ID == null)? wp_get_current_user() : get_userdata($ID);
 			if ($user != null)
@@ -173,17 +173,6 @@ if (!class_exists('Blushdrop')) {
 			));
 			return $settings;
 		}
-		//TODO determine if it's private or public
-		public function redirectIfCustomer($user_login, $user)
-		{
-			$myID = $user->ID;
-			if ($this->isCustomer($myID)) {
-				$thisSite = get_site_url() . "/";
-				wp_redirect($thisSite . $user->user_login, 302);
-				exit;
-			};
-		}
-
 		private function sanitizeUserName($username)
 		{
 			//TODO improove with regex;
@@ -227,7 +216,10 @@ if (!class_exists('Blushdrop')) {
 				wp_enqueue_style('mdl_css');
 				wp_enqueue_style('custom_css');
 				wp_enqueue_script('mdl_js');
-				wp_enqueue_script('custom_js');
+				wp_enqueue_script('blushdrop_dashboard_js');
+			}
+			if(is_page('cart')){
+				wp_enqueue_script('blushdrop_cart_js');
 			}
 		}
 		/**
@@ -258,18 +250,26 @@ if (!class_exists('Blushdrop')) {
 		{
 			return $this->path;
 		}
-		public function register_CustomerFiles()
+		public function loadClientCartRules()
 		{
-			wp_register_style('mdl_css', plugins_url('/mdl/material.css', __FILE__), false, null, 'all');
-			wp_register_style('custom_css', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
-			wp_register_script('mdl_js', plugins_url('/mdl/material.js', __FILE__));
-			wp_register_script('custom_js', plugins_url('/js/blushdrop.js', __FILE__));
+			$page = get_page_by_title( 'Cart' );
+			if( $this->isCustomer() && is_page($page->ID)){
+				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_cartRules.php"))
+				{
+					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/client_cartRules.php");
+				}
+				else
+				{
+					return 'An error has occurred, please reload the page, if the problem
+					persist, please get in contact with customer service';
+				}
+			}
 		}
-		public function setClientControls()
+		public function loadClientControls()
 		{
 			if( $this->isAuthorOrAdmin()) {
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html")) {
-					return file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/customerControls.html");
+				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html")) {
+					return file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html");
 				}
 				else {
 					return 'An error has occurred, please reload the page, if the problem
@@ -277,12 +277,12 @@ if (!class_exists('Blushdrop')) {
 				}
 			}
 		}
-		public function setClientModel()
+		public function loadClientModel()
 		{
 			if( $this->isAuthorOrAdmin()){
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/setModel.php"))
+				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardModel.php"))
 				{
-					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/setModel.php");
+					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardModel.php");
 					$authorID = get_the_author_meta('ID');
 					loadData($this, $authorID);
 				}
@@ -292,6 +292,23 @@ if (!class_exists('Blushdrop')) {
 					persist, please get in contact with customer service';
 				}
 			}
+		}
+		public function redirectIfCustomer($user_login, $user)
+		{
+			$myID = $user->ID;
+			if ($this->isCustomer($myID)) {
+				$thisSite = get_site_url() . "/";
+				wp_redirect($thisSite . $user->user_login, 302);
+				exit;
+			};
+		}
+		public function register_CustomerFiles()
+		{
+			wp_register_style('mdl_css', plugins_url('/mdl/material.css', __FILE__), false, null, 'all');
+			wp_register_style('custom_css', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
+			wp_register_script('mdl_js', plugins_url('/mdl/material.js', __FILE__));
+			wp_register_script('blushdrop_dashboard_js', plugins_url('/js/blushdrop_dashboard.js', __FILE__));
+			wp_register_script('blushdrop_cart_js', plugins_url('/js/blushdrop_cart.js', __FILE__));
 		}
 		public function whenNewCustomer($user_id)
 		{
