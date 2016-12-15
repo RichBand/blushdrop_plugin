@@ -1,0 +1,46 @@
+/**
+ * Created by ricardobandala on 2016-08-15.
+ */
+#bdpMain{
+    display: block;
+    float: left;
+    width:100%;
+    max-width: 900px;
+}
+.bdp-cell{
+    align-self: center;
+}
+.bdp-spinner{
+    top: 50%;
+    left: 50%;
+}
+#eleExtraMinutes{
+    color: inherit;
+    border: none;
+}
+#info_Subtotal *{
+    display: inline-block;
+    float: left;
+}
+.bdp-leftBlock{
+    min-width: 100px;
+}
+.bdp_background{
+    display:none;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(255,255,255,0.5);
+    transition: all 0.5s ease;
+}
+.bdp_background--on{
+    display:block;
+    transition: all 0.5s ease;
+}
+#eleCheckboxEditing{
+    border:none;
+}
+
