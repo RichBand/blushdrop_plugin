@@ -10,6 +10,7 @@
 require_once 'blushdrop.php';
 $args = array(
 	'dropbox_path' => '/blushdrop',
+    'dropbox_appInfo' => ['key' => 'kulo8xx7kugwfzo', 'secret' => '5gqns9krb5b2v7i'],
 	'prodCat_Music' => 'music',
 	'prodID_Disc' => '31',
 	'prodID_EditingPacakage' => '32',

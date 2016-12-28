@@ -29,7 +29,7 @@ if (!class_exists('Blushdrop')) {
 			$this->setConfigValues($args);
 			$this->settings = $this->loadSettings();
 			$this->path = $this->settings['dropbox_path'];
-			$this->bdp_dpx = new Blushdrop_dropbox($this->path);
+			$this->bdp_dpx = new Blushdrop_dropbox(['dropbox_path' => $args['dropbox_path'], 'dropbox_appInfo' =>$args['dropbox_appInfo']]);
 			$this->bdp_wcm = new Blushdrop_woocommerce();
 			add_action('init', array(&$this, 'register_CustomerFiles'));
 			add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);

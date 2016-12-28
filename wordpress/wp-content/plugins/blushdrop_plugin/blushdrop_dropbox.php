@@ -14,11 +14,10 @@ if (!class_exists('Blushdrop_dropbox')) {
 	{
 		protected $path = null;
 		private $client = null;
-		function __construct($path)
+		function __construct($args)
 		{
-			$this->path = $path;
-			$this->client = $this->setClient();
-
+			$this->path = $args['dropbox_path'];
+			$this->client = $this->setClient($args['dropbox_appInfo']);
 		}
 
 		public function createFolder($path)
@@ -31,10 +30,10 @@ if (!class_exists('Blushdrop_dropbox')) {
 			return $metadata;
 		}
 
-		private function setClient()
+		private function setClient($appInfoArray)
 		{
 			$dbxClient = null;
-			$appInfo = dbx\AppInfo::loadFromJsonFile(ABSPATH . "/wp-content/plugins/blushdrop_plugin/blushdrop.json");
+			$appInfo = dbx\AppInfo::loadFromJson($appInfoArray);
 			$accessToken = "xZ1AXx94nAoAAAAAAAH2vYuaGl5d9RNlwAEJ3XacJ6JRqDfxAIZhe0ift20P7f9M";
 			$dbxClient = new dbx\Client($accessToken, "blushdrop");
 			return $dbxClient;
