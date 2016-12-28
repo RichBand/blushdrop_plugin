@@ -9,8 +9,11 @@
  */
 require_once 'blushdrop.php';
 $args = array(
-	'dropbox_path' => '/blushdrop',
-    'dropbox_appInfo' => ['key' => 'kulo8xx7kugwfzo', 'secret' => '5gqns9krb5b2v7i'],
+	'dropbox' => [
+	    'path' => '/blushdrop',
+        'appInfo' => ['key' => 'kulo8xx7kugwfzo', 'secret' => '5gqns9krb5b2v7i'],
+        'token' =>'xZ1AXx94nAoAAAAAAAH2vYuaGl5d9RNlwAEJ3XacJ6JRqDfxAIZhe0ift20P7f9M'
+    ],
 	'prodCat_Music' => 'music',
 	'prodID_Disc' => '31',
 	'prodID_EditingPacakage' => '32',

@@ -16,8 +16,8 @@ if (!class_exists('Blushdrop_dropbox')) {
 		private $client = null;
 		function __construct($args)
 		{
-			$this->path = $args['dropbox_path'];
-			$this->client = $this->setClient($args['dropbox_appInfo']);
+			$this->path = $args['path'];
+			$this->client = $this->setClient($args);
 		}
 
 		public function createFolder($path)
@@ -30,12 +30,11 @@ if (!class_exists('Blushdrop_dropbox')) {
 			return $metadata;
 		}
 
-		private function setClient($appInfoArray)
+		private function setClient($args)
 		{
 			$dbxClient = null;
-			$appInfo = dbx\AppInfo::loadFromJson($appInfoArray);
-			$accessToken = "xZ1AXx94nAoAAAAAAAH2vYuaGl5d9RNlwAEJ3XacJ6JRqDfxAIZhe0ift20P7f9M";
-			$dbxClient = new dbx\Client($accessToken, "blushdrop");
+			$appInfo = dbx\AppInfo::loadFromJson($args['appInfo']);
+			$dbxClient = new dbx\Client($args['token'], "blushdrop");
 			return $dbxClient;
 		}
 
