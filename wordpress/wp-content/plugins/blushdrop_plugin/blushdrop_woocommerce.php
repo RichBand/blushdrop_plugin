@@ -65,20 +65,19 @@ if (!class_exists('Blushdrop_woocommerce')) {
 		 */
 		public function getProduct($productID, $user)
 		{
-			$product = null;
+			$product = new StdClass;
 			//TODO, check why the validation of the active plugin woocommerce is not working
 			//if ( is_plugin_active('woocommerce/woocommerce.php') ){
 				$WC_product = wc_get_product( $productID);
 				$product = $WC_product->post;
 			//}
-			$product->isBought = ($user)? ($this->isBought($productID, $user)? 1: 0) : 0;
-			$product->isBought = ($this->isBought($productID, $user)? 1: 0);
-			$productInCart = $this->isInCart($productID);
-			//unset($productInCart['key']); //TODO check if this is not deleting a product in the cart by reference
-			$product->isInCart = $productInCart;
-			$product->price =  floatval($WC_product->get_price());
-			$product->reg_price = floatval($WC_product->get_regular_price());
-			$product->sale_price = floatval($WC_product->get_sale_price());
+            var_dump($product);
+            $product->isBought = ($user)? ($this->isBought($productID, $user)? 1: 0) : 0;
+            $productInCart = $this->isInCart($productID);
+            $product->isInCart = $productInCart;
+            $product->price =  floatval($WC_product->get_price());
+            $product->reg_price = floatval($WC_product->get_regular_price());
+            $product->sale_price = floatval($WC_product->get_sale_price());
 			return $product;
 		}
 

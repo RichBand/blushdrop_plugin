@@ -55,7 +55,7 @@ if (!class_exists('Blushdrop')) {
                 .' deletefilesrole="administrator|editor|author|customer"'
                 .' deletefoldersrole="administrator|editor|author|customer"'
                 .' ]';
-			$oob .=" [blushdrop_ClientModel][blushdrop_ClientControls]";
+			//$oob .=" [blushdrop_ClientModel][blushdrop_ClientControls]";
 			$page['post_type'] = 'page';
 			$page['post_content'] = $oob;
 			$page['post_parent'] = 0;
