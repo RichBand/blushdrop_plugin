@@ -6,5 +6,6 @@
 ./wordpress/wp-includes/*
 
 .idea/workspace.xml
+.idea/*
 
 ./wordpress/wp-admin/js/edit-comments.min.js
