@@ -6,7 +6,7 @@
  * Date: 2016-08-25
  * Time: 22:38
  */
-function loadData($bdp, $userID)
+function loadData($bdp)
 {
 	$settings = $bdp->getSettings();
 	echo 'Hola from cart rules';
