@@ -265,6 +265,7 @@ if (!class_exists('Blushdrop')) {
 				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_cartRules.php"))
 				{
 					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/client_cartRules.php");
+                    loadData($this);
 				}
 				else
 				{
