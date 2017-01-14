@@ -184,10 +184,17 @@ if (!class_exists('Blushdrop')) {
 			return $username;
 		}
 
-		private function setConfigValues($args)
-		{
-			add_option('blushdrop_settings', $args);
-		}
+        private function setConfigValues($args)
+        {
+
+            if(get_option('blushdrop_settings', $default=false)){
+                update_option('blushdrop_settings', $args);
+            }
+            else{
+                add_option('blushdrop_settings', $args);
+            }
+
+        }
 		/**Public functions ***********************************/
 		public function ajax_addOrderToCart()
 		{
