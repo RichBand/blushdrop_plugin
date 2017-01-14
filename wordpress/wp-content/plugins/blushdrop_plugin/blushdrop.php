@@ -186,7 +186,14 @@ if (!class_exists('Blushdrop')) {
 
 		private function setConfigValues($args)
 		{
-			add_option('blushdrop_settings', $args);
+
+		    if(get_option('blushdrop_settings', $default=false)){
+                update_option('blushdrop_settings', $args);
+            }
+            else{
+                add_option('blushdrop_settings', $args);
+            }
+
 		}
 		/**Public functions ***********************************/
 		public function ajax_addOrderToCart()
@@ -270,7 +277,7 @@ if (!class_exists('Blushdrop')) {
 		{
 			if( $this->isAuthorOrAdmin()) {
 				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html")) {
-					return file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html");
+					include(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html");
 				}
 				else {
 					return 'An error has occurred, please reload the page, if the problem

@@ -15,15 +15,24 @@ function loadData($bdp, $userID)
 	$user = get_user_by('id', $userID);
 	$path = $bdp->getPath().$user->user_login;
 	$author =  0 + ( get_the_author_meta('ID') );
+    $ajaxurl = admin_url('admin-ajax.php');
+    $currentTotalMinutes = 0 + $dpx->getVideoMinutes($path);
+    $disc = json_encode($wcm->getProduct($settings['prodID_Disc'], $user));
+    $main = json_encode($wcm->getProduct($settings['prodID_EditingPacakage'], $user));
+    $minute = json_encode($wcm->getProduct($settings['prodID_ExtraMinute'],  $user));
+    $raw = json_encode($wcm->getProduct($settings['prodID_RawMaterial'], $user));
+    $url = json_encode($wcm->getProduct($settings['prodID_URL'], $user));
+    $siteUrl = get_site_url();
 	?>
 
-	<script type="text/javascript">
-		model.ajaxurl ='<?= admin_url('admin-ajax.php'); ?>';
-		model.customer = <?= $author ?>;
-		model.currentTotalMinutes = 0 + <?= $dpx->getVideoMinutes($path);?>;
-		model.products = {
-		disc: <?= json_encode($wcm->getProduct($settings['prodID_Disc'], $user))?>,
-		main: <?= json_encode($wcm->getProduct($settings['prodID_EditingPacakage'], $user))?>,
+	$response =
+    '<script type="text/javascript">'.
+		'model.ajaxurl ='.$ajaxurl.';'.
+        'model.customer ='.$author.';'.
+		'model.currentTotalMinutes =' 0 + $currentTotalMinutes.';'.
+		'model.products = {'.
+		'disc:'.$disc.';'.
+		'main:'.$main.';'.
 		minute: <?= json_encode($wcm->getProduct($settings['prodID_ExtraMinute'],  $user))?>,
 		music: (function () {
 			<? $soundtrack = $wcm->getMusic($settings['prodCat_Music'], $user);

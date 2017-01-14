@@ -1,2 +1,0 @@
-[03-Jan-2017 13:30:53 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/blushdrop/public_html/wp-includes/registration-functions.php on line 7
-[03-Jan-2017 13:30:54 UTC] PHP Fatal error:  Call to undefined function _deprecated_file() in /home/blushdrop/public_html/wp-includes/registration-functions.php on line 7
