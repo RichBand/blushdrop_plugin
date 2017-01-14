@@ -10,7 +10,7 @@ var _active = false,
         mobile = false,
         windowwidth;
 
-var DB_iLightbox = false;
+var DB_iLightbox = {};
 
 jQuery(document).ready(function ($) {
   $(window).load(function () {
@@ -744,17 +744,20 @@ jQuery(document).ready(function ($) {
 
       var groupsArr = [];
 
-      if (DB_iLightbox !== false) {
-        DB_iLightbox.destroy();
+      if (typeof DB_iLightbox[listtoken] === 'undefined') {
+        DB_iLightbox[listtoken] = {};
+      } else if (!$.isEmptyObject(DB_iLightbox[listtoken])) {
+        DB_iLightbox[listtoken].destroy();
       }
 
-      DB_iLightbox = $('.OutoftheBox[data-token="' + listtoken + '"] .ilightbox-group[rel^="ilightbox["]').each(function () {
+      $('.OutoftheBox[data-token="' + listtoken + '"] .ilightbox-group[rel^="ilightbox["]').each(function () {
         var group = this.getAttribute("rel");
         $.inArray(group, groupsArr) === -1 && groupsArr.push(group);
       });
       $.each(groupsArr, function (i, groupName) {
         var selector = $('.OutoftheBox[data-token="' + listtoken + '"]');
-        $('.OutoftheBox[data-token="' + listtoken + '"] .ilightbox-group[rel="' + groupName + '"]').iLightBox({
+
+        DB_iLightbox[listtoken] = $('.OutoftheBox[data-token="' + listtoken + '"] .ilightbox-group[rel="' + groupName + '"]').iLightBox({
           skin: OutoftheBox_vars.lightbox_skin,
           path: OutoftheBox_vars.lightbox_path,
           maxScale: 1,

@@ -846,21 +846,29 @@ class OutoftheBox_Dropbox extends OutoftheBox_Processor {
       die();
     }
 
-    $previewsupport = array('doc', 'docx', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'xls', 'xlsx', 'xlsm', 'rtf');
+    $previewsupport = array('pdf', 'doc', 'docx', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'xls', 'xlsx', 'xlsm', 'rtf');
     if (!in_array(strtolower($path_parts['extension']), $previewsupport)) {
       die();
     }
 
 
-    header('Content-Disposition: inline; filename="' . $path_parts['basename'] . '"');
     if (in_array($path_parts['extension'], array('xls', 'xlsx', 'xlsm'))) {
       header('Content-Type: text/html');
     } else {
+      header('Content-Disposition: inline; filename="' . $path_parts['filename'] . '.pdf"');
+      header('Content-Description: "' . $path_parts['filename'] . '"');
       header('Content-Type: application/pdf');
     }
 
-    // $token = $this->client->getAccessToken();
-    // header('Location: https://api-content.dropbox.com/1/previews/auto/' . $this->_requestedCompletePath . '?access_token=' . $token);
+    /* Enables Preview for PDF files. Requires 'pdf' in array $previewsupport */
+    if ($path_parts['extension'] === 'pdf') {
+      $entry = $this->client->getMetadata($this->_requestedCompletePath);
+      $link = $this->_mediaFromCache($entry['path'], 'files');
+      $link = $link['cache'];
+      $link['url'] = str_replace('dl.dropboxusercontent.com/1/view/', 'dropbox.com/s/', $link['url']);
+      header('Location: ' . $link['url'] . '?raw=1');
+      die();
+    }
 
     $tmp_handle = fopen('php://output', "w");
     $preview = $this->client->getPreview($this->_requestedCompletePath, $tmp_handle);
@@ -942,12 +950,15 @@ class OutoftheBox_Dropbox extends OutoftheBox_Processor {
             );
             $this->sendNotificationEmail('download', array($entry));
           }
-        } elseif ($this->cache['media'][$cachename]['tokens'][$token] <= time()) {
+        } elseif (isset($this->cache['media'][$cachename]['tokens'][$token]) && $this->cache['media'][$cachename]['tokens'][$token] <= time()) {
           $this->_lockCache(LOCK_EX);
           unset($this->cache['media'][$cachename]['tokens'][$token]);
           $this->_setCache();
+        } else {
+          header('Location: ' . $this->cache['media'][$cachename]['url'] . '?dl=1');
         }
       } elseif ((($this->cache['media'][$cachename]['expires']) <= time()) || (isset($this->cache['media'][$cachename]['tokens']))) {
+        header('Location: ' . $this->cache['media'][$cachename]['url'] . '?dl=1');
         $this->_lockCache(LOCK_EX);
         unset($this->cache['media'][$cachename]);
         $this->_setCache();
@@ -1016,7 +1027,7 @@ class OutoftheBox_Dropbox extends OutoftheBox_Processor {
         $downloadedfiles = array();
 
         foreach ($dirlisting['files'] as $key => $file) {
-          set_time_limit(60);
+          @set_time_limit(60);
 
           /* get file */
           ob_flush();
@@ -1386,7 +1397,7 @@ class OutoftheBox_Dropbox extends OutoftheBox_Processor {
     $authorized = false;
 
     //Creating images can take a while
-    set_time_limit(15);
+    @set_time_limit(15);
 
     if ((!empty($_REQUEST['src'])) && (!empty($_REQUEST['i']))) {
       $cachename = $_REQUEST['src'];
@@ -1656,7 +1667,7 @@ class OutoftheBox_Dropbox extends OutoftheBox_Processor {
       $this->_cache_handle = fopen(OUTOFTHEBOX_CACHEDIR . 'index', 'c+');
     }
 
-    set_time_limit(60);
+    @set_time_limit(60);
     if (!flock($this->_cache_handle, $type | LOCK_NB)) {
       // if the file cannot be unlocked and the last time it was modified was 1 minute, assume that the previous process died and unlock the file manually
       if ($requires_unlock) {
@@ -1665,7 +1676,7 @@ class OutoftheBox_Dropbox extends OutoftheBox_Processor {
       //Try to lock the file again
       $result = flock($this->_cache_handle, $type);
     }
-    set_time_limit(60);
+    @set_time_limit(60);
 
     return true;
   }

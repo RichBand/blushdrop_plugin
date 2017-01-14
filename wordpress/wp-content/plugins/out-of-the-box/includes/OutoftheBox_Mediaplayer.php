@@ -52,7 +52,7 @@ class OutoftheBox_Mediaplayer extends OutoftheBox_Dropbox {
           continue;
         }
 
-        $allowedextensions = array('mp4', ' m4v', 'ogg', 'ogv', 'webmv', 'mp3', 'm4a', 'ogg', 'oga');
+        $allowedextensions = array('mp4', 'm4v', 'ogg', 'ogv', 'webmv', 'mp3', 'm4a', 'ogg', 'oga');
         if (empty($path_parts['extension']) || !in_array($path_parts['extension'], $allowedextensions)) {
           continue;
         }

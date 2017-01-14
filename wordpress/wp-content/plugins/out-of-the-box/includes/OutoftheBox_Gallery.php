@@ -99,10 +99,10 @@ class OutoftheBox_Gallery extends OutoftheBox_Dropbox {
     }
 
     echo json_encode(array(
-        'lastpath' => rawurlencode($this->_lastPath),
-        'breadcrumb' => $filepath,
-        'html' => $imageslist_html,
-        'expires' => $expires));
+      'lastpath' => rawurlencode($this->_lastPath),
+      'breadcrumb' => $filepath,
+      'html' => $imageslist_html,
+      'expires' => $expires));
 
     die();
   }
@@ -184,7 +184,7 @@ class OutoftheBox_Gallery extends OutoftheBox_Dropbox {
       $target = ' target="_blank" ';
     }
 
-    $return .= "<a href='" . $item['url'] . "' title='" . $item['name'] . "' $target class='$class' data-type='image' $thumbnail rel='ilightbox[" . $this->listtoken . "]'><span class='image-rollover'></span>";
+    $return .= "<a href='" . $item['url'] . "' title='" . $item['name'] . "' $target class='$class' data-type='image' data-caption='" . $item['name'] . "' $thumbnail rel='ilightbox[" . $this->listtoken . "]'><span class='image-rollover'></span>";
     $return .= "<img class='preloading $hiddenclass' src='" . OUTOFTHEBOX_ROOTPATH . "/css/images/transparant.png' data-src='" . $item['thumb'] . "' width='" . $item['width'] . "' height='" . $item['height'] . "' style='width:" . $item['width'] . "px;height:" . $item['height'] . "px;'/>";
     $return .= "</a>";
 
@@ -267,6 +267,11 @@ class OutoftheBox_Gallery extends OutoftheBox_Dropbox {
           continue;
         }
 
+        //Skip entry if its a folder, and we dont want to show folders
+        if (($child['is_dir'] === true) && ($this->options['show_folders'] === '0')) {
+          continue;
+        }
+
         if (!$this->isEntryAuthorized($path)) {
           continue;
         }
@@ -305,16 +310,16 @@ class OutoftheBox_Gallery extends OutoftheBox_Dropbox {
           }
 
           array_push($imagearray, array(
-              'id' => md5($location),
-              'name' => $path_parts['filename'],
-              'basename' => $path_parts['basename'],
-              'path' => $location,
-              'is_dir' => true,
-              'thumb' => plugins_url('css/images/folder.png', dirname(__FILE__)),
-              'width' => $this->options['targetheight'],
-              'height' => $this->options['targetheight'],
-              'folderimages' => $folderimages,
-              'parentfolder' => false
+            'id' => md5($location),
+            'name' => $path_parts['filename'],
+            'basename' => $path_parts['basename'],
+            'path' => $location,
+            'is_dir' => true,
+            'thumb' => plugins_url('css/images/folder.png', dirname(__FILE__)),
+            'width' => $this->options['targetheight'],
+            'height' => $this->options['targetheight'],
+            'folderimages' => $folderimages,
+            'parentfolder' => false
           ));
           continue;
         }
@@ -327,15 +332,15 @@ class OutoftheBox_Gallery extends OutoftheBox_Dropbox {
           $location = ($this->_lastPath == '/') ? '/' . $path_parts['basename'] : $this->_lastPath . '/' . $path_parts['basename'];
 
           array_push($imagearray, array(
-              'id' => md5($location),
-              'name' => $path_parts['filename'],
-              'basename' => $path_parts['basename'],
-              'path' => $location,
-              'is_dir' => false,
-              'url' => (empty($image['image']['url'])) ? $image['cache']['create_thumb_url'] : $image['image']['url'] . '?dl=1',
-              'thumb' => (!empty($image['cache']['thumb'])) ? OUTOFTHEBOX_CACHEURL . $image['cache']['thumb'] : $image['cache']['create_thumb_url'],
-              'width' => $image['cache']['width'],
-              'height' => $image['cache']['height']
+            'id' => md5($location),
+            'name' => $path_parts['filename'],
+            'basename' => $path_parts['basename'],
+            'path' => $location,
+            'is_dir' => false,
+            'url' => (empty($image['image']['url'])) ? $image['cache']['create_thumb_url'] : $image['image']['url'] . '?dl=1',
+            'thumb' => (!empty($image['cache']['thumb'])) ? OUTOFTHEBOX_CACHEURL . $image['cache']['thumb'] : $image['cache']['create_thumb_url'],
+            'width' => $image['cache']['width'],
+            'height' => $image['cache']['height']
           ));
         }
       }

@@ -25,10 +25,6 @@
  * @since Twenty Sixteen 1.0
  */
 
-
-
-
-
 /**
  * Twenty Sixteen only works in WordPress 4.4 or later.
  */

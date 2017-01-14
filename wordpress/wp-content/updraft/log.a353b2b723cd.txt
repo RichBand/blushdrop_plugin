@@ -1,0 +1,207 @@
+0000.006 () Opened log file at time: Mon, 15 Aug 2016 22:12:27 +0000 on http://blushdrop.com
+0000.006 () UpdraftPlus WordPress backup plugin (https://updraftplus.com): 2.12.18.1 WP: 4.5.3 PHP: 5.5.30 (Linux r108.websiteservername.com 2.6.32-604.30.3.lve1.3.63.el6.x86_64 #1 SMP Sun Sep 27 06:34:10 EDT 2015 x86_64) MySQL: 5.5.50 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 128M (used: 49M | 49.5M) multisite: N openssl: OpenSSL 1.0.1e-fips 11 Feb 2013 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.193 () Free space on disk containing Updraft's temporary directory: 566049.7 MB / Free disk space in account: 433.1 MB (71.1 % used)
+0000.197 () Restore job started. Entities to restore: plugins, themes, uploads, others, db. Restore options: {"updraft_restorer_replacesiteurl":true,"updraft_encryptionphrase":"","updraft_restorer_wpcore_includewpconfig":false}
+0000.238 () Will not delete any archives after unpacking them, because there was no cloud storage for this backup
+0000.246 () Entity: db
+0000.246 () restore_backup(backup_file=backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-db.gz, type=db, info=a:0:{}, last_one=)
+0000.246 () Unpacking backup...
+0000.881 () Database successfully unpacked
+0000.882 () Restoring the database (on a large site this can take a long time - if it times out (which can happen if your web hosting company has configured your hosting to limit resources) then you should use a different method, such as phpMyAdmin)...
+0000.882 () Using direct MySQL access; value of use_mysqli is: 1
+0000.884 () Max packet size: 256 MB
+0000.884 () Entering maintenance mode
+0000.896 () Enabling Maintenance mode&#8230;
+0000.897 () Backup created by: 2.12.18.1
+0000.898 () <strong>Backup of:</strong> http://sandbox.blushdrop.com
+0000.913 () Content URL: http://sandbox.blushdrop.com/wp-content
+0000.913 () Uploads URL: http://sandbox.blushdrop.com/wp-content/uploads
+0000.914 () Old table prefix: wppj_
+0000.914 () Site information: multisite=0
+0000.916 () New table prefix: wp_
+0001.021 () Restoring table (MyISAM): wppj_options - will restore as: wp_options
+0001.254 () Restoring prior UD configuration (table: wp_options; keys: 95)
+0001.498 () Table prefix has changed: changing options table field(s) accordingly (options)
+0001.499 () Options table fields changed OK
+0001.502 () Search and replacing table: wp_options: rows: 511
+0001.671 () Restoring table (MyISAM): wppj_users - will restore as: wp_users
+0001.718 () Search and replacing table: wp_users: rows: 6
+0001.719 () Restoring table (MyISAM): wppj_usermeta - will restore as: wp_usermeta
+0001.771 () Table prefix has changed: changing usermeta table field(s) accordingly
+0001.773 () Usermeta table fields changed OK
+0001.774 () Search and replacing table: wp_usermeta: rows: 106
+0001.782 () Restoring table (MyISAM): wppj_commentmeta - will restore as: wp_commentmeta
+0001.816 () Search and replacing table: wp_commentmeta: rows: 0
+0001.816 () Restoring table (MyISAM): wppj_comments - will restore as: wp_comments
+0001.890 () Search and replacing table: wp_comments: rows: 1
+0001.891 () Restoring table (MyISAM): wppj_links - will restore as: wp_links
+0001.919 () Search and replacing table: wp_links: rows: 0
+0001.919 () Restoring table (MyISAM): wppj_postmeta - will restore as: wp_postmeta
+0002.008 () Search and replacing table: wp_postmeta: rows: 5
+0002.011 () Restoring table (MyISAM): wppj_posts - will restore as: wp_posts
+0002.079 () Skipping search/replace on GUID column in posts table
+0002.080 () Search and replacing table: wp_posts: rows: 104
+0002.116 () Restoring table (MyISAM): wppj_term_relationships - will restore as: wp_term_relationships
+0002.178 () Skipping this table: data in this table (wp_term_relationships) should not be search/replaced
+0002.178 () Restoring table (MyISAM): wppj_term_taxonomy - will restore as: wp_term_taxonomy
+0002.203 () Search and replacing table: wp_term_taxonomy: rows: 9
+0002.204 () Restoring table (MyISAM): wppj_termmeta - will restore as: wp_termmeta
+0002.245 () Search and replacing table: wp_termmeta: rows: 3
+0002.246 () Restoring table (MyISAM): wppj_terms - will restore as: wp_terms
+0002.252 () Search and replacing table: wp_terms: rows: 9
+0002.253 () Restoring table (MyISAM): wppj_woocommerce_order_itemmeta - will restore as: wp_woocommerce_order_itemmeta
+0002.260 () Search and replacing table: wp_woocommerce_order_itemmeta: rows: 0
+0002.260 () Restoring table (MyISAM): wppj_woocommerce_payment_tokenmeta - will restore as: wp_woocommerce_payment_tokenmeta
+0002.296 () Search and replacing table: wp_woocommerce_payment_tokenmeta: rows: 0
+0002.296 () Restoring table (MyISAM): wppj_wfBadLeechers - will restore as: wp_wfBadLeechers
+0002.301 () Search and replacing table: wp_wfBadLeechers: rows: 0
+0002.301 () Restoring table (MyISAM): wppj_wfBlockedIPLog - will restore as: wp_wfBlockedIPLog
+0002.305 () Search and replacing table: wp_wfBlockedIPLog: rows: 0
+0002.305 () Restoring table (MyISAM): wppj_wfBlocks - will restore as: wp_wfBlocks
+0002.306 () Database queries processed: 50 in 1.42 seconds
+0002.312 () Search and replacing table: wp_wfBlocks: rows: 0
+0002.312 () Restoring table (MyISAM): wppj_wfBlocksAdv - will restore as: wp_wfBlocksAdv
+0002.330 () Search and replacing table: wp_wfBlocksAdv: rows: 0
+0002.330 () Restoring table (MyISAM): wppj_wfConfig - will restore as: wp_wfConfig
+0002.354 () Search and replacing table: wp_wfConfig: rows: 135
+0002.361 () Restoring table (MyISAM): wppj_wfCrawlers - will restore as: wp_wfCrawlers
+0002.379 () Search and replacing table: wp_wfCrawlers: rows: 0
+0002.379 () Restoring table (MyISAM): wppj_wfFileMods - will restore as: wp_wfFileMods
+0003.030 () Search and replacing table: wp_wfFileMods: rows: 4308
+0003.393 () Restoring table (MyISAM): wppj_wfHits - will restore as: wp_wfHits
+0003.502 () Skipping this table: data in this table (wp_wfHits) should not be search/replaced
+0003.502 () Restoring table (MyISAM): wppj_wfHoover - will restore as: wp_wfHoover
+0003.514 () Search and replacing table: wp_wfHoover: rows: 0
+0003.514 () Restoring table (MyISAM): wppj_wfIssues - will restore as: wp_wfIssues
+0003.518 () Search and replacing table: wp_wfIssues: rows: 0
+0003.518 () Restoring table (MyISAM): wppj_wfLeechers - will restore as: wp_wfLeechers
+0003.530 () Search and replacing table: wp_wfLeechers: rows: 66
+0003.534 () Restoring table (MyISAM): wppj_wfLockedOut - will restore as: wp_wfLockedOut
+0003.550 () Search and replacing table: wp_wfLockedOut: rows: 0
+0003.551 () Restoring table (MyISAM): wppj_wfLocs - will restore as: wp_wfLocs
+0003.597 () Search and replacing table: wp_wfLocs: rows: 3
+0003.598 () Restoring table (MyISAM): wppj_wfLogins - will restore as: wp_wfLogins
+0003.605 () Search and replacing table: wp_wfLogins: rows: 18
+0003.608 () Restoring table (MyISAM): wppj_wfNet404s - will restore as: wp_wfNet404s
+0003.627 () Search and replacing table: wp_wfNet404s: rows: 0
+0003.627 () Restoring table (MyISAM): wppj_wfReverseCache - will restore as: wp_wfReverseCache
+0003.637 () Search and replacing table: wp_wfReverseCache: rows: 3
+0003.637 () Restoring table (MyISAM): wppj_wfScanners - will restore as: wp_wfScanners
+0003.708 () Search and replacing table: wp_wfScanners: rows: 3
+0003.709 () Restoring table (MyISAM): wppj_wfStatus - will restore as: wp_wfStatus
+0003.771 () Search and replacing table: wp_wfStatus: rows: 365
+0003.804 () Restoring table (MyISAM): wppj_wfThrottleLog - will restore as: wp_wfThrottleLog
+0003.809 () Search and replacing table: wp_wfThrottleLog: rows: 0
+0003.809 () Restoring table (MyISAM): wppj_wfVulnScanners - will restore as: wp_wfVulnScanners
+0003.824 () Search and replacing table: wp_wfVulnScanners: rows: 0
+0003.824 () Restoring table (MyISAM): wppj_woocommerce_api_keys - will restore as: wp_woocommerce_api_keys
+0003.827 () Database queries processed: 100 in 2.94 seconds
+0003.829 () Search and replacing table: wp_woocommerce_api_keys: rows: 0
+0003.829 () Restoring table (MyISAM): wppj_woocommerce_attribute_taxonomies - will restore as: wp_woocommerce_attribute_taxonomies
+0003.844 () Search and replacing table: wp_woocommerce_attribute_taxonomies: rows: 0
+0003.844 () Restoring table (MyISAM): wppj_woocommerce_downloadable_product_permissions - will restore as: wp_woocommerce_downloadable_product_permissions
+0003.849 () Search and replacing table: wp_woocommerce_downloadable_product_permissions: rows: 0
+0003.849 () Restoring table (MyISAM): wppj_woocommerce_order_items - will restore as: wp_woocommerce_order_items
+0003.865 () Skipping this table: data in this table (wp_woocommerce_order_items) should not be search/replaced
+0003.865 () Restoring table (MyISAM): wppj_woocommerce_payment_tokens - will restore as: wp_woocommerce_payment_tokens
+0003.884 () Search and replacing table: wp_woocommerce_payment_tokens: rows: 0
+0003.884 () Restoring table (MyISAM): wppj_woocommerce_sessions - will restore as: wp_woocommerce_sessions
+0003.893 () Skipping this table: data in this table (wp_woocommerce_sessions) should not be search/replaced
+0003.893 () Restoring table (MyISAM): wppj_woocommerce_shipping_zone_locations - will restore as: wp_woocommerce_shipping_zone_locations
+0003.901 () Search and replacing table: wp_woocommerce_shipping_zone_locations: rows: 1
+0003.902 () Restoring table (MyISAM): wppj_woocommerce_shipping_zone_methods - will restore as: wp_woocommerce_shipping_zone_methods
+0003.910 () Search and replacing table: wp_woocommerce_shipping_zone_methods: rows: 0
+0003.910 () Restoring table (MyISAM): wppj_woocommerce_shipping_zones - will restore as: wp_woocommerce_shipping_zones
+0003.933 () Search and replacing table: wp_woocommerce_shipping_zones: rows: 1
+0003.933 () Restoring table (MyISAM): wppj_woocommerce_tax_rate_locations - will restore as: wp_woocommerce_tax_rate_locations
+0003.955 () Search and replacing table: wp_woocommerce_tax_rate_locations: rows: 0
+0003.955 () Restoring table (MyISAM): wppj_woocommerce_tax_rates - will restore as: wp_woocommerce_tax_rates
+0003.959 () Unlocking database and leaving maintenance mode
+0003.959 () Disabling Maintenance mode&#8230;
+0003.960 () Search and replacing table: wp_woocommerce_tax_rates: rows: 13
+0003.963 () Finished: lines processed: 126 in 3.08 seconds
+0003.963 () Cleaning up rubbish...
+0003.963 () Begin search and replace (updraftplus_restored_db)
+0003.964 () Restored pre-migration site ID for this installation
+0003.971 () Database search and replace: replace http://sandbox.blushdrop.com in backup dump with http://blushdrop.com
+0003.972 () Search and replacing table: wp_commentmeta: already done
+0003.972 () Search and replacing table: wp_comments: already done
+0003.972 () Search and replacing table: wp_links: already done
+0003.972 () Search and replacing table: wp_options: already done
+0003.972 () Search and replacing table: wp_postmeta: already done
+0003.972 () Search and replacing table: wp_posts: already done
+0003.972 () Search and replacing table: wp_term_relationships: already done
+0003.972 () Search and replacing table: wp_term_taxonomy: already done
+0003.972 () Search and replacing table: wp_termmeta: already done
+0003.972 () Search and replacing table: wp_terms: already done
+0003.972 () Search and replacing table: wp_usermeta: already done
+0003.972 () Search and replacing table: wp_users: already done
+0003.972 () Search and replacing table: wp_wfBadLeechers: already done
+0003.972 () Search and replacing table: wp_wfBlockedIPLog: already done
+0003.973 () Search and replacing table: wp_wfBlocks: already done
+0003.973 () Search and replacing table: wp_wfBlocksAdv: already done
+0003.973 () Search and replacing table: wp_wfConfig: already done
+0003.973 () Search and replacing table: wp_wfCrawlers: already done
+0003.973 () Search and replacing table: wp_wfFileMods: already done
+0003.973 () Search and replacing table: wp_wfHits: already done
+0003.973 () Search and replacing table: wp_wfHoover: already done
+0003.973 () Search and replacing table: wp_wfIssues: already done
+0003.973 () Search and replacing table: wp_wfLeechers: already done
+0003.973 () Search and replacing table: wp_wfLockedOut: already done
+0003.973 () Search and replacing table: wp_wfLocs: already done
+0003.973 () Search and replacing table: wp_wfLogins: already done
+0003.973 () Search and replacing table: wp_wfNet404s: already done
+0003.973 () Search and replacing table: wp_wfReverseCache: already done
+0003.973 () Search and replacing table: wp_wfScanners: already done
+0003.973 () Search and replacing table: wp_wfStatus: already done
+0003.973 () Search and replacing table: wp_wfThrottleLog: already done
+0003.973 () Search and replacing table: wp_wfVulnScanners: already done
+0003.973 () Search and replacing table: wp_woocommerce_api_keys: already done
+0003.973 () Search and replacing table: wp_woocommerce_attribute_taxonomies: already done
+0003.973 () Search and replacing table: wp_woocommerce_downloadable_product_permissions: already done
+0003.973 () Search and replacing table: wp_woocommerce_order_itemmeta: already done
+0003.973 () Search and replacing table: wp_woocommerce_order_items: already done
+0003.973 () Search and replacing table: wp_woocommerce_payment_tokenmeta: already done
+0003.973 () Search and replacing table: wp_woocommerce_payment_tokens: already done
+0003.973 () Search and replacing table: wp_woocommerce_sessions: already done
+0003.973 () Search and replacing table: wp_woocommerce_shipping_zone_locations: already done
+0003.973 () Search and replacing table: wp_woocommerce_shipping_zone_methods: already done
+0003.973 () Search and replacing table: wp_woocommerce_shipping_zones: already done
+0003.973 () Search and replacing table: wp_woocommerce_tax_rate_locations: already done
+0003.974 () Search and replacing table: wp_woocommerce_tax_rates: already done
+0004.064 () Search and replacing table: wp_hmp_playlist: rows: 0
+0004.080 () Search and replacing table: wp_hmp_rating: rows: 0
+0004.091 () Entity: plugins
+0004.091 () restore_backup(backup_file=backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-plugins.zip, type=plugins, info=a:2:{s:4:"path";s:47:"/home2/blushdrop/public_html/wp-content/plugins";s:11:"description";s:7:"Plugins";}, last_one=)
+0004.092 () Unpacking backup... (backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-plugins.zip, 15.5 Mb)
+0062.961 () Moving old data: filesystem method / updraft_dir is potentially possible
+0062.992 () Moving old data: can potentially use wp_filesystem method / -old
+0062.992 () Moving old data out of the way...
+0064.176 () Top-level entities being moved: woocommerce, jetpack, wordpress-seo, index.php, replace-image, hello.php, akismet, contact-form-7, dropbox-backup, easy-google-fonts, wordfence, updraftplus, wp-shortcode, out-of-the-box, regenerate-thumbnails
+0064.194 () Moving unpacked backup into place...
+0068.059 () Top-level entities being moved: woocommerce, BlushDrop-app, index.php, wp-smushit, hello.php, akismet, dropbox-backup, wordfence, custom-blushdrop-plugin, WoocommerceAddProductID, updraftplus, woocommerce-gateway-paypal-express-checkout, out-of-the-box, regenerate-thumbnails, woocommerce-gateway-stripe
+0068.074 () Cleaning up rubbish...
+0068.080 () Entity: themes
+0068.080 () restore_backup(backup_file=backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-themes.zip, type=themes, info=a:2:{s:4:"path";s:46:"/home2/blushdrop/public_html/wp-content/themes";s:11:"description";s:6:"Themes";}, last_one=)
+0068.081 () Unpacking backup... (backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-themes.zip, 5.4 Mb)
+0082.412 () Moving old data: filesystem method / updraft_dir is potentially possible
+0082.412 () Moving old data: can potentially use wp_filesystem method / -old
+0082.412 () Moving old data out of the way...
+0082.648 () Top-level entities being moved: wpgumby, twentyfourteen, BlushDrop-app, index.php, twentythirteen, skt-wedding-lite, shamrock, twentyfifteen
+0082.652 () Moving unpacked backup into place...
+0082.713 () Top-level entities being moved: twentyfourteen, index.php, optimizer_pro, twentysixteen, twentyfifteen
+0082.716 () Cleaning up rubbish...
+0082.722 () Entity: uploads
+0083.542 () restore_backup(backup_file=backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-uploads.zip, type=uploads, info=a:2:{s:4:"path";s:47:"/home2/blushdrop/public_html/wp-content/uploads";s:11:"description";s:7:"Uploads";}, last_one=)
+0083.542 () Unpacking backup... (backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-uploads.zip, 33.3 Mb)
+0138.059 () Moving old data: filesystem method / updraft_dir is potentially possible
+0138.059 () Moving old data: can potentially use wp_filesystem method / -old
+0138.059 () Moving old data out of the way...
+0138.246 () Moving unpacked backup into place...
+0138.267 () Cleaning up rubbish...
+0138.273 () Entity: others
+0138.273 () restore_backup(backup_file=backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-others.zip, type=others, info=a:2:{s:4:"path";s:39:"/home2/blushdrop/public_html/wp-content";s:11:"description";s:6:"Others";}, last_one=1)
+0138.273 () Unpacking backup... (backup_2016-08-15-2148_BlushDrop_12b5b71da7ed-others.zip, 79.8 Mb)
+0267.143 () Cleaning up rubbish...
+0267.179 () Restore successful!
+0267.179 () Restore successful

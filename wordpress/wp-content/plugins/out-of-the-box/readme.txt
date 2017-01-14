@@ -1,6 +1,6 @@
 ﻿=== Out-of-the-Box ===
 Requires at least: 3.8
-Tested up to: 4.5
+Tested up to: 4.5.3
 
 This plugin will help you to easily integrate Dropbox into your WordPress website or blog. Out-of-the-Box allows you to view, download, delete, rename files & folders directly from a WordPress page. You can use Out-of-the-Box as a filebrowser, gallery, audio- or video-player!
 
@@ -9,6 +9,20 @@ This plugin will help you to easily integrate Dropbox into your WordPress websit
 This plugin will help you to easily integrate Dropbox into your WordPress website or blog. Out-of-the-Box allows you to view, download, delete, rename files & folders directly from a WordPress page. You can use Out-of-the-Box as a filebrowser, gallery, audio- or video-player!
 
 == Changelog ==
+= 1.7.4.3 (21 July 2016) =
+* Bug fix for set_time_limit() function which is causing errors on some servers
+* Bug fix for the Media Player not able to play m4v files
+* Bug fix previewing pdf files
+
+= 1.7.4.2 (18 May 2016) =
+* Bug Fix Lightbox concerning opening and closing multiple Lightboxes
+* Bug Fix opening videos in File Browser
+* Bug Fix 'Update Now' button in the plugins dashboard
+* Bug Fix hidding folders Gallery when attribute showfolders=0
+
+= 1.7.4.1 (28 April 2016) =
+* Bug Fix Lightbox in subfolders of the gallery not opening
+
 = 1.7.4 (26 April 2016) =
 * Bug Fix for stalling upload function
 * Bug Fix opening and closing multiple Lightboxes

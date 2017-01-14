@@ -1,3 +1,0 @@
-After process payment a custom login page in needed, this need the parameters of the username and the products the customer did buy
-
-Once the user is logged in, is redirected to it's page.

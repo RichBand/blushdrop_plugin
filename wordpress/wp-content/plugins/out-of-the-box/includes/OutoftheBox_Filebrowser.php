@@ -197,7 +197,7 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
     $return .= $this->renderEditItem($item);
     $return .= "</div></div>";
 
-    $return .= "<a " . $link['url'] . " " . $link['target'] . " class='" . $link['class'] . "' title='$title' " . $link['lightbox'] . " " . $link['onclick'] . " data-filename='" . $link['filename'] . "'>";
+    $return .= "<a " . $link['url'] . " " . $link['target'] . " class='" . $link['class'] . "' title='$title' " . $link['lightbox'] . " " . $link['onclick'] . " data-filename='" . $link['filename'] . "' data-caption='" . $item['name'] . "'>";
 
     if ($this->options['show_filesize'] === '1') {
       $return .= "<div class='entry_size'>" . $item['size'] . "</div>";
@@ -229,6 +229,32 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
     $onclick = '';
     $lightbox = '';
     $datatype = 'iframe';
+
+    /* Check if user is allowed to preview the file */
+    if (($this->options['mcepopup'] === '0') && ($this->checkUserRole($this->options['view_role']))) {
+      if ($this->options['previewinline'] === '1') {
+        if (in_array($item['extension'], array('jpg', 'jpeg', 'gif', 'png'))) {
+          $class = 'entry_link ilightbox-group';
+          $onclick = "sendGooglePageView('Preview', '" . $item['name'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
+          $url = $item['url']; //"&dl=1";
+          $datatype = 'image';
+        } else if ($item['openwithdropbox']) {
+          $class = 'entry_link ilightbox-group';
+          $onclick = "sendGooglePageView('Preview', '" . $item['name'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
+          $url = admin_url('admin-ajax.php') . "?action=outofthebox-preview&OutoftheBoxpath=" . rawurlencode($item['path']) . "&lastpath=" . rawurlencode($this->_lastPath) . "&listtoken=" . $this->listtoken;
+          $onclick = "sendGooglePageView('Preview', '" . $item['basename'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
+        } else if (in_array($item['extension'], array('pdf'))) {
+          $class = 'entry_link ilightbox-group';
+          $onclick = "sendGooglePageView('Preview', '" . $item['name'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
+          $url .= "&raw=1";
+        } else if (in_array($item['extension'], array('mp4', 'm4v', 'ogg', 'ogv', 'webmv', 'mp3', 'm4a', 'ogg', 'oga'))) {
+          $class = 'entry_link ilightbox-group';
+          $onclick = "sendGooglePageView('Preview', '" . $item['name'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
+          $datatype = 'video';
+          $url .= "&raw=1";
+        }
+      }
+    }
 
     /* Check if user is allowed to download file */
     if (($this->options['mcepopup'] === '0') && ($this->checkUserRole($this->options['download_role']))) {
@@ -267,10 +293,16 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
             $class = 'entry_link ilightbox-group';
             $onclick = "sendGooglePageView('Preview', '" . $item['name'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
             $url .= "&raw=1";
+          } else if (in_array($item['extension'], array('mp4', 'm4v', 'ogg', 'ogv', 'webmv', 'mp3', 'm4a', 'ogg', 'oga'))) {
+            $class = 'entry_link ilightbox-group';
+            $onclick = "sendGooglePageView('Preview', '" . $item['name'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
+            $datatype = 'video';
+            $url .= "&raw=1";
           }
         }
       }
     }
+
 
     $filename = $item['name'];
     $filename .= (($this->options['show_ext'] === '1' && !empty($item['extension'])) ? '.' . $item['extension'] : '');
@@ -291,6 +323,10 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
       if ($datatype === 'image') {
         $lightbox .= 'data-type="image"';
         $lightbox .= ' data-options="thumbnail: \'' . $item['thumb'] . '\'"';
+      } elseif ($datatype === 'video') {
+        $lightbox = "rel='ilightbox[" . $this->listtoken . "_" . $item['id'] . "]' ";
+        $lightbox .= 'data-type="iframe"';
+        $lightbox .= ' data-options="mousewheel: false, width: \'85%\', height: \'80%\', thumbnail: \'' . str_replace('32x32', '128x128', $item['icon']) . '\'"';
       } else {
         $lightbox .= 'data-type="iframe"';
         $lightbox .= ' data-options="mousewheel: false, width: \'85%\', height: \'80%\', thumbnail: \'' . str_replace('32x32', '128x128', $item['icon']) . '\'"';
@@ -305,7 +341,7 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
     $html = '';
 
     $usercandownload = $this->checkUserRole($this->options['download_role']);
-    
+
     if ($item['is_dir']) {
       $usercanrename = ($this->checkUserRole($this->options['renamefolders_role']));
       $usercandelete = ($this->checkUserRole($this->options['deletefolders_role']));
@@ -325,13 +361,16 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
       } else if ($item['openwithdropbox']) {
         $previewurl = admin_url('admin-ajax.php') . "?action=outofthebox-preview&OutoftheBoxpath=" . rawurlencode($item['path']) . "&lastpath=" . rawurlencode($this->_lastPath) . "&listtoken=" . $this->listtoken;
         $onclick = "sendGooglePageView('Preview', '" . $item['basename'] . ((!empty($item['extension'])) ? '.' . $item['extension'] : '') . "');";
-        $html .= "<li><a class='entry_action_view' title='" . __('Preview', 'outofthebox') . "'><i class='fa fa-desktop fa-lg'></i>&nbsp;" . __('Preview', 'outofthebox') . "</a></li>";
+
+        if ($this->options['previewinline'] === '1') {
+          $html .= "<li><a class='entry_action_view' title='" . __('Preview', 'outofthebox') . "'><i class='fa fa-desktop fa-lg'></i>&nbsp;" . __('Preview', 'outofthebox') . "</a></li>";
+        }
         $html .= "<li><a href='$previewurl' target='_blank' class='entry_action_external_view' onclick=\"$onclick\" title='" . __('Preview (new window)', 'outofthebox') . "'><i class='fa fa-desktop fa-lg'></i>&nbsp;" . __('Preview (new window)', 'outofthebox') . "</a></li>";
       }
     }
 
     /* Download */
-    if ((!$item['is_dir']) && ($usercandownload)){
+    if ((!$item['is_dir']) && ($usercandownload)) {
       $html .= "<li><a href='" . admin_url('admin-ajax.php') . "?action=outofthebox-download&OutoftheBoxpath=" . rawurlencode($item['path']) . "&lastpath=" . rawurlencode($this->_lastPath) . "&listtoken=" . $this->listtoken . "&dl=1' data-filename='" . $filename . "' class='entry_action_download' title='" . __('Download file', 'outofthebox') . "'><i class='fa fa-cloud-download fa-lg'></i>&nbsp;" . __('Download file', 'outofthebox') . "</a></li>";
     }
 
@@ -446,7 +485,7 @@ class OutoftheBox_Filebrowser extends OutoftheBox_Dropbox {
         /* Can File be previewed via Dropbox? 
          * https://www.dropbox.com/developers/core/docs#thumbnails
          */
-        $previewsupport = array('doc', 'docx', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'xls', 'xlsx', 'xlsm', 'rtf');
+        $previewsupport = array('pdf', 'doc', 'docx', 'docm', 'ppt', 'pps', 'ppsx', 'ppsm', 'pptx', 'pptm', 'xls', 'xlsx', 'xlsm', 'rtf');
         $openwithdropbox = (in_array($extension, $previewsupport));
         //
         //add files with thumbnails

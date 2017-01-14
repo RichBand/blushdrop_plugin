@@ -12,19 +12,15 @@
  * * Secret keys
  * * Database table prefix
  * * ABSPATH
- *∑
+ *
  * @link https://codex.wordpress.org/Editing_wp-config.php
  *
  * @package WordPress
  */
 
-//Ricardo Bandala Added
-define('WP_DEBUG', true);
-
-
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'blushdrop');
+define('DB_NAME', 'blushdrop_production');
 
 /** MySQL database username */
 define('DB_USER', 'root');
@@ -36,7 +32,7 @@ define('DB_PASSWORD', '2414');
 define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8mb4');
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
 define('DB_COLLATE', '');
@@ -50,14 +46,15 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'S)/.G[rNv$gHHu9VsqK *]/ayBr?q?{<4/~Uo:)tgx7weONMZv=lKX^())4f+nl_');
-define('SECURE_AUTH_KEY',  '*i4j)U/7y:ybg%=]wdg!g9 !n[t7#k*]Sr0)KqSDTl6p[3,%,/DN<>MYe[bvhS@F');
-define('LOGGED_IN_KEY',    'z6=9_ueR)r289475!n%r9,uEd)9$Lb2FNFu`2arX@0.G4S9Ebfcik8~wFh)ChR@W');
-define('NONCE_KEY',        'w=73xluKb&WmUY5cfq3Rh]vHeNKI|= WZuoR4et{$r_n[[dAU]I8Ps6Gb(hDM7zO');
-define('AUTH_SALT',        'u8Cn~b37>v)%+h0s.;giI[[*^A[krmV$aP;yeNlnl_wUF}:c0=V3?E(6F]T(]^_r');
-define('SECURE_AUTH_SALT', 'Sa{M%$pv#%%+C[NB~L^mk)]Nf<qD$+7tH%/xz72knboh.UQFH*|p?{.ZdQy$i!Z&');
-define('LOGGED_IN_SALT',   '%JML{PX23)z.3[ (I!HD2Kvb<w:EV]U/y%N[MWCZ-9fq5F{(HXDf}>3Y1I.^<gi;');
-define('NONCE_SALT',       '&Ip*6gIl2(,P~St!n.6I.8+HX}`JbmeJXt^:q8>X8!S`_vF?c|{O8v6e/t3vB*s?');
+define('AUTH_KEY',         'jvydsw9iiq5eez0fjwwbnuih78tcf8s0pcvdu4ywasisri40bayselk4izrvitmu');
+define('SECURE_AUTH_KEY',  'tsafq6gtehii679rfnficu9oe7xj0gvurpxztabk7lrblu02eraugxxl5i0ywxgn');
+define('LOGGED_IN_KEY',    'pvydmh6sbf1c3dviec1zhckkxejuqahmvd0gr4qdsf5igwsdku7eqjmeu3waqsai');
+define('NONCE_KEY',        'xqerh43tlzqo0dxvfj5v2s8x8ro9zh0ulccsrzicp5d6qlbi8tkqfrtj09nq0kgc');
+define('AUTH_SALT',        'qehjt7jeq05ktco6jltnu03ffupsyi1fctvc1vqp7e2bwhpro1uhjnlqyevelrom');
+define('SECURE_AUTH_SALT', 'cgrlx9zh5bd8fcejdadixronw0pf7ynn4nrxynfgq5rfmy01x6f9lrqjzjplxbmx');
+define('LOGGED_IN_SALT',   'j7oij7uwdrxcqlxlgrecdupov82opsxil7wujio3luxxgzrxlcg5tva8o5qhmy1n');
+define('NONCE_SALT',       'vlkehvv6qcw2eyt1bralyik2cyu0ulsrclqfafmlfo48dvxxqy2oowwc0gachahx');
+define('WP_MEMORY_LIMIT', '64M');
 
 /**#@-*/
 
@@ -88,6 +85,6 @@ define('WP_DEBUG', false);
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
-//TODO implement abspath in production
+
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');

@@ -210,7 +210,6 @@ if (!class_exists('OutoftheBox_Settings')) {
       } elseif (!empty($this->settings['purcasecode'])) {
         echo "<div id='message' class='updated'><p>" . __('The plugin is <strong>Activated</strong> and the <strong>Auto-Updater</strong> enabled', 'outofthebox') . ". " . __('Your purchasecode', 'outofthebox') . ": " . esc_attr($this->settings['purcasecode']) . " </p></div>";
       } else {
-
         echo "<div id='message' class='error'><p>" . __('The plugin is <strong>Not Activated</strong> and the <strong>Auto-Updater</strong> disabled', 'outofthebox') . ". " . __('Please activate the plugin', 'outofthebox') . ".</p><p><input id='updater_button' type='button' value='Enable Auto-Updater' class='button-primary'/></p></div>";
       }
 
