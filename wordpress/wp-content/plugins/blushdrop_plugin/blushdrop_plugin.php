@@ -14,14 +14,14 @@ $args = array(
         'appInfo' => ['key' => 'kulo8xx7kugwfzo', 'secret' => '5gqns9krb5b2v7i'],
         'token' =>'xZ1AXx94nAoAAAAAAAH2vYuaGl5d9RNlwAEJ3XacJ6JRqDfxAIZhe0ift20P7f9M'
     ],
-	'prodCat_Music' => 'music',
-	'prodID_Disc' => '31',
-	'prodID_EditingPacakage' => '32',
-	'prodID_ExtraMinute' => '79',
-	'prodID_RawMaterial' => '67',
-	'prodID_URL' => '34',
-	'cartRules' =>[
-		'atLeastOnePerCart'=>['prodID_EditingPacakage','prodID_URL'],
-	]
+    'prodCat_Music' => 'Music',
+    'prodID_Disc' => '160',
+    'prodID_EditingPacakage' => '34',
+    'prodID_ExtraMinute' => '292',
+    'prodID_RawMaterial' => '159',
+    'prodID_URL' => '32',
+    'cartRules' =>[
+        'atLeastOnePerCart'=>['prodID_EditingPacakage','prodID_URL'],
+    ],
 );
 $bdp = new Blushdrop($args);

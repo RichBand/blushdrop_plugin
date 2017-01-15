@@ -38,9 +38,8 @@ if (!class_exists('Blushdrop')) {
 			add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
 			add_action('wp_enqueue_scripts', array(&$this, 'enqueue_CustomerFiles'));
 			add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
-			add_shortcode('blushdrop_ClientControls', array(&$this, 'loadClientControls'));
-			add_shortcode('blushdrop_ClientModel', array(&$this, 'loadClientModel'));
-			add_shortcode('blushdrop_ClientCartRules', array(&$this, 'loadClientCartRules'));
+			add_shortcode('blushdrop_CustomerDashboardControls', array(&$this, 'loadCustomerDashboardControls'));
+			//add_shortcode('blushdrop_ClientCartRules', array(&$this, 'loadClientCartRules'));
 		}
 		private function createPageCustomer($user, $path)
 		{
@@ -274,33 +273,28 @@ if (!class_exists('Blushdrop')) {
 				}
 			}
 		}
-		public function loadClientControls()
+		public function loadCustomerDashboardControls()
 		{
-			if( $this->isAuthorOrAdmin()) {
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html")) {
-					return file_get_contents(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html");
-				}
-				else {
-					return 'An error has occurred, please reload the page, if the problem
-				persist, please get in contact with customer service';
-				}
-			}
-		}
-		public function loadClientModel()
-		{
-			if( $this->isAuthorOrAdmin()){
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardModel.php"))
-				{
-					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardModel.php");
-					$authorID = get_the_author_meta('ID');
-					loadData($this, $authorID);
-				}
-				else
-				{
-					return 'An error has occurred, please reload the page, if the problem
-					persist, please get in contact with customer service';
-				}
-			}
+            if( $this->isAuthorOrAdmin()) {
+                $settings = $this->getSettings();
+                $wcm = $this->getBdpWcm();
+                $dpx = $this->getBdpDpx();
+                $user = get_user_by('id', get_the_author_meta('ID'));
+                $path = $this->getPath() . $user->user_login;
+                $currentTotalMinutes = $dpx->getVideoMinutes($path);
+                $products = [
+                    'disc' => $wcm->getProduct($settings['prodID_Disc'], $user),
+                    'main' => $wcm->getProduct($settings['prodID_EditingPacakage'], $user),
+                    'minute' => $wcm->getProduct($settings['prodID_ExtraMinute'], $user),
+                    'music' => $wcm->getMusic($settings['prodCat_Music'], $user),
+                    'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $user),
+                    'url' => $wcm->getProduct($settings['prodID_URL'], $user),
+                ];
+                $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerDashboardControls.php";
+                if (file_exists($file)) {
+                    include($file);
+                };
+            }
 		}
 		public function redirectIfCustomer($user_login, $user)
 		{
