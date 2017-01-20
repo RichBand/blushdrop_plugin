@@ -21,7 +21,8 @@ $args = array(
     'prodID_RawMaterial' => '159',
     'prodID_URL' => '32',
     'cartRules' =>[
-        'atLeastOnePerCart'=>['prodID_EditingPacakage','prodID_URL'],
+        'onePerCart'=>[34,32],
+        'noModifyQuantity'=>[292],
     ],
 );
 $bdp = new Blushdrop($args);
