@@ -219,7 +219,6 @@ if (!class_exists('Blushdrop')) {
 		public function enqueue_CustomerFiles()
 		{
 			$user_login = wp_get_current_user()->user_login;
-			$wala = is_page($user_login);
 			if($user_login && is_page($user_login)){
 				wp_enqueue_style('mdl_css');
 				wp_enqueue_style('custom_css');
