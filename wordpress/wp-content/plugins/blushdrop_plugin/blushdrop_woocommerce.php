@@ -63,25 +63,25 @@ if (!class_exists('Blushdrop_woocommerce')) {
 		 * @param $user
 		 * @return mixed|string|void
 		 */
-		public function getProduct($productID, $user)
+		public function getProduct($productID, $user=0)
 		{
 			$product = new StdClass;
 			//TODO, check why the validation of the active plugin woocommerce is not working
-			//if ( is_plugin_active('woocommerce/woocommerce.php') ){
+//			if ( is_plugin_active('woocommerce/woocommerce.php') ){
 				$WC_product = wc_get_product( $productID);
 				$product = $WC_product->post;
-			//}
-            var_dump($product);
-            $product->isBought = ($user)? ($this->isBought($productID, $user)? 1: 0) : 0;
-            $productInCart = $this->isInCart($productID);
-            $product->isInCart = $productInCart;
-            $product->price =  floatval($WC_product->get_price());
-            $product->reg_price = floatval($WC_product->get_regular_price());
-            $product->sale_price = floatval($WC_product->get_sale_price());
+//			}
+            if(isset($user->ID)){
+                $product->isBought = $this->isBought($productID, $user)? 1: 0;
+            }
+			$product->isInCart = $this->isInCart($productID);
+			$product->price =  floatval($WC_product->get_price());
+			$product->reg_price = floatval($WC_product->get_regular_price());
+			$product->sale_price = floatval($WC_product->get_sale_price());
 			return $product;
 		}
 
-		public function getMusic($musicCategory, $user)
+		public function getMusic($musicCategory)
 		{
 			$music = array();
 			$params = array(
@@ -95,7 +95,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 				{
 					$wc_query->the_post();
 					$thisProductID = $wc_query->post->ID;
-					$x = $this->getProduct($thisProductID, $user);
+					$x = $this->getProduct($thisProductID);
 					$music[] = $x;
 				}
 			}
@@ -106,7 +106,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 		public function getMusicIDs($musicCategory)
 		{
 			$res = Array();
-			$music = $this->getMusic($musicCategory, 0);
+			$music = $this->getMusic($musicCategory);
 			for($i = 0, $j = count($music); $i<$j; $i++){
 				array_push($res, $music[$i]->ID);
 			}
@@ -116,7 +116,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 		public function removeMusicFromCart($musicCategory)
 		{
 			$res = array();
-			$music = $this->getMusic($musicCategory, 0);
+			$music = $this->getMusic($musicCategory);
 			for($i = 0, $j = count($music); $i<$j; $i++){
 				$inCart = $music[$i]->isInCart;
 				if($inCart['ok']){

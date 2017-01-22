@@ -32,15 +32,14 @@ if (!class_exists('Blushdrop')) {
             $this->setConfigValues($args);
             $this->settings = $this->loadSettings();
 			$this->bdp_wcm = new Blushdrop_woocommerce();
-			add_action('init', array(&$this, 'register_CustomerFiles'));
-			add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);
-			add_action('wp_ajax_getMinutes', array(&$this, 'ajax_getMinutes'));
-			add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
-			add_action('wp_enqueue_scripts', array(&$this, 'enqueue_CustomerFiles'));
-			add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
-			add_shortcode('blushdrop_ClientControls', array(&$this, 'loadClientControls'));
-			add_shortcode('blushdrop_ClientModel', array(&$this, 'loadClientModel'));
-			add_shortcode('blushdrop_ClientCartRules', array(&$this, 'loadClientCartRules'));
+            add_action('init', array(&$this, 'register_CustomerFiles'));
+            add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);
+            add_action('wp_ajax_getMinutes', array(&$this, 'ajax_getMinutes'));
+            add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
+            add_action('wp_enqueue_scripts', array(&$this, 'enqueue_CustomerFiles'));
+            add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
+			add_shortcode('blushdrop_CustomerDashboardControls', array(&$this, 'loadCustomerDashboardControls'));
+			add_shortcode('blushdrop_CustomerCartRules', array(&$this, 'loadCustomerCartRules'));
 		}
 		private function createPageCustomer($user, $path)
 		{
@@ -174,6 +173,7 @@ if (!class_exists('Blushdrop')) {
 			));
 			return $settings;
 		}
+
 		private function sanitizeUserName($username)
 		{
 			//TODO improove with regex;
@@ -183,18 +183,15 @@ if (!class_exists('Blushdrop')) {
 			$username = str_replace(" ","_",$username);
 			return $username;
 		}
-
-		private function setConfigValues($args)
-		{
-
-		    if(get_option('blushdrop_settings', $default=false)){
+        private function setConfigValues($args)
+        {
+            if(get_option('blushdrop_settings', $default=false)){
                 update_option('blushdrop_settings', $args);
             }
             else{
                 add_option('blushdrop_settings', $args);
             }
-
-		}
+        }
 		/**Public functions ***********************************/
 		public function ajax_addOrderToCart()
 		{
@@ -258,49 +255,40 @@ if (!class_exists('Blushdrop')) {
 		{
 			return $this->path;
 		}
-		public function loadClientCartRules()
+
+        public function loadCustomerCartRules()
+        {
+            $settings = $this->getSettings();
+            $onePerCart = $settings['cartRules']['onePerCart']; //=>['prodID_EditingPacakage','prodID_URL'],
+            $noModifyQuantity = $settings['cartRules']['noModifyQuantity']; //=>['minutes'],
+            $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerCartRules.php";
+            if (file_exists($file)) {
+                include($file);
+            };
+        }
+
+        public function loadCustomerDashboardControls()
 		{
-			$page = get_page_by_title( 'Cart' );
-			if( $this->isCustomer() && is_page($page->ID)){
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_cartRules.php"))
-				{
-					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/client_cartRules.php");
-                    loadData($this);
-				}
-				else
-				{
-					return 'An error has occurred, please reload the page, if the problem
-					persist, please get in contact with customer service';
-				}
-			}
-		}
-		public function loadClientControls()
-		{
-			if( $this->isAuthorOrAdmin()) {
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html")) {
-					include(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardControls.html");
-				}
-				else {
-					return 'An error has occurred, please reload the page, if the problem
-				persist, please get in contact with customer service';
-				}
-			}
-		}
-		public function loadClientModel()
-		{
-			if( $this->isAuthorOrAdmin()){
-				if(file_exists(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardModel.php"))
-				{
-					include_once(WP_PLUGIN_DIR . "/blushdrop_plugin/client_dashboardModel.php");
-					$authorID = get_the_author_meta('ID');
-					loadData($this, $authorID);
-				}
-				else
-				{
-					return 'An error has occurred, please reload the page, if the problem
-					persist, please get in contact with customer service';
-				}
-			}
+            if( $this->isAuthorOrAdmin()) {
+                $settings = $this->getSettings();
+                $wcm = $this->getBdpWcm();
+                $dpx = $this->getBdpDpx();
+                $user = get_user_by('id', get_the_author_meta('ID'));
+                $path = $this->getPath() . $user->user_login;
+                $currentTotalMinutes = $dpx->getVideoMinutes($path);
+                $products = [
+                    'disc' => $wcm->getProduct($settings['prodID_Disc'], $user),
+                    'main' => $wcm->getProduct($settings['prodID_EditingPacakage'], $user),
+                    'minute' => $wcm->getProduct($settings['prodID_ExtraMinute'], $user),
+                    'music' => $wcm->getMusic($settings['prodCat_Music'], $user),
+                    'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $user),
+                    'url' => $wcm->getProduct($settings['prodID_URL'], $user),
+                ];
+                $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerDashboardControls.php";
+                if (file_exists($file)) {
+                    include($file);
+                };
+            }
 		}
 		public function redirectIfCustomer($user_login, $user)
 		{
@@ -316,6 +304,7 @@ if (!class_exists('Blushdrop')) {
 			wp_register_style('mdl_css', plugins_url('/mdl/material.css', __FILE__), false, null, 'all');
 			wp_register_style('custom_css', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
 			wp_register_script('mdl_js', plugins_url('/mdl/material.js', __FILE__));
+			//TODO add filter to load just in dashboard
 			wp_register_script('blushdrop_dashboard_js', plugins_url('/js/blushdrop_dashboard.js', __FILE__));
 			wp_register_script('blushdrop_cart_js', plugins_url('/js/blushdrop_cart.js', __FILE__));
 		}
