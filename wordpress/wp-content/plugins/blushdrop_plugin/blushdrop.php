@@ -299,7 +299,7 @@ if (!class_exists('Blushdrop')) {
                     return ob_get_clean();
                 }
             }
-                     return '';
+            return '';
         }
 		public function redirectIfCustomer($user_login, $user)
 		{
