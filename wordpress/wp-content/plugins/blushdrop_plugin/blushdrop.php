@@ -217,8 +217,8 @@ if (!class_exists('Blushdrop')) {
 		public function enqueue_CustomerFiles()
 		{
 			$user_login = wp_get_current_user()->user_login;
-			$isAdmin = current_user_can('administrator');
-			if(is_page($user_login) || $isAdmin){
+			$wala = is_page($user_login);
+			if($user_login && is_page($user_login)){
 				wp_enqueue_style('mdl_css');
 				wp_enqueue_style('custom_css');
 				wp_enqueue_script('mdl_js');
@@ -259,16 +259,14 @@ if (!class_exists('Blushdrop')) {
 
         public function loadCustomerCartRules()
         {
-            if( $this->isAuthorOrAdmin()) {
-                $settings = $this->getSettings();
-                $onePerCart = $settings['cartRules']['onePerCart']; //=>['prodID_EditingPacakage','prodID_URL'],
-                $noModifyQuantity = $settings['cartRules']['noModifyQuantity']; //=>['minutes'],
-                $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerCartRules.php";
-                if (file_exists($file)) {
-                    ob_start();
-                    include($file);
-                    return ob_get_clean();
-                }
+            $settings = $this->getSettings();
+            $onePerCart = $settings['cartRules']['onePerCart']; //=>['prodID_EditingPacakage','prodID_URL'],
+            $noModifyQuantity = $settings['cartRules']['noModifyQuantity']; //=>['minutes'],
+            $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerCartRules.php";
+            if (file_exists($file)) {
+                ob_start();
+                include($file);
+                return ob_get_clean();
             }
             return '';
         }
