@@ -43,28 +43,29 @@ if (!class_exists('Blushdrop')) {
 		}
 		private function createPageCustomer($user, $path)
 		{
-			$oob = '[outofthebox dir="'.$path.'"'
-                .' mode="files" upload="1" rename="1" move="1" delete="1" addfolder="1"'
-                .' viewrole="administrator|author|customer|guest"'
-                .' addfolderrole="administrator|editor|author|contributor|customer"'
-                .' uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"'
-                .' downloadrole="administrator|author|subscriber|customer"'
-                .' renamefilesrole="administrator|editor|author|contributor|customer"'
+			$oob = '[outofthebox dir="'.$path.'" mode="files" '
+                .'viewrole="administrator|author|customer|guest"'
+                .'downloadrole="administrator|author|subscriber|customer" '
+                .'upload="1" rename="1" '
+                .'renamefilesrole="administrator|editor|author|contributor|customer"'
                 .' renamefoldersrole="administrator|editor|author|customer"'
-                .' deletefilesrole="administrator|editor|author|customer"'
-                .' deletefoldersrole="administrator|editor|author|customer"'
-                .' ]';
-			$oob .=" [blushdrop_ClientModel][blushdrop_ClientControls]";
-			$page['post_type'] = 'page';
-			$page['post_content'] = $oob;
-			$page['post_parent'] = 0;
-			$page['post_author'] = $user->ID;
-			$page['post_status'] = 'publish';
-			$page['post_title'] = $username = $this->sanitizeUserName($user->user_login);
-			$pageid = wp_insert_post($page);
-			if ($pageid == 0) {
-				//TODO find what to do with the error, maybe a suggestion to reload?
-			}
+                .' move="1" delete="1" deletefilesrole="administrator|editor|author|customer" '
+                .'deletefoldersrole="administrator|editor|author|customer" '
+                .'addfolder="1" addfolderrole="administrator|editor|author|contributor|customer"'
+                .' uploadrole="administrator|editor|author|contributor|subscriber|customer|guest"]';
+			$oob .=" [blushdrop_CustomerDashboardControls]";
+			try {
+                $page['post_type'] = 'page';
+                $page['post_content'] = $oob;
+                $page['post_parent'] = 0;
+                $page['post_author'] = $user->ID;
+                $page['post_status'] = 'publish';
+                $page['post_title'] = $username = $this->sanitizeUserName($user->user_login);
+                $pageid = wp_insert_post($page);
+            }
+            catch(Exception $e){
+                error_log("Caught $e while trying to create the page for the user ".$user->ID);
+            }
 		}
 		/*
 		* Create an array with the products filtered applying
@@ -260,13 +261,18 @@ if (!class_exists('Blushdrop')) {
 
         public function loadCustomerCartRules()
         {
-            $settings = $this->getSettings();
-            $onePerCart = $settings['cartRules']['onePerCart']; //=>['prodID_EditingPacakage','prodID_URL'],
-            $noModifyQuantity = $settings['cartRules']['noModifyQuantity']; //=>['minutes'],
-            $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerCartRules.php";
-            if (file_exists($file)) {
-                include($file);
-            };
+            if( $this->isAuthorOrAdmin()) {
+                $settings = $this->getSettings();
+                $onePerCart = $settings['cartRules']['onePerCart']; //=>['prodID_EditingPacakage','prodID_URL'],
+                $noModifyQuantity = $settings['cartRules']['noModifyQuantity']; //=>['minutes'],
+                $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerCartRules.php";
+                if (file_exists($file)) {
+                    ob_start();
+                    include($file);
+                    return ob_get_clean();
+                }
+            }
+            return '';
         }
 
         public function loadCustomerDashboardControls()
@@ -275,23 +281,26 @@ if (!class_exists('Blushdrop')) {
                 $settings = $this->getSettings();
                 $wcm = $this->getBdpWcm();
                 $dpx = $this->getBdpDpx();
-                $user = get_user_by('id', get_the_author_meta('ID'));
-                $path = $this->getPath() . $user->user_login;
+                $author = get_user_by('id', get_the_author_meta('ID'));
+                $path = $this->getPath() . $author->user_login;
                 $currentTotalMinutes = $dpx->getVideoMinutes($path);
                 $products = [
-                    'disc' => $wcm->getProduct($settings['prodID_Disc'], $user),
-                    'main' => $wcm->getProduct($settings['prodID_EditingPacakage'], $user),
-                    'minute' => $wcm->getProduct($settings['prodID_ExtraMinute'], $user),
-                    'music' => $wcm->getMusic($settings['prodCat_Music'], $user),
-                    'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $user),
-                    'url' => $wcm->getProduct($settings['prodID_URL'], $user),
+                    'disc' => $wcm->getProduct($settings['prodID_Disc'], $author),
+                    'main' => $wcm->getProduct($settings['prodID_EditingPacakage'], $author),
+                    'minute' => $wcm->getProduct($settings['prodID_ExtraMinute'], $author),
+                    'music' => $wcm->getMusic($settings['prodCat_Music'], $author),
+                    'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $author),
+                    'url' => $wcm->getProduct($settings['prodID_URL'], $author),
                 ];
                 $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerDashboardControls.php";
                 if (file_exists($file)) {
+                    ob_start();
                     include($file);
-                };
+                    return ob_get_clean();
+                }
             }
-		}
+                     return '';
+        }
 		public function redirectIfCustomer($user_login, $user)
 		{
 			$myID = $user->ID;
