@@ -224,6 +224,9 @@ if (!class_exists('Blushdrop')) {
 				wp_enqueue_script('blushdrop_dashboard_js');
 			}
 			if(is_page('cart')){
+                wp_enqueue_style('mdl_css');
+                wp_enqueue_style('custom_css');
+                wp_enqueue_script('mdl_js');
 				wp_enqueue_script('blushdrop_cart_js');
 			}
 		}
