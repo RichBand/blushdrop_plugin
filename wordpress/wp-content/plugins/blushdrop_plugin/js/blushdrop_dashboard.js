@@ -10,13 +10,31 @@ var bdp = {};
             products : dataModel.products,
             siteUrl : dataModel.siteurl,
         };
-
         if(bdp.model.products){
             bdp.populateInfoElements();
         }
+        bdp.musicWidget.start();
     });
     bdp = {
         model:{},
+        musicWidget:{
+            start:function(){
+                $.ajax({
+                    async: false,
+                    url: 'https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs',
+                    data: {},
+                    success:function(data, textStatus, request) {
+                        bdp.musicWidget.build(data)
+                    },
+                    error: function(errorThrown){
+                    }
+                });
+            },
+            build:function(data){
+                $rest
+                
+            },
+        },
         collectOrder:function(){
             var products = this.model.products;
             if(typeof products === 'undefined'){

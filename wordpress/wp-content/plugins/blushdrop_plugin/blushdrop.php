@@ -222,8 +222,10 @@ if (!class_exists('Blushdrop')) {
 			if($user_login && is_page($user_login)){
 				wp_enqueue_style('mdl_css');
 				wp_enqueue_style('custom_css');
+                wp_enqueue_style('songsPlaylist_css');
 				wp_enqueue_script('mdl_js');
 				wp_enqueue_script('blushdrop_dashboard_js');
+                wp_enqueue_script('blushdrop_songsPlaylist_js');
 			}
 			if(is_page('cart')){
                 wp_enqueue_style('mdl_css');
@@ -312,10 +314,13 @@ if (!class_exists('Blushdrop')) {
 		}
 		public function register_CustomerFiles()
 		{
-			wp_register_style('mdl_css', plugins_url('/mdl/material.css', __FILE__), false, null, 'all');
+			wp_register_style('mdl_css', plugins_url('/mdl/material.min.css', __FILE__), false, null, 'all');
 			wp_register_style('custom_css', plugins_url('/css/CustomerTemplateStyle.css', __FILE__), false, null, 'all');
 			wp_register_script('mdl_js', plugins_url('/mdl/material.js', __FILE__));
-			//TODO add filter to load just in dashboard
+
+			wp_register_style('songsPlaylist_css', plugins_url('/css/songsPlaylist.css', __FILE__), false, null, 'all');
+            wp_register_script('blushdrop_songsPlaylist_js', plugins_url('/js/blushdrop_songsPlaylist.js', __FILE__));
+
 			wp_register_script('blushdrop_dashboard_js', plugins_url('/js/blushdrop_dashboard.js', __FILE__));
 			wp_register_script('blushdrop_cart_js', plugins_url('/js/blushdrop_cart.js', __FILE__));
 		}
