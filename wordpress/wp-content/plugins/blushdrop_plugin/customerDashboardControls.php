@@ -58,56 +58,31 @@ $siteUrl = get_site_url();
                 <div class="mdl-cell mdl-cell--middle mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--4-col-phone">
                     <!--div class="mdl-textfield mdl-js-textfield">
                         <select id="eleSelMusic" class="mdl-textfield__input"></select>
+
                     </div-->
-                    <div class="container">
-                        <div class="column center">
-                            <h1>HTML5 Audio Player</h1>
-                            <h6>w/ responsive playlist</h6>
+                    <div id="interface--info">
+                        <div id="info__cover"    class="mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone" ></div>
+                        <div id="info__status"   class="mdl-cell mdl-cell--8-col mdl-cell--2-col-tablet mdl-cell--4-col-phone" ></div>
+                        <div id="info__title"    class="mdl-cell mdl-cell--8-col mdl-cell--2-col-tablet mdl-cell--4-col-phone" ></div>
+                        <div id="info__artist"   class="mdl-cell mdl-cell--8-col mdl-cell--2-col-tablet mdl-cell--4-col-phone" ></div>
+                        <div id="info__duration" class="mdl-cell mdl-cell--12-col mdl-cell--2-col-tablet mdl-cell--4-col-phone" ></div>
+                    </div>
+                    <div id="interface--player">
+                        <div id="player">
+                            <audio preload id="player__audio" controls="controls">
+                                <source src="" type="audio.mp3"/>
+                                Your browser does not support HTML5 Audio!
+                            </audio>
                         </div>
-                        <div class="column add-bottom">
-                            <div id="mainwrap">
-                                <div id="nowPlay">
-                                    <span class="left" id="npAction">Paused...</span>
-                                    <span class="right" id="npTitle"></span>
-                                </div>
-                                <div id="audiowrap">
-                                    <div id="audio0">
-                                        <audio preload id="audio1" controls="controls">Your browser does not support HTML5 Audio!</audio>
-                                    </div>
-                                    <div id="tracks">
-                                        <a id="btnPrev">&laquo;</a>
-                                        <a id="btnNext">&raquo;</a>
-                                    </div>
-                                </div>
-                                <div id="plwrap">
-                                    <ul id="plList">
-                                        <li>
-                                            <div class="plItem">
-                                                <div class="plNum">01.</div>
-                                                <div class="plTitle">All This Is - Joe L.'s Studio</div>
-                                                <div class="plLength">2:46</div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="plItem">
-                                                <div class="plNum">02.</div>
-                                                <div class="plTitle">The Forsaken - Broadwing Studio (Final Mix)</div>
-                                                <div class="plLength">8:31</div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="plItem">
-                                                <div class="plNum">36.</div>
-                                                <div class="plTitle">The Forsaken (Take 2) - Smith St. Basement (Nov. '03)</div>
-                                                <div class="plLength">8:37</div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <div id="tracks">
+                            <a id="btnPrev">&laquo;</a>
+                            <a id="btnNext">&raquo;</a>
                         </div>
                     </div>
-                </div>
+                    <div id="interface--playlist">
+                        <ul id="playlist"></ul>
+                    </div>
+
             </div><!--end grid left block-->
         </div> <!--end left block-->
         <div class="bdp-leftBlock mdl-cell mdl-cell--4-col mdl-cell--2-col-tablet mdl-cell--4-col-phone">
