@@ -1,8 +1,21 @@
-
-.pic_cover{
+#audioWrapper{
+    background: #fafafa;
+}
+.backgroundCover{
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
+}
+#info__cover{
+    border-radius: 25px;
+}
+.inlineFloatLeft{
+    display: inline-block;
+    float: left;
+}
+#controllers{
+    font-size: xx-large;
+    color: #090909;
 }
 .title_name{
 

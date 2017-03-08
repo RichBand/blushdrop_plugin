@@ -41,7 +41,15 @@ if (!class_exists('Blushdrop')) {
             add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
 			add_shortcode('blushdrop_CustomerDashboardControls', array(&$this, 'loadCustomerDashboardControls'));
 			add_shortcode('blushdrop_CustomerCartRules', array(&$this, 'loadCustomerCartRules'));
+            add_filter('woocommerce_email_order_meta_fields', 'admin_email_order_meta_fields', 10, 3 );
 		}
+        private function admin_email_order_meta_fields( $fields, $sent_to_admin, $order ) {
+            $fields['extra_fields'] = array(
+                'label' => __( 'Wedding Date' ),
+                'value' => get_post_meta( $order->id, 'weddate', true ),
+            );
+            return $fields;
+        }
 		private function createPageCustomer($user, $path)
 		{
 			$oob = '[outofthebox dir="'.$path.'" mode="files" '
@@ -85,12 +93,13 @@ if (!class_exists('Blushdrop')) {
 		{
 			$wcm = $this->bdp_wcm;
 			$settings = $this->settings;
-			$musicIDs = $wcm->getMusicIDs($settings['prodCat_Music']);
+//			$musicIDs = $wcm->getMusicIDs($settings['prodCat_Music']);
 			$res = Array();
 			$regProdIDs = Array(
 				$settings['prodID_Disc'],
 				$settings['prodID_ExtraMinute'],
 				$settings['prodID_RawMaterial'],
+				$settings['prodID_MusicCapsule'],
 				$settings['prodID_EditingPacakage']
 			);
 			foreach ($orders as $order){
@@ -113,16 +122,16 @@ if (!class_exists('Blushdrop')) {
 					continue;
 				};
 				//***Just One per car, different ID's : MUSIC***
-				if(in_array($id, $musicIDs)){
-					$authorID = get_the_author_meta('ID');
-					$musicInCart = $wcm->thereIsMusicInCart($settings['prodCat_Music'], $authorID);
-					if($musicInCart) {
-						$deleted = $wcm->removeMusicFromCart($settings['prodCat_Music']);
-					}
-					$order['added'] = $wcm->addToCart($id, $qty);
-					array_push($res,$order);
-					continue;
-				};
+//				if(in_array($id, F$musicIDs)){
+//					$authorID = get_the_author_meta('ID');
+//					$musicInCart = $wcm->thereIsMusicInCart($settings['prodCat_Music'], $authorID);
+//					if($musicInCart) {
+//						$deleted = $wcm->removeMusicFromCart($settings['prodCat_Music']);
+//					}
+//					$order['added'] = $wcm->addToCart($id, $qty);
+//					array_push($res,$order);
+//					continue;
+//				};
 			}
 			unset ($order);
 			return $res;
@@ -218,8 +227,10 @@ if (!class_exists('Blushdrop')) {
 		}
         public function ajax_getTrackList()
         {
-//            $contents = file_get_contents('https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs');
-            $contents = '{"data":[{"type":"songs","id":1328,"attributes":{"title":"Mountain Rush","duration":"3:18","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":82,"name":"Joel Slabach","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/JoelSlabach.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":3357,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/Mountain_Rush_MSTR.aifc","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_Mountain_Rush_MSTR.mp3"}}}}]}}},{"type":"songs","id":1125,"attributes":{"title":"Parapluie","duration":"3:07","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":110,"name":"Brique a Braq","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/BriqueaBraq.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":2693,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/10_Parapluie.wav","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_10_Parapluie.mp3"}}}}]}}}],"links":{"self":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","next":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2","first":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","last":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2"}}';
+            $index = intval($_REQUEST['index']);
+            $url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
+            $contents = file_get_contents($url);
+//            $contents = '{"data":[{"type":"songs","id":1328,"attributes":{"title":"Mountain Rush","duration":"3:18","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":82,"name":"Joel Slabach","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/JoelSlabach.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":3357,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/Mountain_Rush_MSTR.aifc","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_Mountain_Rush_MSTR.mp3"}}}}]}}},{"type":"songs","id":1125,"attributes":{"title":"Parapluie","duration":"3:07","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":110,"name":"Brique a Braq","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/BriqueaBraq.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":2693,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/10_Parapluie.wav","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_10_Parapluie.mp3"}}}}]}}}],"links":{"self":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","next":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2","first":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","last":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2"}}';
             if($contents) {
                 echo $contents;
             }else {

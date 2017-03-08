@@ -7,6 +7,9 @@
  * Author URI: http://ricardobandala.com
  * License: private
  */
+
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
 require_once 'blushdrop.php';
 $args = array(
 	'dropbox' => [
@@ -18,6 +21,7 @@ $args = array(
     'prodID_Disc' => '160',
     'prodID_EditingPacakage' => '34',
     'prodID_ExtraMinute' => '292',
+    'prodID_MusicCapsule' => '350',
     'prodID_RawMaterial' => '159',
     'prodID_URL' => '32',
     'cartRules' =>[
