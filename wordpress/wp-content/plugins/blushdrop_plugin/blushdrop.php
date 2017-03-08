@@ -194,7 +194,6 @@ if (!class_exists('Blushdrop')) {
 			$username = str_replace(" ","_",$username);
 			return $username;
 		}
-
         private function setConfigValues($args)
         {
             if(get_option('blushdrop_settings', $default=false)){
@@ -203,7 +202,6 @@ if (!class_exists('Blushdrop')) {
             else{
                 add_option('blushdrop_settings', $args);
             }
-
         }
 		/**Public functions ***********************************/
 		public function ajax_addOrderToCart()

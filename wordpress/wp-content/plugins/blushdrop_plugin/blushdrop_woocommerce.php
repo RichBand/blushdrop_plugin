@@ -65,7 +65,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
 		 */
 		public function getProduct($productID, $user=0)
 		{
-			$product = null;
+			$product = new StdClass;
 			//TODO, check why the validation of the active plugin woocommerce is not working
 //			if ( is_plugin_active('woocommerce/woocommerce.php') ){
 				$WC_product = wc_get_product( $productID);
