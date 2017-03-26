@@ -101,8 +101,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
                 {
                     $wc_query->the_post();
                     $thisProductID = $wc_query->post->ID;
-                    $x = $this->getProduct($thisProductID, $user);
-                    $music[] = $x;
+                    $music[] = $this->getProduct($thisProductID, $user);
                 }
             }
             wp_reset_postdata();
@@ -111,13 +110,26 @@ if (!class_exists('Blushdrop_woocommerce')) {
 
 		public function getMusicIDs()
 		{
-			$res = Array();
+			$res = [];
 			$music = $this->getMusic();
 			for($i = 0, $j = count($music); $i<$j; $i++){
 				array_push($res, $music[$i]->ID);
 			}
 			return $res;
 		}
+
+		public function getMusicInCart()
+        {
+            $res = array();
+            $songs = $this->getMusic();
+            $res = array_filter($songs, function($song){
+                return !empty($song->isInCart['ok']);
+            });
+            if (!empty($res)){
+                $res =  array_values($res)[0];
+            }
+            return $res;
+        }
 
 		public function removeMusicFromCart()
 		{

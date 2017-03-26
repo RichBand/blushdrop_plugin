@@ -23,16 +23,16 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
     <div class="mdl-grid">
         <div class="<?=mdlGrid(8,6,4)?>">
             <div class="mdl-grid mdl-grid--nested">
-                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>">
+                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?> text-right">
                     <span> Editing: </span> <br/>
-                    </span> (includes 10 minutes of raw material)</span>
+                    <span class="text-smaller"> (includes 10 minutes of raw material)</span>
                 </div>
                 <div class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
                     <label for="eleCheckboxEditing" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
                         <input type="checkbox" id="eleCheckboxEditing" class="mdl-checkbox__input" checked disabled>
                     </label>
                 </div>
-                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>">
+                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle') ?> text-right">
                     <span> Extra minutes of raw material:</span>
                 </div>
                 <div class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
@@ -41,7 +41,7 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                                type="text" pattern="-?[0-9]*(\.[0-9]+)?" disabled>
                     </div>
                 </div>
-                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>">
+                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle') ?>  text-right">
                     <span> DVD disc quantity:</span>
                 </div>
                 <div class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
@@ -50,7 +50,7 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                         <span class="mdl-textfield__error">Input is not a number!</span>
                     </div>
                 </div>
-                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>">
+                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?> text-right">
                     <span> Ship Raw Footage</span>
                 </div>
                 <div class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
@@ -59,10 +59,12 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                                onchange="bdp.updateSubtotal();" />
                     </label>
                 </div>
-                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>">
+                <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>  text-right">
                     <span> Song Selected:</span>
                 </div>
-                <div id="selectedSongName" class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>"></div>
+                <div id="selectedSongName" class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
+
+                </div>
                 <input id="eleSongCode" type="hidden" val ="" onchange="bdp.updateSubtotal();">
                 <div id="audioWrapper" class="mdl-grid mdl-grid--nested">
                     <div id="interface--info" class="<?= mdlGrid()?>" >
@@ -79,8 +81,8 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                             </audio>
                         </div>
                         <div id="controllers">
-                            <a id="player__prev">&laquo;</a>
-                            <a id="player__next">&raquo;</a>
+                            <a id="player__prev">prev</a>
+                            <a id="player__next">next</a>
                         </div>
                     </div>
                     <div id="interface--playlist" class="<?= mdlGrid()?>">

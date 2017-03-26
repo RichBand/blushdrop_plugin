@@ -10,8 +10,9 @@ var bdp = {};
             products : dataModel.products,
             siteUrl : dataModel.siteurl,
         };
-        if(bdp.model.products){
+        if( Boolean(bdp.model.products) ){
             bdp.populateInfoElements();
+            bdp.updateSubtotal();
         }
         bdp.musicWidget.start(1);
     });
@@ -183,7 +184,11 @@ var bdp = {};
 
             $("#eleExtraMinutes").val( ( this.model.currentTotalMinutes - 10 > 0 )? this.model.currentTotalMinutes : 0 );
 
-            this.updateSubtotal();
+            if( typeof prod.musicInCart.isInCart != 'undefined' && Boolean(prod.musicInCart.isInCart.ok) ){
+                $selectedSongName = $("#selectedSongName");
+                $selectedSongName.html(prod.musicInCart.post_title);
+                $selectedSongName.data('songincart', prod.musicInCart.post_title);
+            }
         },
         setDVD : function(qty) {
             var value = $("#eleInputDiscAmount").val();

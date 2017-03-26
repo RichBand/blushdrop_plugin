@@ -20,6 +20,12 @@
 .title_name{
 
 }
+.text-right{
+    text-align: right;
+}
+.text-smaller{
+    font-size: smaller;
+}
 .voc_inst{
 
 }

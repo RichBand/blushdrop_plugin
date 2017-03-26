@@ -108,14 +108,16 @@ jQuery(function ($) {
         });
         audioPlayer.playlist.on('change', 'input:checkbox', function (e) {
             audioPlayer.playlist.find('input:checkbox').not(this).prop('checked', false);
-            var title = '';
+            var $selectedSongName = $('#selectedSongName');
+            var $eleSongCode = $('#eleSongCode');
             if(this.checked){
-                $('#selectedSongName').html($(this).data('title'))
+                $selectedSongName.html($(this).data('title'))
                 var data = $(this).data();
-                $('#eleSongCode').data(data).val($(this).data('id'));
+                $eleSongCode.data(data).val($(this).data('id'));
             }
             else{
-                $('#selectedSongName').html('please select a song from the playlist')
+                var songincart =  $selectedSongName.data('songincart');
+                $selectedSongName.html(Boolean(songincart)? songincart : 'please select a song from the playlist');
                 $('#eleSongCode').val('');
             }
         });

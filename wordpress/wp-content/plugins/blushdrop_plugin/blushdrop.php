@@ -338,6 +338,7 @@ if (!class_exists('Blushdrop')) {
                     'main' => $wcm->getProduct($settings['prodID_EditingPacakage'], $author),
                     'minute' => $wcm->getProduct($settings['prodID_ExtraMinute'], $author),
                     'music' => $wcm->getProduct($settings['prodID_MusicCapsule'], $author),
+                    'musicInCart' => $wcm->getMusicInCart(),
                     'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $author),
                     'url' => $wcm->getProduct($settings['prodID_URL'], $author),
                 ];
