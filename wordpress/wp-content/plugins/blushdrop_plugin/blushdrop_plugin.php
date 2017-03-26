@@ -10,10 +10,10 @@
 require_once 'blushdrop.php';
 
 $args = array(
-	'dropbox' => [
-	    'path' => '/blushdrop/',
-        'appInfo' => ['key' => 'kulo8xx7kugwfzo', 'secret' => '5gqns9krb5b2v7i'],
-        'token' =>'xZ1AXx94nAoAAAAAAAH2vYuaGl5d9RNlwAEJ3XacJ6JRqDfxAIZhe0ift20P7f9M'
+    'dropbox' => [
+        'path' => '/blushdrop/clients/',
+        'appInfo' => ['key' => 'jknvogyzj4jwpru', 'secret' => 'do6nvyzatxynkef'],
+        'token' =>'aJhr5imPEkAAAAAAAAAA6ZHoBxaPNjU8nJF_fc611dRLa_EycP18skNkPmPkR4dc'
     ],
     'prodCat_Music' => 'music',
     'prodID_Disc' => '160',
