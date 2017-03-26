@@ -1,10 +1,11 @@
+
 (function($){
     $(document).ready(function(){
         cartRules.wait();
-        cartRules.apply();
+        //cartRules.apply();
     });
     $(document).ajaxStart(function(){
-        cartRules.wait();
+        //cartRules.wait();
     });
     $(document).ajaxComplete(function(){
         cartRules.apply();
@@ -22,7 +23,9 @@
                 var input =  $(this).find('div.quantity input');
                 id = $.inArray(anchor.data('product_id'), rules.nmq);
                 if(id != -1) {
-                    input.prop('type', 'hidden').before(input.val());
+                    input.prop('disabled', true);
+                    input.css('border', 0);
+                    
                 }
             })
             cartRules.ready();
@@ -40,4 +43,5 @@
             })
         },
     }
+    cartRules.wait();
 })(jQuery);
