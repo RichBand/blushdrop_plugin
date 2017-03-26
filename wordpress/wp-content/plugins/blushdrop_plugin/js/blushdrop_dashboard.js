@@ -60,11 +60,11 @@ var bdp = {};
         },
         collectOrder:function(){
             var products = this.model.products;
+            var order = [];
             if(typeof products === 'undefined'){
                 console.log('not able to access products')
                 return [];
             }
-            var order = [{id: parseInt(products.main.ID), qty: 1}];//Always add the main product
 
             var disc = $("#eleInputDiscAmount");
             var discValue = parseInt(disc.val());
@@ -90,17 +90,16 @@ var bdp = {};
                 });
             }
 
-            var musicVal = $("#eleSelMusic").val();
+            var musicVal = $("#eleSongCode").val();
             if (musicVal) {
                 order.push({
-                    id: parseInt(musicVal),
-                    qty: 1
+                    id: products.music.ID,
+                    qty: 1,
+                    songID:parseInt(musicVal)
                 })
             }
-
-            var updatedMinutes = parseInt(this.controller.ajax_getMinutes() - 10);
-            updatedMinutes = (updatedMinutes > 0)? updatedMinutes : 0;
             var minutes = products.minute.isInCart.qty;
+            var updatedMinutes = $("#eleExtraMinutes").val();
             var diff = updatedMinutes - minutes;
             if(diff) {
                 order.push({
@@ -164,13 +163,14 @@ var bdp = {};
                         'userID' : bdp.model.customer,
                     },
                     success:function(data, textStatus, request) {
-                        response = data;
+                        data = (data > 10)? (data-10) : data;
+                        $("#eleExtraMinutes").val(data);
+                        bdp.updateSubtotal();
                     },
                     error: function(errorThrown){
                         $("#bdp_background").removeClass("bdp_background--on");
                     }
                 });
-                return response;
             },
             zzz_controller:0,
         },
@@ -180,16 +180,6 @@ var bdp = {};
             $("#eleCheckboxRaw").prop('checked', (prod.raw.isInCart.ok ? true : false));
 
             $("#eleInputDiscAmount").val( (prod.disc.isInCart.ok)?  prod.disc.isInCart.qty || 0 : 0 );
-
-            $("#eleSelMusic").html( (function(){
-                catalog = prod.music;
-                var htm ="";
-                catalog.forEach(function(track){
-                    htm +="<option id='" + track.ID + "' value='" + track.ID + "'"
-                        + ( (track.isInCart.ok)? "selected" : "") + ">" + track.post_title + "</option>";
-                });
-                return htm;
-            })());
 
             $("#eleExtraMinutes").val( ( this.model.currentTotalMinutes - 10 > 0 )? this.model.currentTotalMinutes : 0 );
 
@@ -202,8 +192,15 @@ var bdp = {};
             this.updateSubtotal();
         },
         submitOrder: function () {
+            var that = this;
             $("#bdp_background").addClass("bdp_background--on");
-            this.controller.ajax_addTocart(this.collectOrder());
+            $.when(this.controller.ajax_getMinutes()).then(function(){
+                $("#bdp_background").removeClass("bdp_background--on");
+                var order = that.collectOrder();
+                if(order){
+                    that.controller.ajax_addTocart(order);
+                }
+            });
         },
         updateSubtotal : function(){
             var products = this.model.products;

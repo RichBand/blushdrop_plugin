@@ -63,8 +63,7 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                     <span> Song Selected:</span>
                 </div>
                 <div id="selectedSongName" class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>"></div>
-                <input id="eleSongCode" type="text" val =""/ onchange="bdp.updateSubtotal();">
-
+                <input id="eleSongCode" type="hidden" val ="" onchange="bdp.updateSubtotal();">
                 <div id="audioWrapper" class="mdl-grid mdl-grid--nested">
                     <div id="interface--info" class="<?= mdlGrid()?>" >
                         <div id="info__cover"  class="backgroundCover inlineFloatLeft <?= mdlGrid(3,4,4, 'mdl-cell--middle')?>" ></div>

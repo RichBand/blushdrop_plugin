@@ -7,17 +7,15 @@
  * Author URI: http://ricardobandala.com
  * License: private
  */
-
-@ini_set( 'upload_max_size' , '64M' );
-@ini_set( 'post_max_size', '64M');
 require_once 'blushdrop.php';
+
 $args = array(
 	'dropbox' => [
-	    'path' => '/blushdrop/clients/',
-        'appInfo' => ['key' => 'jknvogyzj4jwpru', 'secret' => 'do6nvyzatxynkef'],
-        'token' =>'aJhr5imPEkAAAAAAAAAA6ZHoBxaPNjU8nJF_fc611dRLa_EycP18skNkPmPkR4dc'
+	    'path' => '/blushdrop/',
+        'appInfo' => ['key' => 'kulo8xx7kugwfzo', 'secret' => '5gqns9krb5b2v7i'],
+        'token' =>'xZ1AXx94nAoAAAAAAAH2vYuaGl5d9RNlwAEJ3XacJ6JRqDfxAIZhe0ift20P7f9M'
     ],
-    'prodCat_Music' => 'Music',
+    'prodCat_Music' => 'music',
     'prodID_Disc' => '160',
     'prodID_EditingPacakage' => '34',
     'prodID_ExtraMinute' => '292',
