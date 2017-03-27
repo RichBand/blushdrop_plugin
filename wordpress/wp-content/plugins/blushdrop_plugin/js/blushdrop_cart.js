@@ -9,7 +9,6 @@
     });
     $(document).ajaxComplete(function(){
         cartRules.apply();
-
     });
     var cartRules = {
         apply:function(){
@@ -27,7 +26,7 @@
                     input.css('border', 0);
                     
                 }
-            })
+            });
             cartRules.ready();
         },
         wait:function(){

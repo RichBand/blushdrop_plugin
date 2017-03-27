@@ -85,9 +85,6 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                             <a id="player__next">next</a>
                         </div>
                     </div>
-                    <div id="interface--playlist" class="<?= mdlGrid()?>">
-                        <ul id="playlist" class="<?= mdlGrid()?>"></ul>
-                    </div>
                 </div>
             </div>
         </div><!--end grid left block-->

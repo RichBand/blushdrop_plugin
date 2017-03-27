@@ -14,51 +14,9 @@ var bdp = {};
             bdp.populateInfoElements();
             bdp.updateSubtotal();
         }
-        bdp.musicWidget.start(1);
     });
     bdp = {
         model:{},
-        musicWidget:{
-            start:function(index){
-                var response ='';
-                $.ajax({
-                    async: false,
-                    url: bdp.model.ajaxUrl,
-                    data: {
-                        'action':'getTrackList',
-                        'index': index
-                    },
-                    dataType:'json',
-                    success:function(data, textStatus, request) {
-                        Boolean(data.data != 'undefined' && data.data.length > 0)? bdp.musicWidget.buildDOM(data):null;
-                    },
-                    error: function(data, textStatus, request){
-                        //something
-                    }
-                });
-            },
-            buildDOM:function(data){
-                 var lis = '';
-                 $.each(data.data, function(index, obj){
-                     var pic = Boolean(obj.relationships.artist.data.pic.url)? obj.relationships.artist.data.pic.url  : 'alternate default url';
-                     var url = Boolean(obj.relationships.audio_files.data[0].audio_file.versions.mp3.url)? obj.relationships.audio_files.data[0].audio_file.versions.mp3.url  : '-';
-                     var title = Boolean(obj.attributes.title)? obj.attributes.title : 'no title';
-                     var artistName = Boolean(obj.relationships.artist.data.name)? obj.relationships.artist.data.name : 'no artist name';
-                     var duration =  Boolean(obj.attributes.duration)? obj.attributes.duration : '-';
-                     var vocals = Boolean(obj.attributes.has_file_with_vocals);
-                     var instrumentals = Boolean(obj.attributes.has_instrumental_file);
-
-                     lis += '<li data-id="' + obj.id + '" data-index="' + index + '" data-title="' + title + '" data-artist="' + artistName + '" data-duration="' + duration + '" data-url="' + url + '" data-cover="' + pic + '"><ul class="mdl-grid mdl-grid--nesting">'
-                            + '<li class="backgroundCover mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--1-col-phone" style="background-image: url('+ pic +');"></li>'
-                            + '<li class="title_name mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet mdl-cell--3-col-phone"><p class="title">' + title + '</p><p class="artist">' + artistName + '</p></li>'
-                            + '<li class="voc_inst   mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone">' + (vocals? 'vocals ': '') + (instrumentals? 'instrumentals ': '') + '</li>'
-                            + '<li class="duration   mdl-cell mdl-cell--1-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">' + duration + '</li>'
-                            + '<li class="checkbox   mdl-cell mdl-cell--1-col mdl-cell--4-col-tablet mdl-cell--1-col-phone"><input type="checkbox" id="song_'+ obj.id +'" class="MDLCLASS" data-title="'+ title +'" data-artist="'+ artistName +'" data-id="'+ obj.id +'" ></li>'
-                          + '</ul></li>';
-                 })
-                $('#playlist').data(data.links).html(lis);
-            },
-        },
         collectOrder:function(){
             var products = this.model.products;
             var order = [];
