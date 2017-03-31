@@ -146,6 +146,8 @@ var bdp = {};
                 $selectedSongName = $("#selectedSongName");
                 $selectedSongName.html(prod.musicInCart.post_title);
                 $selectedSongName.data('songincart', prod.musicInCart.post_title);
+                $selectedSongName.data('songid', prod.musicInCart.post_content);
+                $('#eleSongCode').val(prod.musicInCart.post_content);
             }
         },
         setDVD : function(qty) {

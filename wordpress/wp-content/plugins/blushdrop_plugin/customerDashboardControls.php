@@ -51,7 +51,7 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                     </div>
                 </div>
                 <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?> text-right">
-                    <span> Ship Raw Footage</span>
+                    <span> Ship raw footage</span>
                 </div>
                 <div class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
                     <label for="eleCheckboxRaw" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
@@ -60,7 +60,7 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                     </label>
                 </div>
                 <div class="<?= mdlGrid(8,6,4, 'mdl-cell--middle')?>  text-right">
-                    <span> Song Selected:</span>
+                    <span> Selected song:</span>
                 </div>
                 <div id="selectedSongName" class="<?= mdlGrid(4,2,4, 'mdl-cell--middle')?>">
 
@@ -75,13 +75,14 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                     </div>
                     <div id="interface--player" class="<?= mdlGrid()?>">
                         <div id="player">
-                            <audio preload id="player__audio" controls="controls" class="<?= mdlGrid(4,4,4, 'mdl-cell--middle')?>>
+                            <audio preload id="player__audio" class="<?= mdlGrid(4,4,4, 'mdl-cell--middle')?>>
                                 <source src="" type="audio.mp3"/>
                                 Your browser does not support HTML5 Audio!
                             </audio>
                         </div>
                         <div id="controllers">
                             <a id="player__prev">prev</a>
+                            <a id="player__play">play</a>
                             <a id="player__next">next</a>
                         </div>
                     </div>
