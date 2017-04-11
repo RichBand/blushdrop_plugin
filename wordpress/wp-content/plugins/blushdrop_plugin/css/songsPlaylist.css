@@ -23,17 +23,22 @@
 .text-right{
     text-align: right;
 }
+.text-left{
+    text-align: left;
+}
 .text-smaller{
     font-size: smaller;
 }
-.voc_inst{
-
+._33p{
+    width:33%;
+    float: left;
 }
-.duration{
-
+#eleInputDiscAmount{
+    text-align: center;
+    width: 2em;
 }
-.checkbox{
-
+#bdpMain .mdl-cell{
+    padding-bottom: 0.8em;
 }
 
 /* Font Family

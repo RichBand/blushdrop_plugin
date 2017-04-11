@@ -4,7 +4,6 @@
 #bdpMain{
     display: block;
     width:100%;
-    max-width: 900px;
 }
 .bdp-cell{
     align-self: center;

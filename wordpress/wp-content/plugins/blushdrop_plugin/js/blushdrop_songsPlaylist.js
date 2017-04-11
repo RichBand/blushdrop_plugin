@@ -1,11 +1,5 @@
 // html5media enables <video> and <audio> tags in all major browsers
 // External File: http://api.html5media.info/1.1.8/html5media.min.js
-/*
-* <div id="interface--playlist" class="<?= mdlGrid()?>">
- <ul id="playlist" class="<?= mdlGrid()?>"></ul>
- </div>
- */
-
 // Add user agent as an attribute on the <html> tag...
 // Inspiration: http://css-tricks.com/ie-10-specific-styles/
 var b = document.documentElement;
@@ -17,18 +11,20 @@ b.setAttribute('data-platform', navigator.platform);
 var audioPlayer = null;
 jQuery(function ($) {
     $(document).ready(function(){
-        $.when(audioPlayer.getPlaylist(1)).then(function(){
+        var ap = audioPlayer;
+        $.when(ap.getPlaylist(1)).then(function(){
             var val = $('#eleSongCode').val();
             if(val){
-                audioPlayer.loadPreselectedSong(val);
-                audioPlayer.currentTrackIndex = -1;
+                ap.loadPreselectedSong(val);
+                ap.playlist.unshift(ap.preselectedSong);
+                ap.currentTrackIndex = 0;
             }
             else{
-                audioPlayer.loadTrack(audioPlayer.playlist[0]);
-                audioPlayer.currentTrackIndex = 0;
+                ap.loadTrack(ap.playlist[0]);
+                ap.currentTrackIndex = 0;
             }
-            audioPlayer.player.onended = function(){
-                audioPlayer.playing = false;
+            ap.player.onended = function(){
+                ap.playing = false;
                 $('#player__play').html('play');
             }
         });
@@ -37,7 +33,7 @@ jQuery(function ($) {
     if (supportsAudio) {
         audioPlayer = {
             currentTrackIndex: null,
-            index:1,
+            trackListIndex:1,
             interfaceInfo: {
                 title: $('#info__title'),
                 duration: $('#info__duration'),
@@ -48,7 +44,7 @@ jQuery(function ($) {
             links:$('#playlist').data(),
             player: $('#player__audio').get(0),
             playing:false,
-            playlist: null,
+            playlist: [],
             preselectedSong:null,
             songLoaded: null,
             cleanInterfaceInfo:function(){
@@ -58,48 +54,47 @@ jQuery(function ($) {
                 this.interfaceInfo.status.html('Loading List...');
                 this.interfaceInfo.cover.css('background-image', '');
             },
-            getPlaylist:function(index){
-                var response ='';
+            disableNextButton:function(disabled){
+                $('#player__next').prop('disabled', disabled);
+            },
+            disablePrevButton:function(disabled){
+                $('#player__prev').prop('disabled', disabled);
+            },
+            waitUI: function (thoseFunctions) {
+                $('#audioWrapper').css('opacity', 0.6); // change for opacitiy 0.6
+                setTimeout(function () {
+                    thoseFunctions();
+                    $('#audioWrapper').css('opacity', 1); // change for opacitiy 1
+                }, 1);
+            },
+            getPlaylist:function(trackListIndex){
+                var response =false;
                 var that = this;
                 $.ajax({
                     async: false,
                     url: bdp.model.ajaxUrl,
                     data: {
                         'action':'getTrackList',
-                        'index': index
+                        'index': trackListIndex
                     },
                     dataType:'json',
                     success:function(data, textStatus, request) {
-                        if(Boolean(data.data != 'undefined' && data.data.length > 0) ){
-                            that.playlist = data.data;
+                        if( typeof data.data != 'undefined' && data.data.length > 0) {
+                            that.playlist = that.playlist.concat(data.data);
+                            response = true;
+                        }
+                        else{
+                            that.disableNextButton(true);
+                            response = false;
                         }
                     },
                     error: function(data, textStatus, request){
+                        response = false;
                         //something
                     }
                 });
+                return response;
             },
-//            buildDOM:function(data){
-//                 var lis = '';
-//                 $.each(data.data, function(index, obj){
-//                     var pic = Boolean(obj.relationships.artist.data.pic.url)? obj.relationships.artist.data.pic.url  : 'alternate default url';
-//                     var url = Boolean(obj.relationships.audio_files.data[0].audio_file.versions.mp3.url)? obj.relationships.audio_files.data[0].audio_file.versions.mp3.url  : '-';
-//                     var title = Boolean(obj.attributes.title)? obj.attributes.title : 'no title';
-//                     var artistName = Boolean(obj.relationships.artist.data.name)? obj.relationships.artist.data.name : 'no artist name';
-//                     var duration =  Boolean(obj.attributes.duration)? obj.attributes.duration : '-';
-//                     var vocals = Boolean(obj.attributes.has_file_with_vocals);
-//                     var instrumentals = Boolean(obj.attributes.has_instrumental_file);
-//
-//                     lis += '<li data-id="' + obj.id + '" data-index="' + index + '" data-title="' + title + '" data-artist="' + artistName + '" data-duration="' + duration + '" data-url="' + url + '" data-cover="' + pic + '"><ul class="mdl-grid mdl-grid--nesting">'
-//                            + '<li class="backgroundCover mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--1-col-phone" style="background-image: url('+ pic +');"></li>'
-//                            + '<li class="title_name mdl-cell mdl-cell--5-col mdl-cell--3-col-tablet mdl-cell--3-col-phone"><p class="title">' + title + '</p><p class="artist">' + artistName + '</p></li>'
-//                            + '<li class="voc_inst   mdl-cell mdl-cell--3-col mdl-cell--3-col-tablet mdl-cell--1-col-phone">' + (vocals? 'vocals ': '') + (instrumentals? 'instrumentals ': '') + '</li>'
-//                            + '<li class="duration   mdl-cell mdl-cell--1-col mdl-cell--4-col-tablet mdl-cell--2-col-phone">' + duration + '</li>'
-//                            + '<li class="checkbox   mdl-cell mdl-cell--1-col mdl-cell--4-col-tablet mdl-cell--1-col-phone"><input type="checkbox" id="song_'+ obj.id +'" class="MDLCLASS" data-title="'+ title +'" data-artist="'+ artistName +'" data-id="'+ obj.id +'" ></li>'
-//                          + '</ul></li>';
-//                 })
-//                $('#playlist').data(data.links).html(lis);
-//            },
             loadPreselectedSong:function(trackID){
                 var response ='';
                 var that = this;
@@ -178,83 +173,64 @@ jQuery(function ($) {
             },
             next: function () {
                 var that = this;
-                this.currentTrackIndex +=1;
-                if(this.currentTrackIndex < this.playlist.length){
-                    if(this.preselectedSong != null && this.playlist[this.currentTrackIndex].id == this.preselectedSong.id ){
-                        return audioPlayer.next();
-                    }
-                    this.loadTrack(this.playlist[this.currentTrackIndex]);
-                    (this.playing)? this.play() : null;
+                that.currentTrackIndex ++;
+                if(  that.currentTrackIndex  >= that.playlist.length){
+                   $.when(that.getPlaylist(++that.trackListIndex)).then(function(){
+                       if(typeof that.playlist[that.currentTrackIndex] == 'undefined'){
+                           audioPlayer.disableNextButton(true);
+                           that.trackListIndex--;
+                           that.currentTrackIndex--;
+                        }
+                   });
+                }
+                if(that.playlist[that.currentTrackIndex].id == that.preselectedSong.id){
+                    return that.next();
                 }
                 else{
-                    $.when(this.getPlaylist(++this.index)).then(function(){
-                        that.currentTrackIndex = 0;
-                        if(this.preselectedSong != null && that.playlist[0].id == this.preselectedSong.id ){
-                            return audioPlayer.next();
-                        }
-                        //TODO check if the conditions on load a new playlist, if the first element is equal to the pre selected song, then, load the next one
-                    });
+                    that.loadTrack(that.playlist[that.currentTrackIndex]);
+                    (that.playing)? that.play() : null;
                 }
             },
             prev: function () {
-                if(this.index == 1){
-                    //disable button
-                    return
+                var that = this;
+                that.currentTrackIndex --;
+                if(  that.currentTrackIndex  < 0){
+                    audioPlayer.disablePrevButton(true);
+                    that.currentTrackIndex++;
                 }
-                var prev = $(this.currentTrackIndex).prev();
-                if(prev.is('li')){
-                    this.loadTrack(prev.get(0));
-                    (this.playing)? this.play(prev.data()) : null;
+                if(that.playlist[that.currentTrackIndex].id == that.preselectedSong.id && that.currentTrackIndex > 0){
+                    return that.prev();
                 }
                 else{
-                    this.cleanInterfaceInfo();
-                    this.pause();
-                    bdp.musicWidget.start(--this.index);
+                    that.loadTrack(that.playlist[that.currentTrackIndex]);
+                    (that.playing)? that.play() : null;
                 }
             },
-        }
-
-            //extension = audio.canPlayType('audio/mpeg') ? '.mp3' : audio.canPlayType('audio/ogg') ? '.ogg' : '';
-        //loadTrack(index);
-        $('#player__next').click(function(){
-            audioPlayer.next();
+        };
+        $('#audioControllers').on('click', 'button', function(){
+           switch( $(this).attr('id') ){
+               case 'player__next':
+                   audioPlayer.waitUI(function(){
+                       audioPlayer.next();
+                       audioPlayer.disablePrevButton(false);
+                   });
+                   break;
+               case 'player__prev':
+                   audioPlayer.prev();
+                   audioPlayer.disableNextButton(false);
+                   break;
+               case 'player__play':
+                   if(audioPlayer.playing){
+                       audioPlayer.pause();
+                       $(this).html('play');
+                   }
+                   else{
+                       audioPlayer.play();
+                       $(this).html('pause');
+                   }
+                   break;
+           }
         });
-        $('#player__prev').click(function(){
-            audioPlayer.prev();
-        });
-        $('#player__play').click(function(){
-            if(audioPlayer.playing){
-                audioPlayer.pause();
-                $(this).html('play');
-            }
-            else{
-                audioPlayer.play();
-                $(this).html('pause');
-            }
-        });
-//        audioPlayer.playlist.on('click', 'li', function (e) {
-//
-//            var data = $(this).data();
-//            if (data.id !== audioPlayer.index && !$(e.target).is(':checkbox')) {
-//                audioPlayer.loadTrack(this);
-//                audioPlayer.play(data);
-//            }
-//        });
-//        audioPlayer.playlist.on('change', 'input:checkbox', function (e) {
-//            audioPlayer.playlist.find('input:checkbox').not(this).prop('checked', false);
-//            var $selectedSongName = $('#selectedSongName');
-//            var $eleSongCode = $('#eleSongCode');
-//            if(this.checked){
-//                $selectedSongName.html($(this).data('title'))
-//                var data = $(this).data();
-//                $eleSongCode.data(data).val($(this).data('id'));
-//            }
-//            else{
-//                var songincart =  $selectedSongName.data('songincart');
-//                $selectedSongName.html(Boolean(songincart)? songincart : 'please select a song from the playlist');
-//                $('#eleSongCode').val('');
-//            }
-//        });
     }
 });
 
