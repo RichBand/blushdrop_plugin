@@ -14,6 +14,7 @@ var bdp = {};
             bdp.populateInfoElements();
             bdp.updateSubtotal();
         }
+        $("#bdp_background").toggle();
     });
     bdp = {
         model:{},
@@ -70,7 +71,7 @@ var bdp = {};
                             " more extraMinutes, and will be added to the checkout"
                             : " less extraMinutes, and will be taken to the checkout");
                     if (!confirm(msg)) {
-                        $("#bdp_background").classList.remove("bdp_background--on");
+                        $("#bdp_background").toggle(false);
                         return false
                     }
                 }
@@ -89,7 +90,7 @@ var bdp = {};
                         },
                         error: function (errorThrown) {
                             alert("an unexpected error happen, please reload or try in few minutes");
-                            $("#bdp_background").removeClass("bdp_background--on");
+                            $("#bdp_background").toggle(false);
                         }
                     });
                 }
@@ -107,7 +108,7 @@ var bdp = {};
                     },
                     error: function(errorThrown){
                         alert("an unexpected error happen, please reload or try in few minutes");
-                        $("#bdp_background").removeClass("bdp_background--on");
+                        $("#bdp_background").toggle(false);
                     }
                 });
                 return response;
@@ -127,7 +128,7 @@ var bdp = {};
                         bdp.updateSubtotal();
                     },
                     error: function(errorThrown){
-                        $("#bdp_background").removeClass("bdp_background--on");
+                        $("#bdp_background").toggle(false);
                     }
                 });
             },
@@ -158,14 +159,16 @@ var bdp = {};
         },
         submitOrder: function () {
             var that = this;
-            $("#bdp_background").addClass("bdp_background--on");
-            $.when(this.controller.ajax_getMinutes()).then(function(){
-                $("#bdp_background").removeClass("bdp_background--on");
-                var order = that.collectOrder();
-                if(order){
-                    that.controller.ajax_addTocart(order);
-                }
-            });
+            $("#bdp_background").toggle();
+            setTimeout(function () {
+                $.when(that.controller.ajax_getMinutes()).then(function(){
+//                $("#bdp_background").removeClass("bdp_background--on");
+                    var order = that.collectOrder();
+                    if(order){
+                        that.controller.ajax_addTocart(order);
+                    }
+                });
+            }, 1);
         },
         updateSubtotal : function(){
             var products = this.model.products;

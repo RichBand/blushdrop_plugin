@@ -12,23 +12,39 @@ var audioPlayer = null;
 jQuery(function ($) {
     $(document).ready(function(){
         var ap = audioPlayer;
-        $.when(ap.getPlaylist(1)).then(function(){
+        $.when(ap.getPlaylist(1, true)).then(function(){
             var val = $('#eleSongCode').val();
             if(val){
-                ap.loadPreselectedSong(val);
+                ap.getPreselectedSong(val);
                 ap.playlist.unshift(ap.preselectedSong);
                 ap.currentTrackIndex = 0;
             }
             else{
-                ap.loadTrack(ap.playlist[0]);
+                ap.loadSong(ap.playlist[0]);
                 ap.currentTrackIndex = 0;
             }
             ap.player.onended = function(){
                 ap.playing = false;
                 $('#player__play').html('play');
-            }
+            };
+            ap.player.oncanplay = function(){
+                if(!ap.playing){
+                    ap.interfaceInfo.status.html('-');
+                    var duration = this.duration 
+                    $('#info__timeduration').html( ap.formatDurationTime( this.duration) );
+                }
+            };
+            $('#' + ap.player.id ).on('timeupdate', function() {
+                if(ap.playing){
+                    $('#seekbar').attr("value", this.currentTime / this.duration);
+                    $('#info__timeupdated').html(ap.formatDurationTime( this.duration - this.currentTime) );
+                }
+            });
+
+
         });
     });
+
     var supportsAudio = !!document.createElement('audio').canPlayType;
     if (supportsAudio) {
         audioPlayer = {
@@ -54,6 +70,20 @@ jQuery(function ($) {
                 this.interfaceInfo.status.html('Loading List...');
                 this.interfaceInfo.cover.css('background-image', '');
             },
+            checkboxSelectedStatus:function(){
+                var $label = $("label[for='eleCheckboxPlayer']");
+                var $checkbox = $('#eleCheckboxPlayer');
+
+                if(this.songLoaded.id != $('#eleSongCode').val() ){
+                    $label.removeClass('is-checked is-disabled');
+                    $checkbox.prop('checked', false ).prop('disabled', false);
+                }
+                else{
+                    $label.addClass('is-checked is-disabled');
+                    $checkbox.prop('checked', true ).prop('disabled', true);
+                }
+                return;
+            },
             disableNextButton:function(disabled){
                 $('#player__next').prop('disabled', disabled);
             },
@@ -67,11 +97,21 @@ jQuery(function ($) {
                     $('#audioWrapper').css('opacity', 1); // change for opacitiy 1
                 }, 1);
             },
-            getPlaylist:function(trackListIndex){
+            formatDurationTime: function(secs){
+                var sec= new Number();
+                var min= new Number();
+                sec = Math.floor( secs );
+                min = Math.floor( sec / 60 );
+                min = min >= 10 ? min : '0' + min;
+                sec = Math.floor( sec % 60 );
+                sec = sec >= 10 ? sec : '0' + sec;
+                return  min + ":"+ sec;
+            },
+            getPlaylist:function(trackListIndex, async){
                 var response =false;
                 var that = this;
                 $.ajax({
-                    async: false,
+                    async: async,
                     url: bdp.model.ajaxUrl,
                     data: {
                         'action':'getTrackList',
@@ -95,7 +135,7 @@ jQuery(function ($) {
                 });
                 return response;
             },
-            loadPreselectedSong:function(trackID){
+            getPreselectedSong:function(trackID){
                 var response ='';
                 var that = this;
                 if(Boolean(trackID)){
@@ -117,8 +157,8 @@ jQuery(function ($) {
                                     },
                                     relationships:{
                                         artist:{
-                                            name:data.author,
                                             data:{
+                                                name:data.author,
                                                 pic:{
                                                     url:data.image
                                                 }
@@ -137,7 +177,7 @@ jQuery(function ($) {
                                         }
                                     }
                                 }
-                                that.loadTrack(that.preselectedSong);
+                                that.loadSong(that.preselectedSong);
                             }
                         },
                         error: function(data, textStatus, request){
@@ -146,14 +186,15 @@ jQuery(function ($) {
                     });
                 }
 
-            },loadTrack: function (song) {
+            },
+            loadSong: function (song) {
                 this.songLoaded = song;
                 var url = song.relationships.audio_files.data[0].audio_file.versions.mp3.url;
                 $(this.player).attr('src', url);
                 var inf = this.interfaceInfo;
                 inf.title.html(song.attributes.title);
                 inf.duration.html(song.attributes.duration);
-                inf.artist.html(song.relationships.artist.name);
+                inf.artist.html(song.relationships.artist.data.name);
                 inf.status.html('Loading 1....');
                 inf.cover.css('background-image', 'url( ' + song.relationships.artist.data.pic.url + ')');
                 inf.cover.height(inf.cover.width());
@@ -174,21 +215,27 @@ jQuery(function ($) {
             next: function () {
                 var that = this;
                 that.currentTrackIndex ++;
+                var deadEnd = false;
                 if(  that.currentTrackIndex  >= that.playlist.length){
-                   $.when(that.getPlaylist(++that.trackListIndex)).then(function(){
+                   $.when(that.getPlaylist(++that.trackListIndex, false)).then(function(){
                        if(typeof that.playlist[that.currentTrackIndex] == 'undefined'){
-                           audioPlayer.disableNextButton(true);
                            that.trackListIndex--;
                            that.currentTrackIndex--;
+                           deadEnd = true;
                         }
                    });
                 }
-                if(that.playlist[that.currentTrackIndex].id == that.preselectedSong.id){
-                    return that.next();
-                }
-                else{
-                    that.loadTrack(that.playlist[that.currentTrackIndex]);
-                    (that.playing)? that.play() : null;
+                if(deadEnd){
+                    audioPlayer.disableNextButton(true);
+                }else{
+                    if(that.preselectedSong != null &&  that.playlist[that.currentTrackIndex].id == that.preselectedSong.id){
+                        return that.next();
+                    }
+                    else{
+                        that.loadSong(that.playlist[that.currentTrackIndex]);
+                        that.checkboxSelectedStatus();
+                        (that.playing)? that.play() : null;
+                    }
                 }
             },
             prev: function () {
@@ -198,38 +245,62 @@ jQuery(function ($) {
                     audioPlayer.disablePrevButton(true);
                     that.currentTrackIndex++;
                 }
-                if(that.playlist[that.currentTrackIndex].id == that.preselectedSong.id && that.currentTrackIndex > 0){
+                if(that.preselectedSong != null && that.playlist[that.currentTrackIndex].id == that.preselectedSong.id && that.currentTrackIndex > 0){
                     return that.prev();
                 }
                 else{
-                    that.loadTrack(that.playlist[that.currentTrackIndex]);
+                    that.loadSong(that.playlist[that.currentTrackIndex]);
                     (that.playing)? that.play() : null;
+                    that.checkboxSelectedStatus();
                 }
             },
         };
         $('#audioControllers').on('click', 'button', function(){
-           switch( $(this).attr('id') ){
+            var ap = audioPlayer;
+            var changed = false;
+            switch( $(this).attr('id') ){
                case 'player__next':
-                   audioPlayer.waitUI(function(){
-                       audioPlayer.next();
-                       audioPlayer.disablePrevButton(false);
+                   ap.waitUI(function(){
+                       ap.next();
+                       ap.disablePrevButton(false);
                    });
+                   changed = true;
                    break;
                case 'player__prev':
-                   audioPlayer.prev();
-                   audioPlayer.disableNextButton(false);
+                   ap.prev();
+                   ap.disableNextButton(false);
+                   changed = true;
                    break;
                case 'player__play':
-                   if(audioPlayer.playing){
-                       audioPlayer.pause();
+                   if(ap.playing){
+                       ap.pause();
                        $(this).html('play');
                    }
                    else{
-                       audioPlayer.play();
+                       ap.play();
                        $(this).html('pause');
                    }
                    break;
            }
+        });
+        $('#eleCheckboxPlayer').on('click', function(){
+            var ap = audioPlayer;
+            if(ap.preselectedSong == null || ap.songLoaded.id != ap.preselectedSong.id){
+                if(this.checked){
+                    $('#eleSongCode').val(ap.songLoaded.id).change();
+                    $('#selectedSongName').html($('#info__title_artist').text().trim());
+                }
+                else{
+                    if ( ap.preselectedSong != null && parseInt (ap.preselectedSong.id) ){
+                        $('#eleSongCode').val(ap.preselectedSong.id).change();
+                        $('#selectedSongName').html(ap.preselectedSong.attributes.title + ' (' + ap.preselectedSong.relationships.artist.data.name + ')');
+                    }else{
+                        $('#eleSongCode').val('').change();
+                        $('#selectedSongName').html('');
+                    }
+
+                }
+            }
         });
     }
 });

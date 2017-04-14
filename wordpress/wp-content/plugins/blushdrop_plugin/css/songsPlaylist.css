@@ -9,6 +9,12 @@
 #info__cover{
     border-radius: 25px;
 }
+#info__title{
+    font-size: large;
+}
+#info__artist{
+    font-size: small;
+}
 .inlineFloatLeft{
     display: inline-block;
     float: left;
@@ -29,6 +35,9 @@
 .text-smaller{
     font-size: smaller;
 }
+._100p{
+    width:100%;
+}
 ._33p{
     width:33%;
     float: left;
@@ -40,7 +49,14 @@
 #bdpMain .mdl-cell{
     padding-bottom: 0.8em;
 }
+#interface--info .cellTight{
+    padding: 0px;
 
+}
+.info__metadata--timer{
+    font-size: smaller;
+    margin-top: -10px;
+}
 /* Font Family
 ================================================== */
 

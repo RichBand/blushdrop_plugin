@@ -17,13 +17,14 @@
                 var anchor = $(this).find('a.remove');
                 var id = $.inArray(anchor.data('product_id'), rules.opc);
                 if(id != -1){
-                    anchor.remove()
+                    anchor.remove();
                 }
                 var input =  $(this).find('div.quantity input');
                 id = $.inArray(anchor.data('product_id'), rules.nmq);
                 if(id != -1) {
                     input.prop('disabled', true);
                     input.css('border', 0);
+                    anchor.remove();
                     
                 }
             });
