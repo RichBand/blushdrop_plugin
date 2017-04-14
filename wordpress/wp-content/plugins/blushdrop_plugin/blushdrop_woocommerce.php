@@ -101,8 +101,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
                 {
                     $wc_query->the_post();
                     $thisProductID = $wc_query->post->ID;
-                    $x = $this->getProduct($thisProductID, $user);
-                    $music[] = $x;
+                    $music[] = $this->getProduct($thisProductID, $user);
                 }
             }
             wp_reset_postdata();
@@ -111,13 +110,26 @@ if (!class_exists('Blushdrop_woocommerce')) {
 
 		public function getMusicIDs()
 		{
-			$res = Array();
+			$res = [];
 			$music = $this->getMusic();
 			for($i = 0, $j = count($music); $i<$j; $i++){
 				array_push($res, $music[$i]->ID);
 			}
 			return $res;
 		}
+
+		public function getMusicInCart()
+        {
+            $res = array();
+            $songs = $this->getMusic();
+            $res = array_filter($songs, function($song){
+                return !empty($song->isInCart['ok']);
+            });
+            if (!empty($res)){
+                $res =  array_values($res)[0];
+            }
+            return $res;
+        }
 
 		public function removeMusicFromCart()
 		{
@@ -131,7 +143,8 @@ if (!class_exists('Blushdrop_woocommerce')) {
             }
 			return $res;
 		}
-        private function setFeaturedImage( $image_url, $post_id){
+
+		private function setFeaturedImage( $post_id, $image_url){
             $upload_dir = wp_upload_dir();
             $image_data = file_get_contents($image_url);
             $filename = basename($image_url);
@@ -153,7 +166,8 @@ if (!class_exists('Blushdrop_woocommerce')) {
             $res2= set_post_thumbnail( $post_id, $attach_id );
             return ['attachement'=>$res1, 'thumbnail'=>$res2];
         }
-		public function setQuantityInCart($key, $qty)
+
+        public function setQuantityInCart($key, $qty)
 		{
 			$res = WC()->cart->set_quantity($key, $qty, 1);
 			return $res;
@@ -196,7 +210,7 @@ if (!class_exists('Blushdrop_woocommerce')) {
             update_post_meta( $post_id, '_manage_stock', "no" );
             update_post_meta( $post_id, '_backorders', "no" );
             update_post_meta( $post_id, '_stock', "" );
-            $this->setFeaturedImage($data['image'], $post_id);
+            $this->setFeaturedImage($post_id, $data['image']);
             return $post_id;
         }
 

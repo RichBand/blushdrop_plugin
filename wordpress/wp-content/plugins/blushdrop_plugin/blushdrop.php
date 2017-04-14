@@ -36,6 +36,7 @@ if (!class_exists('Blushdrop')) {
             add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);
             add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
             add_action('wp_ajax_getMinutes', array(&$this, 'ajax_getMinutes'));
+            add_action('wp_ajax_getSongData', array(&$this, 'ajax_getSongData'));
             add_action('wp_ajax_getTrackList', array(&$this, 'ajax_getTrackList'));
             add_action('wp_enqueue_scripts', array(&$this, 'enqueue_CustomerFiles'));
             add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
@@ -150,13 +151,17 @@ if (!class_exists('Blushdrop')) {
                     'title'=>$contents->data->attributes->title,
                     'author'=>$contents->data->relationships->artist->data->name,
                     'image'=>$contents->data->relationships->artist->data->pic->url,
+                    'src'=>$contents->data->relationships->audio_files->data[0]->audio_file->versions->mp3->url,
+                    'duration'=>$contents->data->attributes->duration,
                 ];
             }else {
                 //TODO: predeterminated media names?
                 $result = [
                     'title'=>'Generic title',
                     'author'=>'Generic Author',
-                    'image'=>''
+                    'image'=>'',
+                    'src'=>'',
+                    'duration'=>''
                 ];
             }
             return $result;
@@ -249,19 +254,31 @@ if (!class_exists('Blushdrop')) {
 			echo $minutes;
 			exit;
 		}
-        public function ajax_getTrackList()
+        public function ajax_getSongData()
         {
             $index = intval($_REQUEST['index']);
-            $url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
-            $contents = file_get_contents($url);
-//            $contents = '{"data":[{"type":"songs","id":1328,"attributes":{"title":"Mountain Rush","duration":"3:18","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":82,"name":"Joel Slabach","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/JoelSlabach.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":3357,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/Mountain_Rush_MSTR.aifc","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_Mountain_Rush_MSTR.mp3"}}}}]}}},{"type":"songs","id":1125,"attributes":{"title":"Parapluie","duration":"3:07","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":110,"name":"Brique a Braq","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/BriqueaBraq.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":2693,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/10_Parapluie.wav","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_10_Parapluie.mp3"}}}}]}}}],"links":{"self":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","next":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2","first":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","last":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2"}}';
+            $contents = $this->getSongData($index);
             if($contents) {
-                echo $contents;
+                header('Content-Type:./ application/json');
+                echo json_encode($contents);
             }else {
                 var_dump(http_response_code(204));
             }
             exit;
         }
+        public function ajax_getTrackList()
+                {
+                    $index = intval($_REQUEST['index']);
+                    $url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
+                    $contents = file_get_contents($url);
+        //            $contents = '{"data":[{"type":"songs","id":1328,"attributes":{"title":"Mountain Rush","duration":"3:18","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":82,"name":"Joel Slabach","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/JoelSlabach.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":3357,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/Mountain_Rush_MSTR.aifc","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_Mountain_Rush_MSTR.mp3"}}}}]}}},{"type":"songs","id":1125,"attributes":{"title":"Parapluie","duration":"3:07","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":110,"name":"Brique a Braq","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/BriqueaBraq.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":2693,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/10_Parapluie.wav","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_10_Parapluie.mp3"}}}}]}}}],"links":{"self":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","next":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2","first":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","last":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2"}}';
+                    if($contents) {
+                        echo $contents;
+                    }else {
+                        var_dump(http_response_code(204));
+                    }
+                    exit;
+                }
 
 		public function enqueue_CustomerFiles()
 		{
@@ -338,6 +355,7 @@ if (!class_exists('Blushdrop')) {
                     'main' => $wcm->getProduct($settings['prodID_EditingPacakage'], $author),
                     'minute' => $wcm->getProduct($settings['prodID_ExtraMinute'], $author),
                     'music' => $wcm->getProduct($settings['prodID_MusicCapsule'], $author),
+                    'musicInCart' => $wcm->getMusicInCart(),
                     'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $author),
                     'url' => $wcm->getProduct($settings['prodID_URL'], $author),
                 ];

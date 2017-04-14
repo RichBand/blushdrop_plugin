@@ -9,6 +9,12 @@
 #info__cover{
     border-radius: 25px;
 }
+#info__title{
+    font-size: large;
+}
+#info__artist{
+    font-size: small;
+}
 .inlineFloatLeft{
     display: inline-block;
     float: left;
@@ -20,16 +26,37 @@
 .title_name{
 
 }
-.voc_inst{
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+.text-smaller{
+    font-size: smaller;
+}
+._100p{
+    width:100%;
+}
+._33p{
+    width:33%;
+    float: left;
+}
+#eleInputDiscAmount{
+    text-align: center;
+    width: 2em;
+}
+#bdpMain .mdl-cell{
+    padding-bottom: 0.8em;
+}
+#interface--info .cellTight{
+    padding: 0px;
 
 }
-.duration{
-
+.info__metadata--timer{
+    font-size: smaller;
+    margin-top: -10px;
 }
-.checkbox{
-
-}
-
 /* Font Family
 ================================================== */
 
