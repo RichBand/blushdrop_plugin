@@ -144,7 +144,13 @@ if (!class_exists('Blushdrop')) {
 		}
 
 		private function getSongData($songID){
-            $contents = file_get_contents("https://soundstripe-test-api.herokuapp.com/v1/songs/".intval($songID));
+            $url = "https://soundstripe-test-api.herokuapp.com/v1/songs/".intval($songID);
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            $contents = curl_exec($curl);
+            curl_close($curl);
             $contents = json_decode($contents);
             if($contents) {
                 $result = [
@@ -270,9 +276,13 @@ if (!class_exists('Blushdrop')) {
                 {
                     $index = intval($_REQUEST['index']);
                     $url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
-                    $contents = file_get_contents($url);
-        //            $contents = '{"data":[{"type":"songs","id":1328,"attributes":{"title":"Mountain Rush","duration":"3:18","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":82,"name":"Joel Slabach","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/JoelSlabach.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":3357,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/Mountain_Rush_MSTR.aifc","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_Mountain_Rush_MSTR.mp3"}}}}]}}},{"type":"songs","id":1125,"attributes":{"title":"Parapluie","duration":"3:07","has_file_with_vocals":false,"has_instrumental_file":true},"relationships":{"artist":{"data":{"type":"artists","id":110,"name":"Brique a Braq","pic":{"url":"https://s3.amazonaws.com/soundstripe-test-api/BriqueaBraq.jpg"}}},"audio_files":{"data":[{"type":"audio_files","id":2693,"has_vocals":false,"full_length":true,"exclusions":null,"audio_file":{"url":"https://s3.amazonaws.com/soundstripe-test-api/10_Parapluie.wav","versions":{"mp3":{"url":"https://s3.amazonaws.com/soundstripe-test-api/mp3_10_Parapluie.mp3"}}}}]}}}],"links":{"self":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","next":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2","first":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=1","last":"https://soundstripe-test-api.herokuapp.com/v1/playlists/1/songs?page=2"}}';
-                    if($contents) {
+                    $curl = curl_init($url);
+                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+                    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+                    $contents = curl_exec($curl);
+                    curl_close($curl);
+                    if(!empty($contents)) {
                         echo $contents;
                     }else {
                         var_dump(http_response_code(204));
@@ -282,20 +292,22 @@ if (!class_exists('Blushdrop')) {
 
 		public function enqueue_CustomerFiles()
 		{
+            if(is_page('cart')){
+                wp_enqueue_style('mdl_css');
+                wp_enqueue_style('custom_css');
+                wp_enqueue_script('mdl_js');
+                wp_enqueue_script('blushdrop_cart_js');
+                return;
+            }
 			$user_login = wp_get_current_user()->user_login;
-			if($user_login && is_page($user_login)){
+			if($user_login && is_page($user_login) || current_user_can('administrator')){
 				wp_enqueue_style('mdl_css');
 				wp_enqueue_style('custom_css');
                 wp_enqueue_style('songsPlaylist_css');
 				wp_enqueue_script('mdl_js');
 				wp_enqueue_script('blushdrop_dashboard_js');
                 wp_enqueue_script('blushdrop_songsPlaylist_js');
-			}
-			if(is_page('cart')){
-                wp_enqueue_style('mdl_css');
-                wp_enqueue_style('custom_css');
-                wp_enqueue_script('mdl_js');
-				wp_enqueue_script('blushdrop_cart_js');
+                return;
 			}
 		}
 		/**

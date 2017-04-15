@@ -12,7 +12,7 @@ var audioPlayer = null;
 jQuery(function ($) {
     $(document).ready(function(){
         var ap = audioPlayer;
-        $.when(ap.getPlaylist(1, true)).then(function(){
+        $.when(ap.getPlaylist(1, false)).then(function(){
             var val = $('#eleSongCode').val();
             if(val){
                 ap.getPreselectedSong(val);
