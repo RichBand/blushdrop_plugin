@@ -5,6 +5,7 @@
  * Date: 2016-09-04
  * Time: 17:07
  */
+global $woocommerce;
 if (!class_exists('Blushdrop_woocommerce')) {
 	class Blushdrop_woocommerce
 	{
@@ -83,7 +84,6 @@ if (!class_exists('Blushdrop_woocommerce')) {
             }
 			$product->isInCart = $this->isInCart($productID);
 			$product->price =  floatval($WC_product->get_price());
-			$product->reg_price = floatval($WC_product->get_regular_price());
 			$product->sale_price = floatval($WC_product->get_sale_price());
 			return $product;
 		}
