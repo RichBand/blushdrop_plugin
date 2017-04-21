@@ -355,11 +355,12 @@ if (!class_exists('Blushdrop')) {
 
         public function loadCustomerDashboardControls()
 		{
+		    $file = WP_PLUGIN_DIR . '/blushdrop_plugin/';
+            $author = get_user_by('id', get_the_author_meta('ID'));
             if( $this->isAuthorOrAdmin()) {
                 $settings = $this->getSettings();
                 $wcm = $this->getBdpWcm();
                 $dpx = $this->getBdpDpx();
-                $author = get_user_by('id', get_the_author_meta('ID'));
                 $path = $this->getPath() . $author->user_login;
                 $currentTotalMinutes = $dpx->getVideoMinutes($path);
                 $products = [
@@ -371,14 +372,16 @@ if (!class_exists('Blushdrop')) {
                     'raw' => $wcm->getProduct($settings['prodID_RawMaterial'], $author),
                     'url' => $wcm->getProduct($settings['prodID_URL'], $author),
                 ];
-                $file = WP_PLUGIN_DIR . "/blushdrop_plugin/customerDashboardControls.php";
-                if (file_exists($file)) {
-                    ob_start();
-                    include($file);
-                    return ob_get_clean();
-                }
+                $file .= 'customerDashboardControls.php';
+            }else{
+                $file .= 'visitorDashboardControls.php';
             }
-            return '';
+            if (file_exists($file)) {
+                ob_start();
+                include($file);
+                return ob_get_clean();
+            }
+            exit();
         }
 		public function redirectIfCustomer($user_login, $user)
 		{
