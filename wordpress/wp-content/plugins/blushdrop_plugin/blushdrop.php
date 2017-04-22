@@ -12,7 +12,7 @@
  * @version  1.1
  */
 if ( ! defined( 'ABSPATH' ) ) {
-//	exit; // Exit if accessed directly
+	exit(); // Exit if accessed directly
 }
 if (!class_exists('Blushdrop')) {
 	require_once 'blushdrop_dropbox.php';
@@ -31,7 +31,7 @@ if (!class_exists('Blushdrop')) {
             unset($args['dropbox']);
             $this->setConfigValues($args);
             $this->settings = $this->loadSettings();
-			$this->bdp_wcm = new Blushdrop_woocommerce(['musicCat'=>$this->settings['prodCat_Music']]);
+			$this->bdp_wcm = new Blushdrop_woocommerce( [ 'musicCat'=>$this->settings['prodCat_Music'] ] );
             add_action('init', array(&$this, 'register_CustomerFiles'));
             add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);
             add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
@@ -299,11 +299,13 @@ if (!class_exists('Blushdrop')) {
             $isValidName = !empty($name);
             $isValidOwner = (bool) get_user_by('id', $owner);
             if($isEmail && $isValidName && $isValidOwner){
-                $wala = 0;
-            }else{
-                $wala = 1;
+                //create contibutor page
+                //create dropboxfolder
+                //redirect
+            }else {
+                echo ['isEmail' => $isEmail, 'isValidName' => $isValidName, 'isValidOwner' => $isValidOwner];
+                var_dump(http_response_code(204));
             }
-            var_dump(http_response_code(204));
 
             //$url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
             //$curl = curl_init($url);
