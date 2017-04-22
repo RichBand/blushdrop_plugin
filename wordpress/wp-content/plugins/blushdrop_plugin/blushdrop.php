@@ -38,6 +38,7 @@ if (!class_exists('Blushdrop')) {
             add_action('wp_ajax_getMinutes', array(&$this, 'ajax_getMinutes'));
             add_action('wp_ajax_getSongData', array(&$this, 'ajax_getSongData'));
             add_action('wp_ajax_getTrackList', array(&$this, 'ajax_getTrackList'));
+            add_action('wp_ajax_newContributor', array(&$this, 'ajax_newContributor'));
             add_action('wp_enqueue_scripts', array(&$this, 'enqueue_CustomerFiles'));
             add_action('wp_login', array(&$this, 'redirectIfCustomer'), 11, 2);
 			add_shortcode('blushdrop_CustomerDashboardControls', array(&$this, 'loadCustomerDashboardControls'));
@@ -247,7 +248,7 @@ if (!class_exists('Blushdrop')) {
 			$res = $this->applyCartRulesToDashboard($orders);
 			header('Content-Type:./ application/json');
 			echo json_encode($res);
-			exit;
+			exit();
 		}
 
 		public function ajax_getMinutes()
@@ -258,7 +259,7 @@ if (!class_exists('Blushdrop')) {
 			$minutes = $this->bdp_dpx->getVideoMinutes($path);
 			header('Content-Type: text/plain');
 			echo $minutes;
-			exit;
+			exit();
 		}
         public function ajax_getSongData()
         {
@@ -270,26 +271,54 @@ if (!class_exists('Blushdrop')) {
             }else {
                 var_dump(http_response_code(204));
             }
-            exit;
+            exit();
         }
         public function ajax_getTrackList()
-                {
-                    $index = intval($_REQUEST['index']);
-                    $url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
-                    $curl = curl_init($url);
-                    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-                    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-                    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-                    $contents = curl_exec($curl);
-                    curl_close($curl);
-                    if(!empty($contents)) {
-                        echo $contents;
-                    }else {
-                        var_dump(http_response_code(204));
-                    }
-                    exit;
-                }
+        {
+            $index = intval($_REQUEST['index']);
+            $url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            $contents = curl_exec($curl);
+            curl_close($curl);
+            if(!empty($contents)) {
+                echo $contents;
+            }else {
+                var_dump(http_response_code(204));
+            }
+            exit();
+        }
+        public function ajax_newContributor()
+        {
+            $name = sanitize_text_field($_REQUEST['name']);
+            $email = sanitize_text_field($_REQUEST['email']);
+            $owner = intval($_REQUEST['owner']);
+            $isEmail = is_email($email);
+            $isValidName = !empty($name);
+            $isValidOwner = (bool) get_user_by('id', $owner);
+            if($isEmail && $isValidName && $isValidOwner){
+                $wala = 0;
+            }else{
+                $wala = 1;
+            }
+            var_dump(http_response_code(204));
 
+            //$url = "https://soundstripe-test-api.herokuapp.com/v1/playlists/43/songs?page=$index";
+            //$curl = curl_init($url);
+            //curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            //curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+            //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+            //$contents = curl_exec($curl);
+            //curl_close($curl);
+            //if(!empty($contents)) {
+            //    echo $contents;
+            //}else {
+            //    var_dump(http_response_code(204));
+            //}
+            //exit;
+        }
 		public function enqueue_CustomerFiles()
 		{
             if(is_page('cart')){

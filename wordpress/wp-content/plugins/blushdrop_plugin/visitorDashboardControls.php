@@ -32,11 +32,12 @@ function mdlGrid($screen = 12, $tablet = 8, $phone = 4, $allign=''){
                             console.log('<?= $siteUrl . '/' . (urlencode($author->display_name)) ?>/' + name);
                             $.ajax({
                                 async: false,
-                                url: '<?= $siteUrl ?>/newVisitor',
+                                url: '<?=admin_url('admin-ajax.php')?>',
                                 data: {
-                                    'name': name,
-                                    'email': email,
-                                    'owner' : <?= $author->ID ?>
+                                    action  : 'newContributor',
+                                    name    : name,
+                                    email   : email,
+                                    owner   : <?= $author->ID ?>
                                 },
                                 dataType: 'json',
                                 success: function (data, textStatus, request) {
