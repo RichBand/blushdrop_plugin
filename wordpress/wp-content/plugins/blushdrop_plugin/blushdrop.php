@@ -33,7 +33,7 @@ if (!class_exists('Blushdrop')) {
             $this->settings = $this->loadSettings();
 			$this->bdp_wcm = new Blushdrop_woocommerce( [ 'musicCat'=>$this->settings['prodCat_Music'] ] );
             add_action('init', array(&$this, 'register_CustomerFiles'));
-            add_action('user_register', array(&$this, 'whenNewCustomer'), 10, 1);
+            add_action('user_register', array(&$this, 'whenNewUser'), 10, 1);
             add_action('wp_ajax_addOrderToCart', array(&$this, 'ajax_addOrderToCart'));
             add_action('wp_ajax_getMinutes', array(&$this, 'ajax_getMinutes'));
             add_action('wp_ajax_getSongData', array(&$this, 'ajax_getSongData'));
@@ -115,6 +115,10 @@ if (!class_exists('Blushdrop')) {
                 };
             }
             return $res;
+        }
+
+        private function createPageContributor($user, $path)
+		{
         }
 
         private function createPageCustomer($user, $path)
@@ -206,8 +210,22 @@ if (!class_exists('Blushdrop')) {
 				return false;
 			}
 		}
+        private function isContributor($ID = null)
+        {
+            $user = ($ID == null) ? wp_get_current_user() : get_userdata($ID);
+            if ($user != null) {
+                $user_roles = $user->roles;
+                if (in_array("Contributor", $user_roles) || in_array("contributor", $user_roles)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
 
-		private function loadSettings()
+            }
+        }
+        private function loadSettings()
 		{
 			$settings = get_option('blushdrop_settings', [
 				'dropbox_path' => '',
@@ -435,7 +453,7 @@ if (!class_exists('Blushdrop')) {
 			wp_register_script('blushdrop_dashboard_js', plugins_url('/js/blushdrop_dashboard.js', __FILE__));
 			wp_register_script('blushdrop_cart_js', plugins_url('/js/blushdrop_cart.js', __FILE__));
 		}
-		public function whenNewCustomer($user_id)
+		public function whenNewUser($user_id)
 		{
 			if ($this->isCustomer($user_id)){
 				$newUser = get_userdata($user_id);
@@ -444,6 +462,13 @@ if (!class_exists('Blushdrop')) {
 				$this->bdp_dpx->createFolder($path);
 				$this->createPageCustomer($newUser, $path);
 			}
+            if ($this->isCustomer($user_id)){
+                $newUser = get_userdata($user_id);
+                $username = $this->sanitizeUserName($newUser->user_login);
+                $path = $this->path.$username;
+                $this->bdp_dpx->createFolder($path);
+                $this->createPageCustomer($newUser, $path);
+            }
 		}
 	}//end of class
 }//end, If class exist
