@@ -58,23 +58,15 @@ var bdp = {};
                     songID:parseInt(musicVal)
                 })
             }
-            var minutes = products.minute.isInCart.qty;
+            var minutes = Number(products.minute.isInCart.qty);
+            minutes = ( minutes - 10 > 0 )? ( minutes - 10) : 0;
             var updatedMinutes = $("#eleExtraMinutes").val();
             var diff = updatedMinutes - minutes;
             if(diff) {
                 order.push({
                     id: parseInt(products.minute.ID),
                     qty: updatedMinutes
-                });
-                if(minutes){
-                    var msg = "You have " + Math.abs(diff) + ((diff > 0) ?
-                            " more extraMinutes, and will be added to the checkout"
-                            : " less extraMinutes, and will be taken to the checkout");
-                    if (!confirm(msg)) {
-                        $("#bdp_background").toggle(false);
-                        return false
-                    }
-                }
+                })
             }
             return order;
         },
@@ -123,7 +115,7 @@ var bdp = {};
                         'userID' : bdp.model.customer,
                     },
                     success:function(data, textStatus, request) {
-                        data = (data > 10)? (data-10) : data;
+                        data = (!isNaN(Number(data)) && data > 10)? ( Number(data)-10 ) : data;
                         $("#eleExtraMinutes").val(data);
                         bdp.updateSubtotal();
                     },
@@ -141,7 +133,7 @@ var bdp = {};
 
             $("#eleInputDiscAmount").val( (prod.disc.isInCart.ok)?  prod.disc.isInCart.qty || 0 : 0 );
 
-            $("#eleExtraMinutes").val( ( this.model.currentTotalMinutes - 10 > 0 )? this.model.currentTotalMinutes : 0 );
+            $("#eleExtraMinutes").val( ( this.model.currentTotalMinutes - 10 > 0 )? ( this.model.currentTotalMinutes - 10) : 0 );
 
             if( typeof prod.musicInCart.isInCart != 'undefined' && Boolean(prod.musicInCart.isInCart.ok) ){
                 $selectedSongName = $("#selectedSongName");
@@ -162,7 +154,6 @@ var bdp = {};
             $("#bdp_background").toggle();
             setTimeout(function () {
                 $.when(that.controller.ajax_getMinutes()).then(function(){
-//                $("#bdp_background").removeClass("bdp_background--on");
                     var order = that.collectOrder();
                     if(order){
                         that.controller.ajax_addTocart(order);

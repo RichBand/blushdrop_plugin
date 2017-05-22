@@ -12,7 +12,7 @@ var audioPlayer = null;
 jQuery(function ($) {
     $(document).ready(function(){
         var ap = audioPlayer;
-        $.when(ap.getPlaylist(1, false)).then(function(){
+        $.when(ap.getPlaylist(1, true)).then(function(){
             var val = $('#eleSongCode').val();
             if(val){
                 ap.getPreselectedSong(val);
@@ -217,7 +217,7 @@ jQuery(function ($) {
                 that.currentTrackIndex ++;
                 var deadEnd = false;
                 if(  that.currentTrackIndex  >= that.playlist.length){
-                   $.when(that.getPlaylist(++that.trackListIndex, false)).then(function(){
+                   $.when(that.getPlaylist(++that.trackListIndex, true)).then(function(){
                        if(typeof that.playlist[that.currentTrackIndex] == 'undefined'){
                            that.trackListIndex--;
                            that.currentTrackIndex--;

@@ -136,7 +136,6 @@ if (!class_exists('Blushdrop')) {
                 $page['post_author'] = $user->ID;
                 $page['post_status'] = 'publish';
                 $page['post_title'] = $username = $this->sanitizeUserName($user->user_login);
-                $pageid = wp_insert_post($page);
             }
             catch(Exception $e){
                 error_log("Caught $e while trying to create the page for the user ".$user->ID);
@@ -252,7 +251,6 @@ if (!class_exists('Blushdrop')) {
 
 		public function ajax_getMinutes()
 		{
-			$userID     = absint( $_REQUEST['userID'] );
 			$current_user = wp_get_current_user();
 			$path = $this->path.$current_user->user_login;
 			$minutes = $this->bdp_dpx->getVideoMinutes($path);
