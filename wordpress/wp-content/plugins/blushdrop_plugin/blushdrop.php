@@ -256,7 +256,7 @@ if (!class_exists('Blushdrop')) {
 			$minutes = $this->bdp_dpx->getVideoMinutes($path);
 			header('Content-Type: text/plain');
 			echo $minutes;
-			exit;
+			exit();
 		}
         public function ajax_getSongData()
         {
@@ -268,7 +268,7 @@ if (!class_exists('Blushdrop')) {
             }else {
                 var_dump(http_response_code(204));
             }
-            exit;
+            exit();
         }
         public function ajax_getTrackList()
                 {

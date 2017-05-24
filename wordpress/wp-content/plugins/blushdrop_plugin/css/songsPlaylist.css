@@ -1,5 +1,6 @@
 #audioWrapper{
     background: #fafafa;
+    display: none;
 }
 .backgroundCover{
     background-repeat: no-repeat;
@@ -10,10 +11,13 @@
     border-radius: 25px;
 }
 #info__title{
-    font-size: large;
+    /*font-size: large;*/
 }
 #info__artist{
-    font-size: small;
+    font-size: x-small;
+}
+#info__status{
+    font-size: xx-small;
 }
 .inlineFloatLeft{
     display: inline-block;
@@ -56,6 +60,17 @@
 .info__metadata--timer{
     font-size: smaller;
     margin-top: -10px;
+}
+label[for=eleCheckboxPlayer]{
+    display: inline;
+    margin-left: 5px;
+}
+@media only screen and (max-width: 480px){
+    .text-right{
+       text-align: center;
+
+    }
+
 }
 /* Font Family
 ================================================== */

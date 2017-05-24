@@ -77,12 +77,16 @@ if (!class_exists('Blushdrop_woocommerce')) {
 			//TODO, check why the validation of the active plugin woocommerce is not working
 //			if ( is_plugin_active('woocommerce/woocommerce.php') ){
 				$WC_product = wc_get_product( $productID);
-				$product = $WC_product->post;
+				$wc_product = $WC_product->post;
 //			}
             if(isset($user->ID)){
                 $product->isBought = $this->isBought($productID, $user)? 1: 0;
             }
-			$product->isInCart = $this->isInCart($productID);
+            $product->ID = $wc_product->ID;
+            $product->post_title = $wc_product->post_title;
+            $product->post_content = $wc_product->post_content;
+            $product->price = $wc_product->price;
+            $product->isInCart = $this->isInCart($productID);
 			$product->price =  floatval($WC_product->get_price());
 			$product->sale_price = floatval($WC_product->get_sale_price());
 			return $product;

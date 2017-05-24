@@ -40,9 +40,7 @@ if (!class_exists('Blushdrop_dropbox')) {
 
 		public function getFolderMetadata($path)
 		{
-			$folderMetadata = null;
-			$folderMetadata = $this->client->getMetadataWithChildren($path);
-			return $folderMetadata;
+			return $this->client->getMetadataWithChildren($path);
 		}
 
 		public function getVideoMinutes($path)
