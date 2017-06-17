@@ -12,8 +12,9 @@ var audioPlayer = null;
 jQuery(function ($) {
     $(document).ready(function(){
         var ap = audioPlayer;
-        $.when(ap.getPlaylist(1, false)).then(function(){
+        $.when(ap.getPlaylist(1, true)).then(function(){
             var val = $('#eleSongCode').val();
+            $('#audioWrapper').slideDown();
             if(val){
                 ap.getPreselectedSong(val);
                 ap.playlist.unshift(ap.preselectedSong);
@@ -30,7 +31,6 @@ jQuery(function ($) {
             ap.player.oncanplay = function(){
                 if(!ap.playing){
                     ap.interfaceInfo.status.html('-');
-                    var duration = this.duration 
                     $('#info__timeduration').html( ap.formatDurationTime( this.duration) );
                 }
             };
@@ -55,7 +55,7 @@ jQuery(function ($) {
                 duration: $('#info__duration'),
                 artist: $('#info__artist'),
                 cover: $('#info__cover'),
-                status: $('#info__status'),
+                status: $('#info__status')
             },
             links:$('#playlist').data(),
             player: $('#player__audio').get(0),
@@ -75,14 +75,13 @@ jQuery(function ($) {
                 var $checkbox = $('#eleCheckboxPlayer');
 
                 if(this.songLoaded.id != $('#eleSongCode').val() ){
-                    $label.removeClass('is-checked is-disabled');
-                    $checkbox.prop('checked', false ).prop('disabled', false);
+                    $label.removeClass('is-checked');
+                    $checkbox.prop('checked', false );
                 }
                 else{
-                    $label.addClass('is-checked is-disabled');
-                    $checkbox.prop('checked', true ).prop('disabled', true);
+                    $label.addClass('is-checked');
+                    $checkbox.prop('checked', true );
                 }
-                return;
             },
             disableNextButton:function(disabled){
                 $('#player__next').prop('disabled', disabled);
@@ -110,15 +109,15 @@ jQuery(function ($) {
             getPlaylist:function(trackListIndex, async){
                 var response =false;
                 var that = this;
-                $.ajax({
-                    async: async,
+                return $.ajax({
+                    async:async,
                     url: bdp.model.ajaxUrl,
                     data: {
                         'action':'getTrackList',
                         'index': trackListIndex
                     },
                     dataType:'json',
-                    success:function(data, textStatus, request) {
+                    success:function(data) {
                         if( typeof data.data != 'undefined' && data.data.length > 0) {
                             that.playlist = that.playlist.concat(data.data);
                             response = true;
@@ -128,15 +127,13 @@ jQuery(function ($) {
                             response = false;
                         }
                     },
-                    error: function(data, textStatus, request){
+                    error: function(){
                         response = false;
                         //something
                     }
                 });
-                return response;
             },
             getPreselectedSong:function(trackID){
-                var response ='';
                 var that = this;
                 if(Boolean(trackID)){
                     $.ajax({
@@ -147,7 +144,7 @@ jQuery(function ($) {
                             'index': trackID
                         },
                         dataType:'json',
-                        success:function(data, textStatus, request) {
+                        success:function(data) {
                             if(typeof data != 'undefined' && !$.isEmptyObject(data) ){
                                 that.preselectedSong = {
                                     id: trackID,
@@ -176,11 +173,12 @@ jQuery(function ($) {
                                             }]
                                         }
                                     }
-                                }
+                                };
                                 that.loadSong(that.preselectedSong);
+                                that.checkboxSelectedStatus();
                             }
                         },
-                        error: function(data, textStatus, request){
+                        error: function(data, textStatus){
                             console.log(textStatus);
                         }
                     });
@@ -231,12 +229,11 @@ jQuery(function ($) {
                     if(that.preselectedSong != null &&  that.playlist[that.currentTrackIndex].id == that.preselectedSong.id){
                         return that.next();
                     }
-                    else{
-                        that.loadSong(that.playlist[that.currentTrackIndex]);
-                        that.checkboxSelectedStatus();
-                        (that.playing)? that.play() : null;
-                    }
+                    that.loadSong(that.playlist[that.currentTrackIndex]);
+                    that.checkboxSelectedStatus();
+                    (that.playing)? that.play() : null;
                 }
+
             },
             prev: function () {
                 var that = this;
@@ -253,7 +250,7 @@ jQuery(function ($) {
                     (that.playing)? that.play() : null;
                     that.checkboxSelectedStatus();
                 }
-            },
+            }
         };
         $('#audioControllers').on('click', 'button', function(){
             var ap = audioPlayer;
