@@ -405,6 +405,7 @@ if (!class_exists('Blushdrop')) {
 				$newUser = get_userdata($user_id);
 				$username = $this->sanitizeUserName($newUser->user_login);
 				$path = $this->path.$username;
+                $this->createPageCustomer($newUser, $path);
 				$this->bdp_dpx->createFolder($path);
 				$this->createPageCustomer($newUser, $path);
 			}
