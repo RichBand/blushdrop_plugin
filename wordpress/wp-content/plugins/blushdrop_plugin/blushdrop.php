@@ -135,7 +135,8 @@ if (!class_exists('Blushdrop')) {
                 $page['post_parent'] = 0;
                 $page['post_author'] = $user->ID;
                 $page['post_status'] = 'publish';
-                $page['post_title'] = $username = $this->sanitizeUserName($user->user_login);
+                $page['post_title'] = $this->sanitizeUserName($user->user_login);
+                $pageid = wp_insert_post($page);
             }
             catch(Exception $e){
                 error_log("Caught $e while trying to create the page for the user ".$user->ID);
