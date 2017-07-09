@@ -14,7 +14,7 @@ var bdp = {};
             bdp.populateInfoElements();
             bdp.updateSubtotal();
         }
-        $("#bdp_background").toggle();
+        $("#bdp_background").hide();
     });
     bdp = {
         model:{},
