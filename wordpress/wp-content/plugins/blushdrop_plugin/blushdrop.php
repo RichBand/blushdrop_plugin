@@ -291,6 +291,7 @@ if (!class_exists('Blushdrop')) {
 
 		public function enqueue_CustomerFiles()
 		{
+            wp_enqueue_script('jquery');
             if(is_page('cart')){
                 wp_enqueue_style('mdl_css');
                 wp_enqueue_style('custom_css');
@@ -308,6 +309,9 @@ if (!class_exists('Blushdrop')) {
                 wp_enqueue_script('blushdrop_songsPlaylist_js');
                 return;
 			}
+            else{
+			    wp_enqueue_script('blushdrop_override_OOB_js');
+            }
 		}
 		/**
 		 * @return Blushdrop_dropbox|null
@@ -398,7 +402,9 @@ if (!class_exists('Blushdrop')) {
             wp_register_script('blushdrop_songsPlaylist_js', plugins_url('/js/blushdrop_songsPlaylist.js', __FILE__));
 
 			wp_register_script('blushdrop_dashboard_js', plugins_url('/js/blushdrop_dashboard.js', __FILE__));
-			wp_register_script('blushdrop_cart_js', plugins_url('/js/blushdrop_cart.js', __FILE__));
+		 	wp_register_script('blushdrop_cart_js', plugins_url('/js/blushdrop_cart.js', __FILE__));
+
+            wp_register_script('blushdrop_override_OOB_js', plugins_url('/js/blushdrop_override_OOB.js', __FILE__));
 		}
 		public function whenNewCustomer($user_id)
 		{
