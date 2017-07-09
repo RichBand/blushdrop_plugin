@@ -308,6 +308,9 @@ if (!class_exists('Blushdrop')) {
                 wp_enqueue_script('blushdrop_songsPlaylist_js');
                 return;
 			}
+            else{
+			    wp_enqueue_script(‘blushdrop_override_OOB_js’);
+            }
 		}
 		/**
 		 * @return Blushdrop_dropbox|null
