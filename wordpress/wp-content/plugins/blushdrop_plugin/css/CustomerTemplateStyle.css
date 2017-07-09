@@ -25,7 +25,7 @@
     min-width: 100px;
 }
 .bdp_background{
-    /*display:none;*/
+    display:none;
     position: fixed;
     z-index: 2;
     width: 100%;
