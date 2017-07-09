@@ -291,6 +291,7 @@ if (!class_exists('Blushdrop')) {
 
 		public function enqueue_CustomerFiles()
 		{
+            wp_enqueue_script('jquery');
             if(is_page('cart')){
                 wp_enqueue_style('mdl_css');
                 wp_enqueue_style('custom_css');
@@ -309,7 +310,7 @@ if (!class_exists('Blushdrop')) {
                 return;
 			}
             else{
-			    wp_enqueue_script(‘blushdrop_override_OOB_js’);
+			    wp_enqueue_script('blushdrop_override_OOB_js');
             }
 		}
 		/**
