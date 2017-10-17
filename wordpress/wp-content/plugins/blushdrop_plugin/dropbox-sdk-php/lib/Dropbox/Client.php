@@ -134,7 +134,7 @@ class Client
      */
     function disableAccessToken()
     {
-        $response = $this->doPost($this->apiHost, "1/disable_access_token");
+        $response = $this->doPost($this->apiHost, "/2/auth/token/revoke");
         if ($response->statusCode !== 200) throw RequestUtil::unexpectedStatus($response);
     }
 

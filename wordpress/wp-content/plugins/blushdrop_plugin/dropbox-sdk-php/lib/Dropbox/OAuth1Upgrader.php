@@ -37,7 +37,7 @@ class OAuth1Upgrader extends AuthBase
     {
         OAuth1AccessToken::checkArg("oauth1AccessToken", $oauth1AccessToken);
 
-        $response = self::doPost($oauth1AccessToken, "1/oauth2/token_from_oauth1");
+        $response = self::doPost($oauth1AccessToken, "/2/auth/token/from_oauth1");
 
         if ($response->statusCode !== 200) throw RequestUtil::unexpectedStatus($response);
 
